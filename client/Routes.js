@@ -3,7 +3,8 @@ import {connect} from 'react-redux'
 import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
 import { Login, Signup } from './components/AuthForm';
 import Home from './components/Home';
-import {me} from './store'
+import {me, loadMovies} from './store'
+import Movies from './components/Movies'
 
 /**
  * COMPONENT
@@ -26,6 +27,7 @@ class Routes extends Component {
         ) : (
           <Switch>
             <Route path='/' exact component={ Login } />
+            <Route path='/movies' component={Movies}/>
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
           </Switch>
@@ -50,6 +52,7 @@ const mapDispatch = dispatch => {
   return {
     loadInitialData() {
       dispatch(me())
+      dispatch(loadMovies())
     }
   }
 }
