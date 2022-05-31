@@ -5,6 +5,7 @@ import { Login, Signup } from './components/AuthForm';
 import Home from './components/Home';
 import {me, loadMovies} from './store'
 import Movies from './components/Movies'
+import Movie from './components/Movie'
 
 /**
  * COMPONENT
@@ -28,6 +29,7 @@ class Routes extends Component {
           <Switch>
             <Route path='/' exact component={ Login } />
             <Route path='/movies' exact component={Movies}/>
+            <Route path='/movies/:id' component={Movie}/>
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
           </Switch>
