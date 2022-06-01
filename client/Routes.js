@@ -4,10 +4,10 @@ import { withRouter, Route, Switch, Redirect } from "react-router-dom";
 import { Login, Signup } from "./components/AuthForm";
 import Home from "./components/Home";
 import { me, loadMovies, loadRelationships, loadUsers } from "./store";
-import Movies from './components/Movies'
-import Movie from './components/Movie'
+import Movies from "./components/Movies";
+import Movie from "./components/Movie";
 import FriendsList from "./components/FriendsList";
-
+import Profile from "./components/Profile";
 /**
  * COMPONENT
  */
@@ -24,9 +24,10 @@ class Routes extends Component {
         {isLoggedIn ? (
           <Switch>
             <Route path="/home" component={Home} />
-            <Route path='/friendsList' component={FriendsList}/>
+            <Route path="/friendsList" component={FriendsList} />
             <Route path="/movies" exact component={Movies} />
             <Route path="/movies/:id" component={Movie} />
+            <Route path="/profile" component={Profile} />
             <Redirect to="/home" />
           </Switch>
         ) : (
@@ -60,7 +61,7 @@ const mapDispatch = (dispatch) => {
       dispatch(me());
       dispatch(loadMovies());
       dispatch(loadRelationships());
-      dispatch(loadUsers())
+      dispatch(loadUsers());
     },
   };
 };
