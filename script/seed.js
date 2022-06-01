@@ -2,7 +2,7 @@
 
 const {
   db,
-  models: { User },
+  models: { User, Relationship },
 } = require("../server/db");
 
 /**
@@ -14,7 +14,7 @@ async function seed() {
   console.log("db synced!");
 
   // Creating Users
-  const users = await Promise.all([
+  const [cody, murphy, doug, angel, anna, jiayu] = await Promise.all([
     User.create({ username: "cody", password: "123" }),
     User.create({ username: "murphy", password: "123" }),
     User.create({ username: "doug", password: "123" }),
@@ -22,16 +22,26 @@ async function seed() {
     User.create({ username: "anna", password: "123" }),
     User.create({ username: "jiayu", password: "123" }),
   ]);
+  
+  const relationships = await Promise.all([
+    Relationship.create({status:'accepted', recipientId:doug.id, senderId:jiayu.id}),
+    Relationship.create({status:'accepted', recipientId:cody.id, senderId:jiayu.id}),
+    Relationship.create({recipientId:murphy.id, senderId:jiayu.id}),
+    Relationship.create({recipientId:jiayu.id, senderId:anna.id})
+  ])
 
-  console.log(`seeded ${users.length} users`);
+  // console.log(`seeded ${users.length} users`);
+
+  console.log(`seeded ${relationships.length} relationships`);
   console.log(`seeded successfully`);
   return {
     users: {
-      cody: users[0],
-      murphy: users[1],
+      cody: cody,
+      murphy: murphy
     },
   };
 }
+
 
 /*
  We've separated the `seed` function from the `runSeed` function.

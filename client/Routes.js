@@ -3,9 +3,10 @@ import { connect } from "react-redux";
 import { withRouter, Route, Switch, Redirect } from "react-router-dom";
 import { Login, Signup } from "./components/AuthForm";
 import Home from "./components/Home";
-import { me, loadMovies } from "./store";
-import Movies from "./components/Movies";
-import Movie from "./components/Movie";
+import { me, loadMovies, loadRelationships, loadUsers } from "./store";
+import Movies from './components/Movies'
+import Movie from './components/Movie'
+import FriendsList from "./components/FriendsList";
 
 /**
  * COMPONENT
@@ -23,6 +24,7 @@ class Routes extends Component {
         {isLoggedIn ? (
           <Switch>
             <Route path="/home" component={Home} />
+            <Route path='/friendsList' component={FriendsList}/>
             <Route path="/movies" exact component={Movies} />
             <Route path="/movies/:id" component={Movie} />
             <Redirect to="/home" />
@@ -57,6 +59,8 @@ const mapDispatch = (dispatch) => {
     loadInitialData() {
       dispatch(me());
       dispatch(loadMovies());
+      dispatch(loadRelationships());
+      dispatch(loadUsers())
     },
   };
 };
