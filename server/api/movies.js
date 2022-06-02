@@ -2,7 +2,7 @@ const router = require('express').Router()
 module.exports = router
 const axios = require('axios')
 require('dotenv').config();
-const MOVIE_KEY = '8ffe0938c6774bbb929b412a3e840241'
+
 
 router.get('/', async(req, res, next)=>{
   try{

@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import { withRouter, Route, Switch, Redirect } from "react-router-dom";
 import { Login, Signup } from "./components/AuthForm";
 import Home from "./components/Home";
-import { me, loadMovies, loadRelationships, loadUsers } from "./store";
-import Movies from './components/Movies'
-import Movie from './components/Movie'
+import { me, loadMedia, loadRelationships, loadUsers, loadGenres } from "./store";
+import Media from './components/Media'
+import SingleMedia from './components/SingleMedia'
 import FriendsList from "./components/FriendsList";
 
 /**
@@ -25,15 +25,17 @@ class Routes extends Component {
           <Switch>
             <Route path="/home" component={Home} />
             <Route path='/friendsList' component={FriendsList}/>
-            <Route path="/movies" exact component={Movies} />
-            <Route path="/movies/:id" component={Movie} />
+            <Route path="/media" exact component={Media} />
+            <Route path="/movie/:id" component={SingleMedia} />
+            <Route path="/tv/:id" component={SingleMedia} />
             <Redirect to="/home" />
           </Switch>
         ) : (
           <Switch>
             <Route path="/" exact component={Login} />
-            <Route path="/movies" exact component={Movies} />
-            <Route path="/movies/:id" component={Movie} />
+            <Route path="/media" exact component={Media} />
+            <Route path="/movie/:id" component={SingleMedia} />
+            <Route path="/tv/:id" component={SingleMedia} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
           </Switch>
@@ -58,9 +60,10 @@ const mapDispatch = (dispatch) => {
   return {
     loadInitialData() {
       dispatch(me());
-      dispatch(loadMovies());
+      dispatch(loadMedia());
       dispatch(loadRelationships());
-      dispatch(loadUsers())
+      dispatch(loadUsers());
+      dispatch(loadGenres())
     },
   };
 };

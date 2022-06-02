@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from "react-redux";
-import { findSingleMovie } from '../store'
 
 const FriendsList = ({auth, users, relationships})=>{
   if(!relationships.length || !auth.id || !users) return null
@@ -50,13 +49,6 @@ const FriendsList = ({auth, users, relationships})=>{
   )
 }
 
-const mapDispatch = (dispatch)=>{
-  return{
-    findSingleMovie: (id) =>{
-      dispatch(findSingleMovie(id))
-    }
-  }
-}
 
 const mapState = ({auth, users, relationships})=>{
   return{
@@ -66,4 +58,4 @@ const mapState = ({auth, users, relationships})=>{
   }
 }
 
-export default connect(mapState, mapDispatch)(FriendsList)
+export default connect(mapState)(FriendsList)
