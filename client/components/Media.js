@@ -32,16 +32,16 @@ class Media extends React.Component{
     this.state ={
       media: 'movie',
       page: 1,
-      filter: []
+      with_genres: []
     }
   }
 
   componentDidUpdate(prevProps, prevState){
     const {loadMedia} = this.props
     if(prevState.media !== this.state.media) {
-      loadMedia({page:this.state.page, media:this.state.media, with_genres:this.state.filter})
+      loadMedia({...this.state})
     }
-    if(prevState.filter !== this.state.filter) loadMedia({page:this.state.page, media:this.state.media, with_genres:this.state.filter})
+    if(prevState.with_genres !== this.state.with_genres) loadMedia({...this.state})
   }
 
   handleChangeValue = (val)=>{
@@ -49,13 +49,13 @@ class Media extends React.Component{
   }
 
   handleFilterValue = (val) =>{
-    this.setState({filter:val})
+    this.setState({with_genres:val})
   }
 
   render(){
     const {media, loadMedia, classes, genres} = this.props
     if(!media) return null
-    if(!media.results) loadMedia()
+    if(!media.results) loadMedia({...this.state})
     let selectedGenres
     this.state.media === "movie"? selectedGenres = genres.movieGenres: selectedGenres= genres.tvGenres
     
@@ -71,12 +71,12 @@ class Media extends React.Component{
             <ListSubheader component="div">Total results:{media.total_results>10000?10000:media.total_results}
               <Pagination count={media.total_pages>500?500:media.total_pages} reset={this.reset} onChange={(ev, page) => {
                 this.setState({...this.state, page:page})
-                loadMedia({page, media:this.state.media})}}
+                loadMedia({...this.state, page})}}
               />
             </ListSubheader>
           </ImageListItem>
           {media.results?.map((item, idx) => (
-            <ImageListItem key={idx} cols={5} style={{ width:'calc(20%-4px)', height:'40vh' }}>
+            <ImageListItem key={idx} cols={5} style={{ width:'calc(20%-4px)', height:'65vh' }}>
               <Link to={`/${this.state.media}/${item.id}`}>
                 <img src={`https://image.tmdb.org/t/p/w300/${item.poster_path}`} alt={item.title} />
               </Link>
