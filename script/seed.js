@@ -2,7 +2,7 @@
 
 const {
   db,
-  models: { User, Relationship },
+  models: { User, Relationship, Posts },
 } = require("../server/db");
 
 /**
@@ -22,6 +22,17 @@ async function seed() {
     User.create({ username: "anna", password: "123" }),
     User.create({ username: "jiayu", password: "123" }),
   ]);
+
+  //creating sample posts
+
+  const posts = await Promise.all([
+    Posts.create({content: 'this is a post for test angel', userId: angel.id}),
+    Posts.create({content: 'this is a post for test anna', userId: anna.id}),
+    Posts.create({content: 'this is a post for test doug', userId: doug.id}),
+    Posts.create({content: 'this is a post for test jiayu', userId: jiayu.id})
+  ])
+
+  console.log(`seeded ${posts.length} posts`)
   
   const relationships = await Promise.all([
     Relationship.create({status:'accepted', recipientId:doug.id, senderId:jiayu.id}),
