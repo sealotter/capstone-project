@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { withRouter, Route, Switch, Redirect } from "react-router-dom";
 import { Login, Signup } from "./components/AuthForm";
 import Home from "./components/Home";
-import { me, loadMovies, loadRelationships, loadUsers } from "./store";
+import { me, loadMovies, loadRelationships, loadUsers, loadPosts } from "./store";
 import Movies from './components/Movies'
 import Movie from './components/Movie'
 import FriendsList from "./components/FriendsList";
@@ -61,6 +61,7 @@ const mapDispatch = (dispatch) => {
       dispatch(loadMovies());
       dispatch(loadRelationships());
       dispatch(loadUsers())
+      dispatch(loadPosts())
     },
   };
 };
