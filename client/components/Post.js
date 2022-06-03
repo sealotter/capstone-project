@@ -1,11 +1,14 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { createPost } from '../store';
 
-export default class Post extends Component {
-  constructor() {
-    super();
+class Post extends Component {
+  constructor(props) {
+    super(props);
     this.state = {
-      post: "",
+      post: '',
     };
+    console.log(props);
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
@@ -13,29 +16,40 @@ export default class Post extends Component {
   onChange = (ev) => {
     const change = {};
     change[ev.target.name] = ev.target.value;
-    this.setState(change)
-  }
+    this.setState(change);
+  };
 
   onSubmit = (ev) => {
     ev.preventDefault();
+    this.props.createPost(this.state.post);
+    this.setState({ post: '' });
+  };
 
-  }
- 
   render() {
     const { post } = this.state;
-    const {onChange, onSubmit} = this;
+    const { onChange, onSubmit } = this;
     return (
       <>
-        <form>
+        <form onSubmit={onSubmit}>
           <input
-          onChange = {onChange}
+            onChange={onChange}
             name="post"
             value={post}
             placeholder="what's on your mind?"
           ></input>
-          <button onSubmit={()=> onSubmit}>Post</button>
+          <button>Post</button>
         </form>
       </>
     );
   }
 }
+
+const mapDispatch = (dispatch) => {
+  return {
+    createPost: (post) => {
+      dispatch(createPost(post));
+    },
+  };
+};
+
+export default connect(null, mapDispatch)(Post);

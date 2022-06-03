@@ -1,10 +1,10 @@
-const router = require("express").Router();
+const router = require('express').Router();
 const {
   models: { Posts },
-} = require("../db");
+} = require('../db');
 module.exports = router;
 
-router.get("/", async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
     const posts = await Posts.findAll();
     res.json(posts);
@@ -13,4 +13,12 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-
+router.post('/', async (req, res, next) => {
+  try {
+    const post = await Posts.create(req.body);
+    console.log(req.body)
+    res.json(post);
+  } catch (err) {
+    next(err);
+  }
+});
