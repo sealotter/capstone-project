@@ -1,15 +1,7 @@
-import React from 'react';
-import clsx from 'clsx';
+import React, {useEffect, useRef} from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import ListItemText from '@material-ui/core/ListItemText';
-import Select from '@material-ui/core/Select';
-import Checkbox from '@material-ui/core/Checkbox';
-import Chip from '@material-ui/core/Chip';
-import FormHelperText from '@material-ui/core/FormHelperText';
+import {Button, InputLabel, MenuItem, FormControl, Select, Chip} from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -30,6 +22,10 @@ const useStyles = makeStyles((theme) => ({
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
+  button:{
+    display:'flex',
+    alignItems:'center'
+  }
 }));
 
 const ITEM_HEIGHT = 48;
@@ -43,19 +39,6 @@ const MenuProps = {
   },
 };
 
-const names = [
-  'Oliver Hansen',
-  'Van Henry',
-  'April Tucker',
-  'Ralph Hubbard',
-  'Omar Alexander',
-  'Carlos Abbott',
-  'Miriam Wagner',
-  'Bradley Wilkerson',
-  'Virginia Andrews',
-  'Kelly Snyder',
-];
-
 function getStyles(name, genre, theme) {
   return {
     fontWeight:
@@ -65,11 +48,28 @@ function getStyles(name, genre, theme) {
   };
 }
 
+function usePrevious(value) {
+  const ref = useRef();
+  useEffect(() => {
+    ref.current = value;
+  });
+  return ref.current;
+}
+
 export default function MultipleSelect(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [genre, setGenre] = React.useState([]);
-  const {selectedGenres} = props
+  const {genres, media} = props
+  const prevMedia = usePrevious(media)
+  const selectedGenres = genres
+
+  useEffect(() => {
+    if(prevMedia !== media){
+      props.setNewGenres()
+      setGenre([])
+    }
+  })
 
   const handleChange = (event) => {
     setGenre(event.target.value);
@@ -79,7 +79,7 @@ export default function MultipleSelect(props) {
   return (
     <div>
       <FormControl className={classes.formControl}>
-        <InputLabel id="demo-mutiple-chip-label">Genre</InputLabel>
+        <InputLabel id="demo-mutiple-chip-label">Genres</InputLabel>
         <Select
           labelId="demo-mutiple-chip-label"
           id="demo-mutiple-chip"
@@ -103,6 +103,7 @@ export default function MultipleSelect(props) {
           ))}
         </Select>
       </FormControl>
+      <Button className={classes.button} onClick={()=>{setGenre([]), props.setNewGenres()}}>Reset</Button>
     </div>
   );
 }
