@@ -1,12 +1,18 @@
-import React, { Component, Fragment } from "react";
-import { connect } from "react-redux";
-import { withRouter, Route, Switch, Redirect } from "react-router-dom";
-import { Login, Signup } from "./components/AuthForm";
-import Home from "./components/Home";
-import { me, loadMovies, loadRelationships, loadUsers, loadPosts } from "./store";
-import Movies from './components/Movies'
-import Movie from './components/Movie'
-import FriendsList from "./components/FriendsList";
+
+
+
+import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
+import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { Login, Signup } from './components/AuthForm';
+import Home from './components/Home';
+import { me, loadMedia, loadRelationships, loadUsers, loadGenres, loadPosts } from "./store";
+import FriendsList from './components/FriendsList';
+import SingleMedia from './components/SingleMedia';
+import Media from './components/Media';
+import Profile from './components/Profile';
+import Users from './components/Users';
+import FriendRequests from './components/FriendRequests';
 
 /**
  * COMPONENT
@@ -24,16 +30,25 @@ class Routes extends Component {
         {isLoggedIn ? (
           <Switch>
             <Route path="/home" component={Home} />
+
+           
+            <Route path="/users" component={Users} />
+            <Route path="/profile/:id" component={Profile} />
+            <Route path="/friendrequests" component={FriendRequests} />
+
             <Route path='/friendsList' component={FriendsList}/>
-            <Route path="/movies" exact component={Movies} />
-            <Route path="/movies/:id" component={Movie} />
+            <Route path="/media" exact component={Media} />
+            <Route path="/movie/:id" component={SingleMedia} />
+            <Route path="/tv/:id" component={SingleMedia} />
+
             <Redirect to="/home" />
           </Switch>
         ) : (
           <Switch>
             <Route path="/" exact component={Login} />
-            <Route path="/movies" exact component={Movies} />
-            <Route path="/movies/:id" component={Movie} />
+            <Route path="/media" exact component={Media} />
+            <Route path="/movie/:id" component={SingleMedia} />
+            <Route path="/tv/:id" component={SingleMedia} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
           </Switch>
@@ -58,10 +73,16 @@ const mapDispatch = (dispatch) => {
   return {
     loadInitialData() {
       dispatch(me());
-      dispatch(loadMovies());
+      dispatch(loadMedia());
       dispatch(loadRelationships());
+
       dispatch(loadUsers())
       dispatch(loadPosts())
+
+
+
+      dispatch(loadGenres())
+
     },
   };
 };

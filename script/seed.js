@@ -1,5 +1,4 @@
 "use strict";
-
 const {
   db,
   models: { User, Relationship, Posts },
@@ -23,6 +22,7 @@ async function seed() {
     User.create({ username: "jiayu", password: "123" }),
   ]);
 
+
   //creating sample posts
 
   const posts = await Promise.all([
@@ -34,6 +34,10 @@ async function seed() {
 
   console.log(`seeded ${posts.length} posts`)
   
+
+  const users = [cody, murphy, doug, angel, anna, jiayu]
+
+
   const relationships = await Promise.all([
     Relationship.create({status:'accepted', recipientId:doug.id, senderId:jiayu.id}),
     Relationship.create({status:'accepted', recipientId:cody.id, senderId:jiayu.id}),
@@ -41,7 +45,7 @@ async function seed() {
     Relationship.create({recipientId:jiayu.id, senderId:anna.id})
   ])
 
-  // console.log(`seeded ${users.length} users`);
+  console.log(`seeded ${users.length} users`);
 
   console.log(`seeded ${relationships.length} relationships`);
   console.log(`seeded successfully`);

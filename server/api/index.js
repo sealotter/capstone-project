@@ -2,7 +2,7 @@ const router = require('express').Router()
 module.exports = router
 
 router.use('/users', require('./users'))
-router.use('/movies', require('./movies'))
+router.use('/media', require('./media'))
 router.use('/relationships', require('./relationships'))
 router.use('/posts', require('./posts'))
 
