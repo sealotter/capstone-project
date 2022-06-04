@@ -1,13 +1,13 @@
-import axios from "axios";
-import history from "../history";
+import axios from 'axios';
+import history from '../history';
 
-const TOKEN = "token";
+const TOKEN = 'token';
 
 /**
  * ACTION TYPES
  */
-const SET_RELATIONSHIPS = "SET_RELATIONSHIPS";
-const ADD_FRIEND = "ADD_FRIEND";
+const SET_RELATIONSHIPS = 'SET_RELATIONSHIPS';
+const ADD_FRIEND = 'ADD_FRIEND';
 
 /**
  * ACTION CREATORS
@@ -28,6 +28,7 @@ export const loadRelationships = () => {
   };
 };
 export const addFriend = (senderId, recipientId) => {
+  console.log('addFriend thunk');
   return async (dispatch) => {
     const requestResponse = await axios.post(`/api/relationships/addfriend`, {
       senderId,

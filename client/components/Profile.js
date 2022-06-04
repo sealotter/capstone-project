@@ -11,13 +11,17 @@ const Profile = (props) => {
     return user.id === parseInt(props.match.params.id);
   });
   console.log(user);
-  const acceptedFriends = user
-    ? relationships
-        .filter((rel) => {
-          return rel.senderId === user.id;
-        })
-        .filter((request) => request.status === 'accepted')
-    : null;
+  const acceptedFriends =
+    user && relationships.length
+      ? relationships
+          .filter((rel) => {
+            return rel.senderId === user.id;
+          })
+          .filter((request) => request.status === 'accepted')
+      : 0;
+  // addFriend (userId, authId) {
+  //   return props.addFriend(userId, authId);
+  // };
   return (
     <div>
       <div>Wallpaper</div>
@@ -26,17 +30,19 @@ const Profile = (props) => {
       <div>Bio, we can add this as part of the User db</div>
       <div> {acceptedFriends ? acceptedFriends.length : null} Friends</div>
       {/* need to change page to be the users id, based on who is logged in */}
-      {/* <button onClick={() => props.addFriend(user.id, auth.id)}>
+      <button onClick={() => props.addFriend(user.id, auth.id)}>
         Add Friend
-      </button> */}
+      </button>
     </div>
   );
 };
 const mapDispatch = (dispatch) => {
   return {
-    addFriend: async (senderId, recipientId) => {
-      await dispatch(addFriend(senderId, recipientId));
+    addFriend: (senderId, recipientId) => {
+      dispatch(addFriend(senderId, recipientId));
     },
   };
 };
 export default connect((state) => state, mapDispatch)(Profile);
+
+//props.addFriend(user.id, auth.id)

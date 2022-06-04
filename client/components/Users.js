@@ -18,10 +18,10 @@ const Users = (props) => {
   return <div>{usersList}</div>;
 };
 
-const mapDispatch = (dispatch) => {
-  return {
-    loadUsers: async () => await dispatch(loadUsers()),
-  };
-};
+// const mapDispatch = (dispatch) => {
+//   return {
+//     loadUsers: async () => await dispatch(loadUsers()),
+//   };
+// };
 
-export default connect((state) => state, mapDispatch)(Users);
+export default connect((state) => state)(Users);
