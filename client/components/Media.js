@@ -4,7 +4,7 @@ import {compose} from 'redux'
 import Pagination from '@material-ui/lab/Pagination';
 import {loadMedia} from '../store'
 import { withStyles } from '@material-ui/core/styles';
-import {ImageList, ImageListItem, ImageListItemBar, ListSubheader, IconButton} from '@material-ui/core'
+import {ImageList, ImageListItem, ImageListItemBar, ListSubheader, IconButton, Box} from '@material-ui/core'
 import InfoIcon from '@material-ui/icons/Info';
 import { Link } from "react-router-dom";
 import MultipleSelect, {BasicSelects} from './Select';
@@ -18,8 +18,8 @@ const useStyles = (theme) => ({
     backgroundColor: theme.palette.background.paper,
   },
   imageList: {
-    width: '100vw',
-    height: '100vh',
+    height:'100%',
+    width: '100%'
   },
   icon: {
     color: 'rgba(255, 255, 255, 0.54)',
@@ -52,7 +52,7 @@ class Media extends React.Component{
   }
 
   handleFilterValue = (val) =>{
-    this.setState({with_genres:val})
+    this.setState({with_genres:val, page:1})
   }
 
   setNewGenres = ()=>{
@@ -74,7 +74,7 @@ class Media extends React.Component{
           <MultipleSelect genres={this.state.genres} media={this.state.media} resetGenres={this.resetGenres} setNewGenres={this.setNewGenres} onChangeValue={this.handleFilterValue}/>
         </div>
         <div className={classes.root}>
-        <ImageList rowHeight={500} className={classes.imageList} >
+        <ImageList rowHeight={'auto'} gap={25} className={classes.imageList} >
           <ImageListItem key="Subheader" cols={5} style={{ height:'300' }}>
             <ListSubheader component="div">Total results:{media.total_results>10000?10000:media.total_results}
               <Pagination count={media.total_pages>500?500:media.total_pages} page={this.state.page} onChange={(ev, page) => {
@@ -84,9 +84,9 @@ class Media extends React.Component{
             </ListSubheader>
           </ImageListItem>
           {media.results?.map((item, idx) => (
-            <ImageListItem key={idx} cols={5} style={{ width:'calc(20%-4px)', height:'40vh' }}>
+            <ImageListItem key={idx} style={{ flex:'0 1 10%', height:'400px', minWidth:'275px'}}>
               <Link to={`/${this.state.media}/${item.id}`}>
-                <img src={`https://image.tmdb.org/t/p/w300/${item.poster_path}`} alt={item.title} />
+                <img src={item.poster_path?`https://image.tmdb.org/t/p/w300/${item.poster_path}`:'https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png'} alt={item.title} style={{ height:'100%', border:"1px solid black", maxWidth:'100%', maxHeight:'100%'}}/>
               </Link>
               <ImageListItemBar
                 title={item.title}

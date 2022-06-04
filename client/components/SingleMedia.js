@@ -33,7 +33,7 @@ class SingleMedia extends React.Component{
 
     return(
       <div>
-        <img src={`https://image.tmdb.org/t/p/w300/${media.poster_path}`}/>
+        <img src={media.poster_path?`https://image.tmdb.org/t/p/w300/${media.poster_path}`:'https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png'}/>
         <h1>{media.title}</h1>
         <p>Genres: {combineArr(media.genres)}</p>
         <p>Runtime: {media.runtime} minutes</p>
