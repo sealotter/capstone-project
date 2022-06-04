@@ -49,3 +49,11 @@ router.get('/genres/:media', async(req, res, next)=>{
     next(err)
   }
 })
+
+router.get('/search/multi', async(req, res, next) => {
+  try{
+
+  }catch(ex){
+    next(ex)
+  }
+})

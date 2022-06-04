@@ -12,21 +12,15 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
           {/* The navbar will show these links after you log in */}
           <Link to="/home">Home</Link>
           <Link to='/friendslist'>Friends List</Link>
-<<<<<<< HEAD
-          <Link to="/movies">Movies</Link>
-          
-          
-=======
-          <Link to="/media">Media</Link>
->>>>>>> 066c13e2072e316d576fd32d3805a823289d3708
-          <a href="#" onClick={handleClick}>
+          <Link to="/media">Movies</Link>
+        <a href="#" onClick={handleClick}>
             Logout
           </a>
         </div>
       ) : (
         <div>
           {/* The navbar will show these links before you log in */}
-          <Link to="/media">Media</Link>
+          <Link to="/movies">Movies</Link>
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
         </div>
