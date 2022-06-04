@@ -1,13 +1,14 @@
-import React, { Component, Fragment } from "react";
-import { connect } from "react-redux";
-import { withRouter, Route, Switch, Redirect } from "react-router-dom";
-import { Login, Signup } from "./components/AuthForm";
-import Home from "./components/Home";
-import { me, loadMovies, loadRelationships, loadUsers } from "./store";
-import Movies from "./components/Movies";
-import Movie from "./components/Movie";
-import FriendsList from "./components/FriendsList";
-import Profile from "./components/Profile";
+import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
+import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { Login, Signup } from './components/AuthForm';
+import Home from './components/Home';
+import { me, loadMovies, loadRelationships, loadUsers } from './store';
+import Movies from './components/Movies';
+import Movie from './components/Movie';
+import FriendsList from './components/FriendsList';
+import Profile from './components/Profile';
+import Users from './components/Users';
 /**
  * COMPONENT
  */
@@ -27,7 +28,8 @@ class Routes extends Component {
             <Route path="/friendsList" component={FriendsList} />
             <Route path="/movies" exact component={Movies} />
             <Route path="/movies/:id" component={Movie} />
-            <Route path="/profile" component={Profile} />
+            <Route path="/users" component={Users} />
+            <Route path="/profile/:id" component={Profile} />
             <Redirect to="/home" />
           </Switch>
         ) : (
