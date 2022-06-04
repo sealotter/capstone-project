@@ -1,10 +1,12 @@
 
+
+
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { Login, Signup } from './components/AuthForm';
 import Home from './components/Home';
-import { me, loadMedia, loadRelationships, loadUsers, loadGenres } from "./store";
+import { me, loadMedia, loadRelationships, loadUsers, loadGenres, loadPosts } from "./store";
 import FriendsList from './components/FriendsList';
 import SingleMedia from './components/SingleMedia';
 import Media from './components/Media';
@@ -73,7 +75,10 @@ const mapDispatch = (dispatch) => {
       dispatch(me());
       dispatch(loadMedia());
       dispatch(loadRelationships());
-      dispatch(loadUsers());
+
+      dispatch(loadUsers())
+      dispatch(loadPosts())
+
 
 
       dispatch(loadGenres())

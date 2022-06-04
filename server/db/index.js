@@ -7,6 +7,7 @@ const Comments = require("./models/Comments");
 const Relationship = require("./models/Relationship");
 const Media = require("./models/Media");
 const Ratings = require("./models/Ratings");
+const Posts = require("./models/Posts")
 
 //associations could go here!
 User.hasMany(Comments);
@@ -16,6 +17,8 @@ User.hasMany(Relationship, {foreignKey:'senderId'});
 Relationship.belongsTo(User, {as:'recipient'})
 Ratings.hasMany(Comments);
 
+Posts.belongsTo(User)
+
 module.exports = {
   db,
   models: {
@@ -24,5 +27,6 @@ module.exports = {
     Relationship,
     Media,
     Ratings,
+    Posts
   },
 };
