@@ -12,7 +12,7 @@ const Posts = require("./models/Posts")
 //associations could go here!
 User.hasMany(Comments);
 User.hasMany(Ratings);
-Media.hasMany(Ratings);
+Media.hasMany(Ratings ,{foreignKey: 'mediaId'});
 User.hasMany(Relationship, {foreignKey:'senderId'});
 Relationship.belongsTo(User, {as:'recipient'})
 Ratings.hasMany(Comments);
