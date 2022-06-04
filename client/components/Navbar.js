@@ -1,7 +1,7 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { logout } from "../store";
+import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { logout } from '../store';
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div>
@@ -11,8 +11,16 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
         <div>
           {/* The navbar will show these links after you log in */}
           <Link to="/home">Home</Link>
+
+         
+        
+          <Link to="/profile">Profile</Link>
+          <Link to="/users">Users</Link>
+
+
           <Link to='/friendslist'>Friends List</Link>
           <Link to="/media">Media</Link>
+
           <a href="#" onClick={handleClick}>
             Logout
           </a>
