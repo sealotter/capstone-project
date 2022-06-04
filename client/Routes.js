@@ -9,6 +9,8 @@ import Movie from './components/Movie';
 import FriendsList from './components/FriendsList';
 import Profile from './components/Profile';
 import Users from './components/Users';
+import FriendRequests from './components/FriendRequests';
+
 /**
  * COMPONENT
  */
@@ -30,6 +32,7 @@ class Routes extends Component {
             <Route path="/movies/:id" component={Movie} />
             <Route path="/users" component={Users} />
             <Route path="/profile/:id" component={Profile} />
+            <Route path="/friendrequests" component={FriendRequests} />
             <Redirect to="/home" />
           </Switch>
         ) : (
