@@ -26,9 +26,9 @@ export const loadPosts = () => {
   };
 };
 
-export const createPost = (newPost) => {
+export const createPost = (content, username, avatarUrl) => {
   return async (dispatch) => {
-    const post = (await axios.post('/api/posts/', {content: newPost})).data;
+    const post = (await axios.post('/api/posts/', {content, username, avatarUrl})).data;
     dispatch({
       type: CREATE_POST,
       post,

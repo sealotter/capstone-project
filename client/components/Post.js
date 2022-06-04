@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createPost } from '../store';
+import { Avatar, Button } from '@material-ui/core';
 
 class Post extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      post: '',
+      content: '',
+      username: this.props.auth.username ? this.props.auth.username : '',
+      avatarUrl:
+        'https://lh3.googleusercontent.com/ogw/ADea4I4QIDvtZGTxFFQm4iseETZ78UUTpL9r85jLQYVecw=s32-c-mo',
     };
     console.log(props);
     this.onChange = this.onChange.bind(this);
@@ -21,35 +25,50 @@ class Post extends Component {
 
   onSubmit = (ev) => {
     ev.preventDefault();
-    this.props.createPost(this.state.post);
-    this.setState({ post: '' });
+    this.props.createPost(
+      this.state.content,
+      this.state.username,
+      this.state.avatarUrl
+    );
+    this.setState({ content: '' });
   };
 
   render() {
-    const { post } = this.state;
+    const { content, avatarUrl } = this.state;
     const { onChange, onSubmit } = this;
     return (
-      <>
-        <form onSubmit={onSubmit}>
-          <input
-            onChange={onChange}
-            name="post"
-            value={post}
-            placeholder="what's on your mind?"
-          ></input>
-          <button>Post</button>
+      <div className="postBox">
+        <form>
+          <div className="avatar">
+            <Avatar src={avatarUrl}></Avatar>
+          </div>
+          <div className="postBox_input">
+            <input
+              onChange={onChange}
+              name="content"
+              value={content}
+              placeholder="what's on your mind?"
+            ></input>
+
+            <Button onClick={onSubmit} className="postBox_button">
+              +
+            </Button>
+          </div>
         </form>
-      </>
+      </div>
     );
   }
 }
 
+const mapState = (state) => {
+  return state;
+};
 const mapDispatch = (dispatch) => {
   return {
-    createPost: (post) => {
-      dispatch(createPost(post));
+    createPost: (content, username, avatarUrl) => {
+      dispatch(createPost(content, username, avatarUrl));
     },
   };
 };
 
-export default connect(null, mapDispatch)(Post);
+export default connect(mapState, mapDispatch)(Post);
