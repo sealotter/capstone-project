@@ -32,16 +32,19 @@ class Media extends React.Component{
     this.state ={
       media: 'movie',
       page: 1,
-      with_genres: []
+      with_genres: [],
+      genres:[]
     }
   }
 
   componentDidUpdate(prevProps, prevState){
-    const {loadMedia} = this.props
+    const {loadMedia, genres} = this.props
     if(prevState.media !== this.state.media) {
-      loadMedia({...this.state})
+      loadMedia({...this.state, with_genres:[]})
+      this.setState({...this.state, with_genres:[], page:1})
     }
     if(prevState.with_genres !== this.state.with_genres) loadMedia({...this.state})
+    if(!prevProps.genres.movieGenres && genres.movieGenres) this.setState({genres:genres.movieGenres})
   }
 
   handleChangeValue = (val)=>{
@@ -52,31 +55,36 @@ class Media extends React.Component{
     this.setState({with_genres:val})
   }
 
+  setNewGenres = ()=>{
+    const {genres} = this.props
+    let newGenres
+    if(this.state.media === 'movie') newGenres = genres.movieGenres
+    else newGenres = genres.tvGenres
+    this.setState({genres:newGenres, with_genres:[]})
+  }
+
   render(){
     const {media, loadMedia, classes, genres} = this.props
-    if(!media) return null
+    if(!media || !genres.movieGenres || !genres.tvGenres) return null
     if(!media.results) loadMedia({...this.state})
-    let selectedGenres
-    this.state.media === "movie"? selectedGenres = genres.movieGenres: selectedGenres= genres.tvGenres
-    
     return (
       <div>
         <div style={{display:'flex'}}>
           <BasicSelects media={{movie:'Movies', tv:'TV Shows'}} onChangeValue={this.handleChangeValue}/>
-          <MultipleSelect selectedGenres={selectedGenres} onChangeValue={this.handleFilterValue}/>
+          <MultipleSelect genres={this.state.genres} media={this.state.media} resetGenres={this.resetGenres} setNewGenres={this.setNewGenres} onChangeValue={this.handleFilterValue}/>
         </div>
         <div className={classes.root}>
         <ImageList rowHeight={500} className={classes.imageList} >
           <ImageListItem key="Subheader" cols={5} style={{ height:'300' }}>
             <ListSubheader component="div">Total results:{media.total_results>10000?10000:media.total_results}
-              <Pagination count={media.total_pages>500?500:media.total_pages} reset={this.reset} onChange={(ev, page) => {
-                this.setState({...this.state, page:page})
+              <Pagination count={media.total_pages>500?500:media.total_pages} page={this.state.page} onChange={(ev, page) => {
+                this.setState({ page:page})
                 loadMedia({...this.state, page})}}
               />
             </ListSubheader>
           </ImageListItem>
           {media.results?.map((item, idx) => (
-            <ImageListItem key={idx} cols={5} style={{ width:'calc(20%-4px)', height:'65vh' }}>
+            <ImageListItem key={idx} cols={5} style={{ width:'calc(20%-4px)', height:'40vh' }}>
               <Link to={`/${this.state.media}/${item.id}`}>
                 <img src={`https://image.tmdb.org/t/p/w300/${item.poster_path}`} alt={item.title} />
               </Link>

@@ -14,7 +14,6 @@ router.get('/', async(req, res, next)=>{
 router.get('/page/:page', async(req, res, next)=>{
   try{
     const search = JSON.parse(req.headers.search)
-    console.log(search)
     const {page} = req.params
     let searchString = ''
     for(key in search){
