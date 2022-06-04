@@ -1,10 +1,15 @@
 import React from 'react'
 import { connect } from "react-redux";
-import { findSingleMedia } from '../store'
+import { findSingleMedia, createRating } from '../store'
 import { Link } from "react-router-dom";
 
 class SingleMedia extends React.Component{
-
+  constructor(){
+    super()
+    this.state={
+      rating:0
+    }
+  }
   componentDidMount(){
     const {findSingleMedia, match:{params:{id}, path}} = this.props
     const type = path.slice(1,6)==='movie'?path.slice(1,6):path.slice(1,3)
@@ -18,7 +23,7 @@ class SingleMedia extends React.Component{
   }
 
   render(){
-    const {media} = this.props
+    const {media, auth, createRating} = this.props
     if(!media.id) return null
 
     const combineArr = (arr)=>{
@@ -30,6 +35,9 @@ class SingleMedia extends React.Component{
       })
       return str
     }
+    const {rating} = this.state
+
+    const ratings = [1, 2, 3, 4, 5]
 
     return(
       <div>
@@ -44,6 +52,19 @@ class SingleMedia extends React.Component{
         <p>Produced by: {combineArr(media.production_companies)}</p>
         <p>Website: {media.homepage?<a href={`${media.homepage}`}>{media.homepage}</a>:'N/A'}</p>
         <p>Overview: {media.overview}</p>
+        <form onSubmit={(ev=>{
+          ev.preventDefault()
+          createRating(rating, auth.id, media.id)
+        })}>
+          <select onChange={ev=>{
+            this.setState({rating:ev.target.value})
+          }}>
+            {ratings.map(rating=>{
+              return <option key={rating} value ={rating}>{rating}</option>
+            })}
+          </select>
+          <button type='submit'>Add Rating</button>
+        </form>
       </div>
     )
   }
@@ -53,6 +74,9 @@ const mapDispatch = (dispatch)=>{
   return{
     findSingleMedia: (search) =>{
       dispatch(findSingleMedia(search))
+    },
+    createRating: (rating, authId, mediaId) => {
+      dispatch(createRating(rating, authId, mediaId))
     }
   }
 }
