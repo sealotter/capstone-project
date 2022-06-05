@@ -20,7 +20,6 @@ const ADD_NEW_RATING = 'ADD_NEW_RATING'
 
 export const loadRatings = () =>{
   const token = window.localStorage.getItem(TOKEN)
-  console.log(token)
   if(token){
     return async(dispatch)=>{
       const ratings = (await axios.get('/api/ratings', {

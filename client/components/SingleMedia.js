@@ -48,7 +48,7 @@ class SingleMedia extends React.Component{
         <p>Genres: {combineArr(media.genres)}</p>
         <p>Runtime: {media.runtime} minutes</p>
         <p>Critic Rating: {media.vote_average}/10</p>
-        <p>User Rating: {media.dataValues.numOfRatings === 0?'Not rated yet!':(media.dataValues.totalRating/media.dataValues.numOfRatings).toFixed(1)}/10</p>
+        <p>User Rating: {media.dataValues.numOfRatings === 0?'Not rated yet!':`${(media.dataValues.totalRating/media.dataValues.numOfRatings).toFixed(1)}/10`}</p>
         <p>Release date: {media.release_date}</p>
         <p>Budget: ${media.budget}</p>
         <p>Revenue: ${media.revenue}</p>
