@@ -4,14 +4,14 @@ import { addFriend } from '../store/relationships';
 import FriendRequests from './FriendRequests';
 
 const Profile = (props) => {
-  console.log('state', props);
+  // console.log('profile props', props);
 
   const { auth, relationships } = props;
 
   const user = props.users.find((user) => {
     return user.id === parseInt(props.match.params.id);
   });
-  console.log(user);
+  // console.log(user);
   const acceptedFriends =
     user && relationships.length
       ? relationships
@@ -20,6 +20,7 @@ const Profile = (props) => {
           })
           .filter((request) => request.status === 'accepted')
       : 0;
+  const ownPage = user ? user.id === auth.id : null;
   // addFriend (userId, authId) {
   //   return props.addFriend(userId, authId);
   // };
@@ -34,7 +35,7 @@ const Profile = (props) => {
       <button onClick={() => props.addFriend(auth.id, user.id)}>
         Add Friend
       </button>
-      <FriendRequests user={user} />
+      {ownPage ? <FriendRequests user={user} /> : null}
     </div>
   );
 };

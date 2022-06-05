@@ -1,12 +1,16 @@
-
-
-
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { Login, Signup } from './components/AuthForm';
 import Home from './components/Home';
-import { me, loadMedia, loadRelationships, loadUsers, loadGenres, loadPosts } from "./store";
+import {
+  me,
+  loadMedia,
+  loadRelationships,
+  loadUsers,
+  loadGenres,
+  loadPosts,
+} from './store';
 import FriendsList from './components/FriendsList';
 import SingleMedia from './components/SingleMedia';
 import Media from './components/Media';
@@ -31,12 +35,11 @@ class Routes extends Component {
           <Switch>
             <Route path="/home" component={Home} />
 
-           
             <Route path="/users" component={Users} />
             <Route path="/profile/:id" component={Profile} />
             <Route path="/friendrequests" component={FriendRequests} />
 
-            <Route path='/friendsList' component={FriendsList}/>
+            <Route path="/friendsList" component={FriendsList} />
             <Route path="/media" exact component={Media} />
             <Route path="/movie/:id" component={SingleMedia} />
             <Route path="/tv/:id" component={SingleMedia} />
@@ -66,6 +69,7 @@ const mapState = (state) => {
     // Being 'logged in' for our purposes will be defined has having a state.auth that has a truthy id.
     // Otherwise, state.auth will be an empty object, and state.auth.id will be falsey
     isLoggedIn: !!state.auth.id,
+    authId: state.auth.id,
   };
 };
 
@@ -76,13 +80,10 @@ const mapDispatch = (dispatch) => {
       dispatch(loadMedia());
       dispatch(loadRelationships());
 
-      dispatch(loadUsers())
-      dispatch(loadPosts())
+      dispatch(loadUsers());
+      dispatch(loadPosts());
 
-
-
-      dispatch(loadGenres())
-
+      dispatch(loadGenres());
     },
   };
 };
