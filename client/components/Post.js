@@ -12,7 +12,6 @@ class Post extends Component {
       avatarUrl:
         'https://lh3.googleusercontent.com/ogw/ADea4I4QIDvtZGTxFFQm4iseETZ78UUTpL9r85jLQYVecw=s32-c-mo',
     };
-    console.log(props);
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }

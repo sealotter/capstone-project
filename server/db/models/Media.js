@@ -14,10 +14,12 @@ const Media = db.define("media", {
     type: Sequelize.STRING,
   },
   totalRating: {
-    type: Sequelize.INTEGER
+    type: Sequelize.INTEGER,
+    defaultValue:0
   },
   numOfRatings: {
-    type: Sequelize.INTEGER
+    type: Sequelize.INTEGER,
+    defaultValue:0
   }
 });
 
