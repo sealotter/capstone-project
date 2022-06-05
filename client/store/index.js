@@ -6,14 +6,11 @@ import auth from './auth'
 import media from './media'
 import relationships from './relationships'
 import users from './users'
-
+import ratings from './ratings'
 import posts from './posts'
-
-
-
 import genres from './genres'
 
-const reducer = combineReducers({ auth, media, relationships, users, posts, genres })
+const reducer = combineReducers({ auth, media, relationships, users, posts, genres, ratings })
 
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
@@ -27,4 +24,5 @@ export * from './relationships'
 export * from './users'
 export * from './posts'
 export * from './genres'
+export * from './ratings'
 

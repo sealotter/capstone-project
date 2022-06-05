@@ -1,9 +1,9 @@
 const Sequelize = require("sequelize");
 const db = require("../db");
 
-const Media = db.define("friends", {
-  title: {
-    type: Sequelize.STRING,
+const Media = db.define("media", {
+  apiId: {
+    type: Sequelize.INTEGER
   },
   //movie/ show/ documentary/ etc..
   medium: {

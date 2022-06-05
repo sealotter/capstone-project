@@ -1,6 +1,6 @@
 const router = require('express').Router()
 module.exports = router
-const axios = require('axios')
+const axios = require('axios');
 require('dotenv').config();
 
 router.get('/', async(req, res, next)=>{
