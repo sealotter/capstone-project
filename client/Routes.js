@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { Login, Signup } from './components/AuthForm';
 import Home from './components/Home';
-import { me, loadMedia, loadRelationships, loadUsers, loadGenres, loadPosts } from "./store";
+import { me, loadMedia, loadRelationships, loadUsers, loadGenres, loadPosts, loadRatings } from "./store";
 import FriendsList from './components/FriendsList';
 import SingleMedia from './components/SingleMedia';
 import Media from './components/Media';
@@ -30,17 +30,13 @@ class Routes extends Component {
         {isLoggedIn ? (
           <Switch>
             <Route path="/home" component={Home} />
-
-           
             <Route path="/users" component={Users} />
             <Route path="/profile/:id" component={Profile} />
             <Route path="/friendrequests" component={FriendRequests} />
-
             <Route path='/friendsList' component={FriendsList}/>
             <Route path="/media" exact component={Media} />
             <Route path="/movie/:id" component={SingleMedia} />
             <Route path="/tv/:id" component={SingleMedia} />
-
             <Redirect to="/home" />
           </Switch>
         ) : (
@@ -75,14 +71,10 @@ const mapDispatch = (dispatch) => {
       dispatch(me());
       dispatch(loadMedia());
       dispatch(loadRelationships());
-
       dispatch(loadUsers())
       dispatch(loadPosts())
-
-
-
       dispatch(loadGenres())
-
+      dispatch(loadRatings())
     },
   };
 };

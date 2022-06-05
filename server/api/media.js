@@ -1,5 +1,8 @@
 const router = require('express').Router()
 module.exports = router
+const {
+  models: { Media },
+} = require('../db');
 const axios = require('axios');
 require('dotenv').config();
 
@@ -34,7 +37,13 @@ router.get('/:id', async(req, res, next)=>{
   try{
     const search = JSON.parse(req.headers.search)
     const media = (await axios.get(`https://api.themoviedb.org/3/${search.media}/${req.params.id}?api_key=${process.env.REACT_APP_MOVIE_KEY }&language=en-US`)).data
-    res.json(media)
+    let ourData = await Media.findOne({
+      where:{
+        apiId:media.id
+      }
+    })
+    if(!ourData) ourData = await Media.create({apiId:media.id})
+    res.json({...media, ...ourData})
   }catch(err){
     next(err)
   }
