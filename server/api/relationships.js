@@ -49,3 +49,22 @@ router.post('/addfriend', async (req, res, next) => {
     next(err);
   }
 });
+
+router.post('/acceptfriend', async (req, res, next) => {
+  console.log('post accept body', req.body);
+  const senderId = req.body.senderId;
+  const recipientId = req.body.recipientId;
+  try {
+    const accepted = await Relationship.findOne({
+      where: {
+        senderId: senderId,
+        recipientId: recipientId,
+      },
+    });
+    accepted.status = 'accepted';
+    await accepted.save();
+    res.send(accepted);
+  } catch (err) {
+    next(err);
+  }
+});

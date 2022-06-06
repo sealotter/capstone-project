@@ -32,7 +32,7 @@ const Profile = (props) => {
       <div>{user ? user.username : null}</div>
       <div>Bio, we can add this as part of the User db</div>
       <div> {acceptedFriends ? acceptedFriends.length : null} Friends</div>
-      {/* need to change page to be the users id, based on who is logged in */}
+      {/* add friend button is setting acceptedFriends.length to null? */}
       <button
         disabled={ownPage}
         onClick={() => props.addFriend(auth.id, user.id)}
