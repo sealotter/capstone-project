@@ -19,19 +19,12 @@ const ADD_NEW_RATING = 'ADD_NEW_RATING'
  */
 
 export const loadRatings = () =>{
-  const token = window.localStorage.getItem(TOKEN)
-  if(token){
-    return async(dispatch)=>{
-      const ratings = (await axios.get('/api/ratings', {
-        headers: {
-          authorization:token
-        }
-      })).data
-      dispatch({
-        type:SET_RATINGS,
-        ratings
-      })
-    }
+  return async(dispatch)=>{
+    const ratings = (await axios.get('/api/ratings')).data
+    dispatch({
+      type:SET_RATINGS,
+      ratings
+    })
   }
 }
 
@@ -53,7 +46,9 @@ export default function(state = [], action) {
     case SET_RATINGS:
       return action.ratings
     case ADD_NEW_RATING:
-      return state.map(item => item.id === action.rating.id? action.rating: item)
+      const exists = state.find(item=> item.id === action.rating.id)
+      if(exists) return state.map(item => item.id === action.rating.id? action.rating: item)
+      return [...state, action.rating]
     default:
       return state
   }
