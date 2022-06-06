@@ -7,7 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import {ImageList, ImageListItem, ImageListItemBar, ListSubheader, IconButton, Box} from '@material-ui/core'
 import InfoIcon from '@material-ui/icons/Info';
 import { Link } from "react-router-dom";
-import MultipleSelect, {BasicSelects} from './Select';
+import MultipleSelect, {BasicSelects, SearchBox} from './Filters';
 
 const useStyles = (theme) => ({
   root: {
@@ -33,7 +33,9 @@ class Media extends React.Component{
       media: 'movie',
       page: 1,
       with_genres: [],
-      genres:[]
+      genres:[],
+      nameSearch:'',
+      peopleSearch:''
     }
   }
 
@@ -45,14 +47,24 @@ class Media extends React.Component{
     }
     if(prevState.with_genres !== this.state.with_genres) loadMedia({...this.state})
     if(!prevProps.genres.movieGenres && genres.movieGenres) this.setState({genres:genres.movieGenres})
+    if(prevState.nameSearch !== this.state.nameSearch) loadMedia({...this.state})
+    if(prevState.peopleSearch !== this.state.peopleSearch) loadMedia({...this.state})
   }
 
   handleChangeValue = (val)=>{
     this.setState({media:val})
   }
 
-  handleFilterValue = (val) =>{
+  handleGenreChange = (val)=>{
     this.setState({with_genres:val, page:1})
+  }
+
+  handleNameSearchChange = (val)=>{
+    this.setState({nameSearch:val})
+  }
+
+  handlePeopleSearchChange = (val)=>{
+    this.setState({peopleSearch:val})
   }
 
   setNewGenres = ()=>{
@@ -67,11 +79,14 @@ class Media extends React.Component{
     const {media, loadMedia, classes, genres} = this.props
     if(!media || !genres.movieGenres || !genres.tvGenres) return null
     if(!media.results) loadMedia({...this.state})
+  
     return (
       <div>
         <div style={{display:'flex'}}>
           <BasicSelects media={{movie:'Movies', tv:'TV Shows'}} onChangeValue={this.handleChangeValue}/>
-          <MultipleSelect genres={this.state.genres} media={this.state.media} resetGenres={this.resetGenres} setNewGenres={this.setNewGenres} onChangeValue={this.handleFilterValue}/>
+          <SearchBox onChangeValue={this.handleNameSearchChange} genres={this.state.with_genres} peopleSearch={this.state.peopleSearch} searchBy={'title'}/>
+          <SearchBox onChangeValue={this.handlePeopleSearchChange} genres={this.state.with_genres} nameSearch={this.state.nameSearch} peopleSearch={this.state.peopleSearch} media={this.state.media} searchBy={'people'}/>
+          <MultipleSelect genres={this.state.genres} media={this.state.media} nameSearch={this.state.nameSearch} peopleSearch={this.state.peopleSearch} setNewGenres={this.setNewGenres} onChangeValue={this.handleGenreChange}/>
         </div>
         <div className={classes.root}>
         <ImageList rowHeight={'auto'} gap={25} className={classes.imageList} >

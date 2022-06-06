@@ -18,6 +18,7 @@ const FIND_SINGLE_MEDIA = 'FIND_SINGLE_MEDIA'
  * THUNK CREATORS
  */
 export const loadMedia = (search={ page:1, media:'movie'})=>{
+  console.log(search)
   return async(dispatch) => {
     const media = (await axios.get(`/api/media/page/${search.page}`, {
       headers: {
