@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addFriend } from '../store/relationships';
 import FriendRequests from './FriendRequests';
+import FriendsList from './FriendsList';
 
 const Profile = (props) => {
   // console.log('profile props', props);
@@ -32,10 +33,13 @@ const Profile = (props) => {
       <div>Bio, we can add this as part of the User db</div>
       <div> {acceptedFriends ? acceptedFriends.length : null} Friends</div>
       {/* need to change page to be the users id, based on who is logged in */}
-      <button onClick={() => props.addFriend(auth.id, user.id)}>
+      <button
+        disabled={ownPage}
+        onClick={() => props.addFriend(auth.id, user.id)}
+      >
         Add Friend
       </button>
-      {ownPage ? <FriendRequests user={user} /> : null}
+      {ownPage ? <FriendsList /> : null}
     </div>
   );
 };
