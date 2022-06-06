@@ -8,15 +8,7 @@ const axios = require('axios');
 
 router.get('/', async(req, res, next)=>{
   try{
-    const user = await User.findByToken(req.headers.authorization)
-    
-    const ratings = await Ratings.findAll({
-      where:{
-        userId:user.id
-      }
-    })
-
-    res.json(ratings)
+    res.json(await Ratings.findAll())
   }catch(err){
     next(err)
   }

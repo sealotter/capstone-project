@@ -7,8 +7,8 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
 class SingleMedia extends React.Component{
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state={
       
     }
@@ -26,10 +26,10 @@ class SingleMedia extends React.Component{
   }
 
   render(){
-    const {media, auth, createRating, ratings, findSingleMedia, match:{params:{id}, path}} = this.props
+    const {media, auth, createRating, ratings, users, findSingleMedia, match:{params:{id}, path}} = this.props
     const type = path.slice(1,6)==='movie'?path.slice(1,6):path.slice(1,3)
     if(!media.id) return null
-    const myRating = ratings.find(rating=> rating.mediaId === media.dataValues.id)
+    const myRating = ratings.find(rating=> rating.mediaId === media.dataValues.id && rating.userId === auth.id)
 
     const combineArr = (arr)=>{
       let str = ''
@@ -56,22 +56,31 @@ class SingleMedia extends React.Component{
         <p>Website: {media.homepage?<a href={`${media.homepage}`}>{media.homepage}</a>:'N/A'}</p>
         <p>Overview: {media.overview}</p>
         <Box component="fieldset" mb={3} borderColor="transparent">
-          <Typography component="legend">Rate this movie!</Typography>
-          <Rating name="customized-10" value={myRating?.rating} defaultValue={5} max={10} onChange={(ev)=>{
+          <Typography component="legend"><h2>Rate this movie!</h2></Typography>
+          <Rating name="Rating" value={myRating?.rating?myRating.rating:0} max={10} onChange={(ev)=>{
             createRating(ev.target.value*1, auth.id, media.id)
             findSingleMedia({id, media:type})
           }}/>
         </Box>  
+        <ul>
+          <h2>User ratings</h2>
+          {ratings.length?ratings.map(item=>{
+            return(
+              <li key={item.id}>{users.find(user=>user.id ===item.userId).username} <Rating name="Rated" readOnly value={item.rating?item.rating:0} max={10}/></li>
+            )
+          }):"No ratings yet!"}
+        </ul>
       </div>
     )
   }
 }
 
-const mapState = ({media, auth, ratings})=>{
+const mapState = ({media, auth, ratings, users})=>{
   return{
     media,
     auth, 
-    ratings
+    ratings, 
+    users
   }
 }
 
