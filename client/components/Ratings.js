@@ -11,9 +11,25 @@ const RatingsList = (props) => {
           return rating.userId === auth.id;
         })
       : null;
-  const ratingsList = findSingleMedia();
-  console.log(usersRatings);
-  return <div>Ratings List</div>;
+  const ratingsList = usersRatings
+    ? usersRatings.map((rating) => {
+        return (
+          <div key={rating.id}>
+            <div>Movie/ Show: {rating.mediaId}</div>
+            <div>Rating: {rating.rating} stars</div>
+          </div>
+        );
+      })
+    : null;
+  // console.log(usersRatings);
+  //need help with calling findSingleMedia
+  //want to get the name and picture of movie to display on ratings list
+  return (
+    <div>
+      <div>Ratings List</div>
+      <div>{ratingsList}</div>
+    </div>
+  );
 };
 
 const mapDispatch = (dispatch) => {

@@ -17,11 +17,3 @@ router.get('/', async (req, res, next) => {
     next(err);
   }
 });
-
-router.get('/', async (req, res, next) => {
-  try {
-    const ratings = await Ratings.findAll();
-  } catch (err) {
-    next(err);
-  }
-});
