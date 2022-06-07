@@ -1,18 +1,24 @@
-
-
-
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { Login, Signup } from './components/AuthForm';
 import Home from './components/Home';
-import { me, loadMedia, loadRelationships, loadUsers, loadGenres, loadPosts, loadRatings } from "./store";
+import {
+  me,
+  loadMedia,
+  loadRelationships,
+  loadUsers,
+  loadGenres,
+  loadPosts,
+  loadRatings,
+} from './store';
 import FriendsList from './components/FriendsList';
 import SingleMedia from './components/SingleMedia';
 import Media from './components/Media';
 import Profile from './components/Profile';
 import Users from './components/Users';
 import FriendRequests from './components/FriendRequests';
+import Ratings from './components/Ratings';
 
 /**
  * COMPONENT
@@ -33,11 +39,12 @@ class Routes extends Component {
             <Route path="/users" component={Users} />
             <Route path="/profile/:id" component={Profile} />
             <Route path="/friendrequests" component={FriendRequests} />
-            <Route path='/friendsList' component={FriendsList}/>
+            <Route path="/friendsList" component={FriendsList} />
             <Route path="/media" exact component={Media} />
             <Route path="/movie/:id" component={SingleMedia} />
             <Route path="/tv/:id" component={SingleMedia} />
-            <Redirect to="/home" />
+            <Route path="/ratings" component={Ratings} />
+            {/* <Redirect to="/home" /> */}
           </Switch>
         ) : (
           <Switch>
@@ -71,10 +78,10 @@ const mapDispatch = (dispatch) => {
       dispatch(me());
       dispatch(loadMedia());
       dispatch(loadRelationships());
-      dispatch(loadUsers())
-      dispatch(loadPosts())
-      dispatch(loadGenres())
-      dispatch(loadRatings())
+      dispatch(loadUsers());
+      dispatch(loadPosts());
+      dispatch(loadGenres());
+      dispatch(loadRatings());
     },
   };
 };
