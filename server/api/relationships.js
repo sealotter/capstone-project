@@ -1,10 +1,10 @@
-const router = require("express").Router();
+const router = require('express').Router();
 const {
   models: { Relationship },
-} = require("../db");
+} = require('../db');
 module.exports = router;
 
-router.get("/", async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
     res.json(await Relationship.findAll());
   } catch (err) {
@@ -12,8 +12,8 @@ router.get("/", async (req, res, next) => {
   }
 });
 //addfriend API
-router.post("/addfriend", async (req, res, next) => {
-  console.log("post body", req.body);
+router.post('/addfriend', async (req, res, next) => {
+  // console.log("post body", req.body);
   const senderId = req.body.senderId;
   const recipientId = req.body.recipientId;
   try {
