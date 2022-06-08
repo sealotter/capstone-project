@@ -30,7 +30,7 @@ export const loadDBMedia = () => {
 /**
  * REDUCER
  */
-export default function (state = {}, action) {
+export default function (state = [], action) {
   switch (action.type) {
     case LOAD_DB_MEDIA:
       return action.DBMedia;
