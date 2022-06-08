@@ -3,11 +3,15 @@ import history from '../history'
 
 const TOKEN = 'token'
 
+
+
 /**
  * ACTION TYPES
  */
 const SET_MEDIA = 'SET_MEDIA'
 const FIND_SINGLE_MEDIA = 'FIND_SINGLE_MEDIA'
+
+
 
 /**
  * ACTION CREATORS
@@ -45,6 +49,17 @@ export const findSingleMedia = (search={id:id, media:'movie'})=>{
   }
 }
 
+// export const addWatchlist = (media) => {
+//   return async (dispatch) => {
+//     const addMedia = (await axios.post('/api/watch', {media})).data
+//     dispatch({type: ADD_WATCHLIST, addMedia})
+
+//   }
+// }
+
+
+
+
 /**
  * REDUCER
  */
@@ -53,7 +68,10 @@ export default function(state = {}, action) {
     case SET_MEDIA:
       return action.media
     case FIND_SINGLE_MEDIA:
-      return action.media
+      return action.media;
+   
+      
+    
     default:
       return state
   }

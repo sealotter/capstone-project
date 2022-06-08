@@ -8,7 +8,7 @@ const axios = require('axios');
 
 router.get('/', async(req, res, next)=>{
   try{
-    res.json('hi')
+    res.send('hi')
   }catch(err){
     next(err)
   }

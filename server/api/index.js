@@ -6,6 +6,7 @@ router.use('/media', require('./media'))
 router.use('/relationships', require('./relationships'))
 router.use('/posts', require('./posts'))
 router.use('/ratings', require('./ratings'))
+router.use('/watchlist', require('./watchlist'))
 
 router.use((req, res, next) => {
   const error = new Error('Not Found')

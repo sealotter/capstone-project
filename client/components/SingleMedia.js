@@ -64,6 +64,11 @@ class SingleMedia extends React.Component{
             })}
           </select>
           <button type='submit'>Add Rating</button>
+          
+        </form>
+        <form>
+          
+          
         </form>
       </div>
     )
@@ -77,7 +82,10 @@ const mapDispatch = (dispatch)=>{
     },
     createRating: (rating, authId, mediaId) => {
       dispatch(createRating(rating, authId, mediaId))
-    }
+    },
+    // addWatchlist: (media) => {
+    //   dispatch(addWatchlist(media))
+    // }
   }
 }
 

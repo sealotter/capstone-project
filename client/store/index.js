@@ -9,8 +9,9 @@ import users from './users'
 import ratings from './ratings'
 import posts from './posts'
 import genres from './genres'
+import watchlist from './watchlist'
 
-const reducer = combineReducers({ auth, media, relationships, users, posts, genres, ratings })
+const reducer = combineReducers({ auth, media, relationships, users, posts, genres, ratings, watchlist })
 
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
@@ -25,4 +26,5 @@ export * from './users'
 export * from './posts'
 export * from './genres'
 export * from './ratings'
+export * from './watchlist'
 
