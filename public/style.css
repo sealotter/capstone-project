@@ -20,21 +20,20 @@ nav a {
   margin: 1em;
 }
 
-/* form div {
-  margin: 1rem;
-  display: inline-block;
-} */
-
 .postBox {
   padding-bottom: 10px;
   border-bottom: 2px solid;
-
-  display: flex;
+  border: 2px solid grey;
 }
 
 .postBox > form {
   display: flex;
-  margin-top: 10px;
+  flex-direction: column;
+}
+
+.postBox_input {
+  padding: 20px;
+  display: flex;
 }
 
 .postBox_input > input {
@@ -45,36 +44,43 @@ nav a {
 }
 
 .postBox_button {
-  background-color: gray !important;
+  background-color: cornflowerblue !important;
   color: white !important;
   border-radius: 30px !important;
   display: flex;
   flex-direction: column;
+  margin-left: 80px !important;
+  width: 180px;
 }
 
 .post {
   display: flex;
   border-bottom: 1px solid;
   padding-bottom: 10px;
-  flex-direction:column;
+  flex-direction: column;
+  border: 1px solid grey;
 }
 
 .post_body {
   display: flex;
   align-items: center;
-  flex: 1;
   padding: 10px;
 }
 
+.post_footer {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 2px;
+}
 
 .post_headerDesc {
-  margin: 10px;
+  margin-bottom: 10px;
   font-size: 15px;
-
+  margin-left: 10px;
 }
 
 .post_headerText > h3 {
   display: flex;
   font-size: 15px;
-  margin: 5px;
+  margin-left: 10px;
 }

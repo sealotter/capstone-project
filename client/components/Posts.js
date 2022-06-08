@@ -13,14 +13,15 @@ const Posts = ({ posts }) => {
         return (
           <div key={post.id} className="post">
             <div className="post_body">
-              <Avatar src={post.avatarUrl}></Avatar>
+              <Avatar src={post.avatarUrl} />
               <div className="post_header">
                 <div className="post_headerText">
                   <h3>{post.username} </h3>
                 </div>
+                <div className="post_headerDesc">
+                  <p>{post.content}</p>
+                </div>
               </div>
-              <div className="post_headerDesc"></div>
-              <p>{post.content}</p>
             </div>
             <div className="post_footer">
               <ChatBubbleOutlineIcon fontSize="small" />

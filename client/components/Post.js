@@ -38,21 +38,22 @@ class Post extends Component {
     return (
       <div className="postBox">
         <form>
-          <div className="avatar">
-            <Avatar src={avatarUrl}></Avatar>
-          </div>
           <div className="postBox_input">
+            <Avatar src={avatarUrl} />
             <input
               onChange={onChange}
               name="content"
               value={content}
               placeholder="what's on your mind?"
             ></input>
-
-            <Button onClick={onSubmit} className="postBox_button">
-              +
-            </Button>
           </div>
+          <Button
+            onClick={onSubmit}
+            className="postBox_button"
+            disabled={!content}
+          >
+            +
+          </Button>
         </form>
       </div>
     );
