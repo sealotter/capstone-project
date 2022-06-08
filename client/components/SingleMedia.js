@@ -27,6 +27,9 @@ class SingleMedia extends React.Component{
 
   render(){
     const {media, auth, createRating, ratings, users, findSingleMedia, match:{params:{id}, path}} = this.props
+    console.log(media)
+    const movieRatings = ratings.filter(rating => rating.mediaId === media.id)
+    console.log(movieRatings)
     const type = path.slice(1,6)==='movie'?path.slice(1,6):path.slice(1,3)
     if(!media.id) return null
     const myRating = ratings.find(rating=> rating.mediaId === media.dataValues.id && rating.userId === auth.id)

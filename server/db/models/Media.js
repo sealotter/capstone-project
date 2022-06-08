@@ -20,6 +20,21 @@ const Media = db.define("media", {
   numOfRatings: {
     type: Sequelize.INTEGER,
     defaultValue:0
+  },
+  poster_path:{
+    type: Sequelize.STRING
+  },
+  title:{
+    type:Sequelize.STRING
+  },
+  overview:{
+    type:Sequelize.TEXT
+  },
+  homepage:{
+    type:Sequelize.STRING
+  },
+  vote_average:{
+    type:Sequelize.DECIMAL(10, 1)
   }
 });
 

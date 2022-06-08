@@ -48,7 +48,6 @@ router.get('/page/:page', async (req, res, next) => {
         )
       ).data;
     }
-    // console.log(media);
     res.json(media);
   } catch (err) {
     next(err);
@@ -68,7 +67,8 @@ router.get('/:id', async (req, res, next) => {
         apiId: media.id,
       },
     });
-    if (!ourData) ourData = await Media.create({ apiId: media.id });
+    console.log(ourData)
+    if (!ourData) ourData = await Media.create({ apiId: media.id, medium:search.media, poster_path:media.poster_path, title:media.title, overview:media.overview, homepage:media.homepage, vote_average:media.vote_average*1});
     res.json({ ...media, ...ourData });
   } catch (err) {
     next(err);

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import history from '../history';
+import { loadDBMedia } from './dbMedia';
 
 const TOKEN = 'token';
 
@@ -8,7 +9,7 @@ const TOKEN = 'token';
  */
 const SET_MEDIA = 'SET_MEDIA';
 const FIND_SINGLE_MEDIA = 'FIND_SINGLE_MEDIA';
-const LOAD_DB_MEDIA = 'LOAD_DB_MEDIA';
+const FIND_MULTIPLE_MEDIA = 'FIND_MULTIPLE_MEDIA'
 
 /**
  * ACTION CREATORS
@@ -43,6 +44,7 @@ export const findSingleMedia = (search = { id: id, media: 'movie' }) => {
         },
       })
     ).data;
+    dispatch(loadDBMedia())
     dispatch({
       type: FIND_SINGLE_MEDIA,
       media,
@@ -50,16 +52,22 @@ export const findSingleMedia = (search = { id: id, media: 'movie' }) => {
   };
 };
 
-export const loadDBMedia = () => {
+export const findMultipleMedia = (search = { id: id, media: 'movie' }) => {
   return async (dispatch) => {
-    const DBMedia = (await axios.get('/api/media')).data;
-    console.log('LDB thunk', DBMedia);
+    const media = (
+      await axios.get(`/api/media/${search.id}`, {
+        headers: {
+          search: JSON.stringify(search),
+        },
+      })
+    ).data;
     dispatch({
-      type: LOAD_DB_MEDIA,
-      DBMedia,
+      type: FIND_MULTIPLE_MEDIA,
+      media,
     });
   };
 };
+
 /**
  * REDUCER
  */
@@ -69,8 +77,8 @@ export default function (state = {}, action) {
       return action.media;
     case FIND_SINGLE_MEDIA:
       return action.media;
-    case LOAD_DB_MEDIA:
-      return { ...state, DBMedia: action.DBMedia };
+    case FIND_MULTIPLE_MEDIA:
+      return {...state, ...action.media}
     default:
       return state;
   }
