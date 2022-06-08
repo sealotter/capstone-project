@@ -2,12 +2,15 @@ import React from 'react'
 import { connect } from "react-redux";
 import { findSingleMedia, createRating } from '../store'
 import { Link } from "react-router-dom";
+import Rating from '@material-ui/lab/Rating';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
 class SingleMedia extends React.Component{
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state={
-      rating:0
+      
     }
   }
   componentDidMount(){
@@ -23,8 +26,13 @@ class SingleMedia extends React.Component{
   }
 
   render(){
-    const {media, auth, createRating} = this.props
+    const {media, auth, createRating, ratings, users, findSingleMedia, match:{params:{id}, path}} = this.props
+    console.log(media)
+    const movieRatings = ratings.filter(rating => rating.mediaId === media.id)
+    console.log(movieRatings)
+    const type = path.slice(1,6)==='movie'?path.slice(1,6):path.slice(1,3)
     if(!media.id) return null
+    const myRating = ratings.find(rating=> rating.mediaId === media.dataValues.id && rating.userId === auth.id)
 
     const combineArr = (arr)=>{
       let str = ''
@@ -35,9 +43,6 @@ class SingleMedia extends React.Component{
       })
       return str
     }
-    const {rating} = this.state
-
-    const ratings = [1, 2, 3, 4, 5]
 
     return(
       <div>
@@ -45,28 +50,40 @@ class SingleMedia extends React.Component{
         <h1>{media.title}</h1>
         <p>Genres: {combineArr(media.genres)}</p>
         <p>Runtime: {media.runtime} minutes</p>
-        <p>Rating: {media.vote_average}/10</p>
+        <p>Critic Rating: {media.vote_average}/10</p>
+        <p>User Rating: {media.dataValues.numOfRatings === 0?'Not rated yet!':`${(media.dataValues.totalRating/media.dataValues.numOfRatings).toFixed(1)}/10`}</p>
         <p>Release date: {media.release_date}</p>
         <p>Budget: ${media.budget}</p>
         <p>Revenue: ${media.revenue}</p>
         <p>Produced by: {combineArr(media.production_companies)}</p>
         <p>Website: {media.homepage?<a href={`${media.homepage}`}>{media.homepage}</a>:'N/A'}</p>
         <p>Overview: {media.overview}</p>
-        <form onSubmit={(ev=>{
-          ev.preventDefault()
-          createRating(rating, auth.id, media.id)
-        })}>
-          <select onChange={ev=>{
-            this.setState({rating:ev.target.value})
-          }}>
-            {ratings.map(rating=>{
-              return <option key={rating} value ={rating}>{rating}</option>
-            })}
-          </select>
-          <button type='submit'>Add Rating</button>
-        </form>
+        <Box component="fieldset" mb={3} borderColor="transparent">
+          <Typography component="legend"><h2>Rate this movie!</h2></Typography>
+          <Rating name="Rating" value={myRating?.rating?myRating.rating:0} max={10} onChange={(ev)=>{
+            createRating(ev.target.value*1, auth.id, media.id)
+            findSingleMedia({id, media:type})
+          }}/>
+        </Box>  
+        <ul>
+          <h2>User ratings</h2>
+          {ratings.length?ratings.map(item=>{
+            return(
+              <li key={item.id}>{users.find(user=>user.id ===item.userId).username} <Rating name="Rated" readOnly value={item.rating?item.rating:0} max={10}/></li>
+            )
+          }):"No ratings yet!"}
+        </ul>
       </div>
     )
+  }
+}
+
+const mapState = ({media, auth, ratings, users})=>{
+  return{
+    media,
+    auth, 
+    ratings, 
+    users
   }
 }
 
@@ -81,4 +98,4 @@ const mapDispatch = (dispatch)=>{
   }
 }
 
-export default connect(state=>state, mapDispatch)(SingleMedia)
+export default connect(mapState, mapDispatch)(SingleMedia)
