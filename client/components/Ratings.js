@@ -4,7 +4,7 @@ import { findSingleMedia } from '../store';
 
 const RatingsList = (props) => {
   console.log('rl props', props);
-  const { ratings, auth } = props;
+  const { ratings, auth, dbMedia } = props;
   const usersRatings =
     ratings.length && auth.id
       ? ratings.filter((rating) => {
@@ -13,17 +13,27 @@ const RatingsList = (props) => {
       : null;
   const ratingsList = usersRatings
     ? usersRatings.map((rating) => {
+        const media = dbMedia
+          ? dbMedia.find((media) => {
+              return media.id === rating.mediaId;
+            })
+          : null;
+        console.log(media);
+        const mediaDisplay = media ? (
+          <div>
+            <img src={media.poster_path} />
+            <div>{media.title}</div>
+          </div>
+        ) : null;
         return (
           <div key={rating.id}>
-            <div>Movie/ Show: {rating.mediaId}</div>
             <div>Rating: {rating.rating} stars</div>
+            {mediaDisplay}
           </div>
         );
       })
     : null;
-  // console.log(usersRatings);
-  //need help with calling findSingleMedia
-  //want to get the name and picture of movie to display on ratings list
+
   return (
     <div>
       <div>Ratings List</div>
