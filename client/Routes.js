@@ -20,6 +20,7 @@ import Profile from './components/Profile';
 import Users from './components/Users';
 import FriendRequests from './components/FriendRequests';
 import Ratings from './components/Ratings';
+import Recommendations from './components/Recommendations';
 
 /**
  * COMPONENT
@@ -45,6 +46,8 @@ class Routes extends Component {
             <Route path="/movie/:id" component={SingleMedia} />
             <Route path="/tv/:id" component={SingleMedia} />
             <Route path="/ratings" component={Ratings} />
+            <Route path="/recommendations" component={Recommendations} />
+
             {/* <Redirect to="/home" /> */}
           </Switch>
         ) : (
