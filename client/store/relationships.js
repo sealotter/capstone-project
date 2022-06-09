@@ -19,8 +19,15 @@ const ADD_FRIEND = 'ADD_FRIEND';
 export const loadRelationships = () => {
   // const user = store.getState()
   // console.log(user)
+  const token = window.localStorage.getItem('token');
   return async (dispatch) => {
-    const relationships = (await axios.get(`/api/relationships`)).data;
+    const relationships = (
+      await axios.get(`/api/relationships`, {
+        headers: {
+          authorization: token,
+        },
+      })
+    ).data;
     dispatch({
       type: SET_RELATIONSHIPS,
       relationships,
