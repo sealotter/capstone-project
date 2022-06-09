@@ -22,8 +22,10 @@ nav a {
 
 .postBox {
   padding-bottom: 10px;
-  border-bottom: 2px solid;
-  border: 2px solid grey;
+  border: 0.5px solid grey;
+  margin: auto;
+  width: 50%;
+  /* border-radius: 30px; */
 }
 
 .postBox > form {
@@ -53,12 +55,18 @@ nav a {
   width: 180px;
 }
 
+.postOut {
+  padding: 0.2rem;
+}
+
 .post {
   display: flex;
-  border-bottom: 1px solid;
   padding-bottom: 10px;
   flex-direction: column;
   border: 1px solid grey;
+  border-radius: 30px;
+  width: 50%;
+  margin: auto;
 }
 
 .post_body {
@@ -83,4 +91,10 @@ nav a {
   display: flex;
   font-size: 15px;
   margin-left: 10px;
+}
+
+.postDetail {
+  color: grey;
+  margin-left: 2px;
+  opacity: 75%;
 }
