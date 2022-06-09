@@ -31,10 +31,10 @@ const Profile = (props) => {
       <div>{user ? user.username : null}</div>
       <div>Bio, we can add this as part of the User db</div>
       <div> {acceptedFriends ? acceptedFriends.length : null} Friends</div>
-      {/* need to change page to be the users id, based on who is logged in */}
-      <button onClick={() => props.addFriend(auth.id, user.id)}>
+      {/* changed page to be the users id, based on who is logged in */}
+      <div>{user?.id !== auth.id ? <button onClick={() => props.addFriend(auth.id, user.id)}>
         Add Friend
-      </button>
+      </button> : null }</div>
       <FriendRequests user={user} />
     </div>
   );
