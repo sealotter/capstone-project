@@ -8,6 +8,7 @@ const Profile = (props) => {
 
   const { auth, relationships } = props;
 
+  
   const user = props.users.find((user) => {
     return user.id === parseInt(props.match.params.id);
   });

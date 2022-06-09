@@ -3,19 +3,23 @@ import { connect } from 'react-redux';
 import { loadPosts } from '../store';
 import { Avatar } from '@material-ui/core';
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
+import { Link } from 'react-router-dom';
 
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
 const Posts = ({ posts }) => {
-  console.log(posts);
   return (
     <div>
       {posts.map((post) => {
+        console.log(post);
         return (
           <div key={post.id} className="postOut">
             <div className="post">
               <div className="post_body">
-                <Avatar src={post.avatarUrl} />
+                <Link to={`/profile/${post.userId}`}>
+                  <Avatar src={post.avatarUrl} />
+                </Link>
+
                 <div className="post_header">
                   <div className="post_headerText">
                     <h3>
