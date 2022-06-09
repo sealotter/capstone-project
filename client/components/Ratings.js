@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { findSingleMedia } from '../store';
 
 const RatingsList = (props) => {
   console.log('rl props', props);
@@ -21,14 +20,14 @@ const RatingsList = (props) => {
         console.log(media);
         const mediaDisplay = media ? (
           <div>
-            <img src={media.poster_path} />
+            <img src={`https://image.tmdb.org/t/p/w300/${media.poster_path}`} />
             <div>{media.title}</div>
           </div>
         ) : null;
         return (
           <div key={rating.id}>
-            <div>Rating: {rating.rating} stars</div>
             {mediaDisplay}
+            <div>Rating: {rating.rating} stars</div>
           </div>
         );
       })
@@ -42,10 +41,4 @@ const RatingsList = (props) => {
   );
 };
 
-const mapDispatch = (dispatch) => {
-  return {
-    findSingleMedia: (search) => dispatch(findSingleMedia(search)),
-  };
-};
-
-export default connect((state) => state, mapDispatch)(RatingsList);
+export default connect((state) => state)(RatingsList);
