@@ -1,12 +1,28 @@
 const router = require('express').Router();
 const {
-  models: { Relationship },
+  models: { Relationship, User },
 } = require('../db');
 module.exports = router;
 
 router.get('/', async (req, res, next) => {
   try {
-    res.json(await Relationship.findAll());
+    console.log('REQ HEADERS', req.headers);
+    const user = await User.findByToken(req.headers.authorization);
+    console.log('user', user);
+    res.json(
+      await Relationship.findAll({
+        where: {
+          $or: [
+            {
+              senderId: user.id,
+            },
+            {
+              recipientId: user.id,
+            },
+          ],
+        },
+      })
+    );
   } catch (err) {
     next(err);
   }
