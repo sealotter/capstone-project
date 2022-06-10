@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from "react-redux";
+import {updateRelationship} from '../store'
 
-const FriendsList = ({auth, users, relationships})=>{
+const FriendsList = ({auth, users, relationships, updateRelationship})=>{
   if(!relationships.length || !auth.id || !users) return null
   const friends = relationships.filter(item=> item.status === 'accepted' && (item.recipientId === auth.id || item.senderId === auth.id))
   const pendingFriends = relationships.filter(item=> item.status === 'pending')
@@ -41,6 +42,9 @@ const FriendsList = ({auth, users, relationships})=>{
           return(
             <li key={idx}>
               {friend?.username}
+              {console.log(item)}
+              <button onClick={()=>updateRelationship(item.senderId, auth.id, 'accept')}>Accept</button>
+              <button onClick={()=>updateRelationship(item.senderId, auth.id, 'decline')}>Decline</button>
             </li>
           )
         })}
@@ -58,4 +62,12 @@ const mapState = ({auth, users, relationships})=>{
   }
 }
 
-export default connect(mapState)(FriendsList)
+const mapDispatch = (dispatch) =>{
+  return{
+    updateRelationship: (recipientId, senderId, acceptDecline) =>{
+      dispatch(updateRelationship(recipientId, senderId, acceptDecline))
+    }
+  }
+}
+
+export default connect(mapState, mapDispatch)(FriendsList)

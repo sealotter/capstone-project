@@ -44,6 +44,7 @@ class Routes extends Component {
             <Route path="/home" component={Home} />
             <Route path="/users" component={Users} />
             <Route path="/profile/:id" component={Profile} />
+            <Route path="/profile"  component={Profile} />
             <Route path="/friendrequests" component={FriendRequests} />
             <Route path="/friendsList" component={FriendsList} />
             <Route path="/media" exact component={Media} />
