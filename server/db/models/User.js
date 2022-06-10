@@ -19,6 +19,9 @@ const User = db.define("user", {
     type: Sequelize.STRING,
     unique: true,
   },
+  avatarUrl: {
+    type: Sequelize.STRING,
+  }
 });
 
 module.exports = User;

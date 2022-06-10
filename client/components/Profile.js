@@ -8,21 +8,23 @@ const Profile = (props) => {
 
   const { auth, relationships } = props;
 
+  
   const user = props.users.find((user) => {
     return user.id === parseInt(props.match.params.id);
   });
-  console.log(user);
+
   const acceptedFriends =
     user && relationships.length
       ? relationships
           .filter((rel) => {
-            return rel.senderId === user.id || rel.recipientId === user.id;
+            return rel.senderId === user.id || rel.recipientId === user.id && rel.status === 'accepted'
           })
-          .filter((request) => request.status === 'accepted')
-      : 0;
+      : [];
   // addFriend (userId, authId) {
   //   return props.addFriend(userId, authId);
   // };
+
+  const temp = relationships.find(rel=>(rel.senderId === user?.id && rel.recipientId === auth.id) || (rel.recipientId === user?.id && rel.senderId === auth.id))
   return (
     <div>
       <div>Wallpaper</div>
@@ -30,10 +32,10 @@ const Profile = (props) => {
       <div>{user ? user.username : null}</div>
       <div>Bio, we can add this as part of the User db</div>
       <div> {acceptedFriends ? acceptedFriends.length : null} Friends</div>
-      {/* need to change page to be the users id, based on who is logged in */}
-      <button onClick={() => props.addFriend(auth.id, user.id)}>
+      {/* changed page to be the users id, based on who is logged in */}
+      <div>{user?.id !== auth.id ? <button disabled={temp} onClick={() => props.addFriend(auth.id, user.id)}>
         Add Friend
-      </button>
+      </button> : null }</div>
       <FriendRequests user={user} />
     </div>
   );
