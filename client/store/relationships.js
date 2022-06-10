@@ -8,7 +8,7 @@ const TOKEN = 'token';
  */
 const SET_RELATIONSHIPS = 'SET_RELATIONSHIPS';
 const ADD_FRIEND = 'ADD_FRIEND';
-const UPDATE_FRIEND = 'UPDATE_FRIEND'
+const UPDATE_FRIEND = 'UPDATE_FRIEND';
 
 /**
  * ACTION CREATORS
@@ -22,13 +22,7 @@ export const loadRelationships = () => {
   // console.log(user)
   const token = window.localStorage.getItem('token');
   return async (dispatch) => {
-    const relationships = (
-      await axios.get(`/api/relationships`, {
-        headers: {
-          authorization: token,
-        },
-      })
-    ).data;
+    const relationships = (await axios.get(`/api/relationships`)).data;
     dispatch({
       type: SET_RELATIONSHIPS,
       relationships,
@@ -53,21 +47,24 @@ export const addFriend = (senderId, recipientId) => {
 
 export const updateRelationship = (senderId, recipientId, acceptDecline) => {
   return async (dispatch) => {
-    console.log('here')
-    const requestResponse = await axios.put(`/api/relationships/updateRelationship`, {
+    console.log('here');
+    const requestResponse = await axios.put(
+      `/api/relationships/updateRelationship`,
+      {
+        senderId,
+        recipientId,
+        acceptDecline,
+      }
+    );
+    const request = {
+      response: requestResponse.data,
       senderId,
       recipientId,
-      acceptDecline
-    });
-    const request = {
-      response:requestResponse.data,
-      senderId,
-      recipientId
-    }
+    };
 
     dispatch({
       type: UPDATE_FRIEND,
-      request
+      request,
     });
   };
 };
@@ -82,8 +79,15 @@ export default function (state = [], action) {
     case ADD_FRIEND:
       return [...state, action.request];
     case UPDATE_FRIEND:
-      if(action.request.response) return state.map(rel=> rel.id === action.request.response.id? action.request.response:rel)
-      return state.filter(rel=> rel.senderId !== action.request.senderId && rel.recipientId !== action.request.recipientId)
+      if (action.request.response)
+        return state.map((rel) =>
+          rel.id === action.request.response.id ? action.request.response : rel
+        );
+      return state.filter(
+        (rel) =>
+          rel.senderId !== action.request.senderId &&
+          rel.recipientId !== action.request.recipientId
+      );
     default:
       return state;
   }

@@ -6,23 +6,7 @@ module.exports = router;
 
 router.get('/', async (req, res, next) => {
   try {
-    console.log('REQ HEADERS', req.headers);
-    const user = await User.findByToken(req.headers.authorization);
-    console.log('user', user);
-    res.json(
-      await Relationship.findAll({
-        where: {
-          $or: [
-            {
-              senderId: user.id,
-            },
-            {
-              recipientId: user.id,
-            },
-          ],
-        },
-      })
-    );
+    res.json(await Relationship.findAll());
   } catch (err) {
     next(err);
   }
@@ -34,13 +18,13 @@ router.post('/addfriend', async (req, res, next) => {
   const recipientId = req.body.recipientId;
   try {
     let relationship = await Relationship.findOne({
-      where:{
+      where: {
         senderId: senderId,
         recipientId: recipientId,
-      }
-    })
+      },
+    });
 
-    if(!relationship){
+    if (!relationship) {
       relationship = await Relationship.create({
         senderId: senderId,
         recipientId: recipientId,
@@ -54,24 +38,23 @@ router.post('/addfriend', async (req, res, next) => {
 
 router.put('/updateRelationship', async (req, res, next) => {
   try {
-    const {senderId, recipientId, acceptDecline} = req.body
+    const { senderId, recipientId, acceptDecline } = req.body;
 
     const relationship = await Relationship.findOne({
-      where:{
-        senderId:senderId,
-        recipientId:recipientId
-      }
-    })
+      where: {
+        senderId: senderId,
+        recipientId: recipientId,
+      },
+    });
 
-    if(relationship && acceptDecline === 'accept'){
-      await relationship.update({status:'accepted'})
+    if (relationship && acceptDecline === 'accept') {
+      await relationship.update({ status: 'accepted' });
       res.json(relationship).status(201);
     }
-    if(relationship && acceptDecline === 'decline') {
-      await relationship.destroy()
-      res.sendStatus(204)
+    if (relationship && acceptDecline === 'decline') {
+      await relationship.destroy();
+      res.sendStatus(204);
     }
-
   } catch (err) {
     next(err);
   }
