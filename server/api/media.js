@@ -86,16 +86,6 @@ router.get('/genres/:media', async (req, res, next) => {
   } catch (err) {
     next(err);
   }
-<<<<<<< HEAD
-})
 
-router.get('/search/multi', async(req, res, next) => {
-  try{
-
-  }catch(ex){
-    next(ex)
-  }
-})
-=======
 });
->>>>>>> 4c2a352d81dfe865d6c3bbd3acd98ccc688e7d20
+
