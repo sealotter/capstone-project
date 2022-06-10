@@ -2,23 +2,21 @@ import axios from 'axios';
 import history from 'history';
 
 
+
 const TOKEN = 'token';
 
-const LOAD_WATCHLIST = 'LOAD_WATCHLIST'
+/**
+ * ACTION TYPES
+ */
+
 const SET_WATCHLIST = 'SET_WATCHLIST'
+const ADD_WATCHLIST = 'ADD_WATCHLIST'
 
 
 /**
  * THUNK CREATORS
  */
 
-// export const loadWatchList = () => {
-//   return async(dispatch) => {
-//     const mediaWatch = (await axios.get(`/api/watch`)).data
-//     dispatch({type: SET_WATCHLIST, mediaWatch})
-   
-//   }
-// }
 
 export const loadWatchList = (media) => {
   return async(dispatch) => {
@@ -27,29 +25,30 @@ export const loadWatchList = (media) => {
   }
 }
 
+export const createList = (watchlist, mediaId) => {
+  return async(dispatch) => {
+    const newList = (await axios.post('/api/watchlist' , {watchlist, mediaId}))
+    dispatch({type: ADD_WATCHLIST, list: newList})
+
+  }
+}
+
 
 
 /**
  * REDUCER
  */
-// export default function(state = {}, action) {
-//   switch(action.type) {
-//     case SET_WATCHLIST: 
-//       return action.mediaWatch
-
-//     default:
-//       return state
-//   }
-// }
-
-
 
 export default function(state = [], action) {
+  console.log(action.type)
   switch(action.type) {
     case SET_WATCHLIST :
       return action.watchlist
-    // case SET_WATCHLIST: 
-    //   return [...state, action.media]
+    case ADD_WATCHLIST :
+      const findMedia = state.find((m => m.id === action.watchlist.id))
+      return [...state, findMedia]
+      
+   
       default: 
       return state
   }

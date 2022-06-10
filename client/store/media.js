@@ -5,7 +5,6 @@ import { loadDBMedia } from './dbMedia';
 const TOKEN = 'token';
 
 
-
 /**
  * ACTION TYPES
  */
@@ -71,15 +70,6 @@ export const findMultipleMedia = (search = { id: id, media: 'movie' }) => {
     });
   };
 };
-
-// export const addWatchlist = (media) => {
-//   return async (dispatch) => {
-//     const addMedia = (await axios.post('/api/watch', {media})).data
-//     dispatch({type: ADD_WATCHLIST, addMedia})
-
-//   }
-// }
-
 
 
 

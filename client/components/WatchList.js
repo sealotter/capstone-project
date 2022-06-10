@@ -7,25 +7,25 @@ class WatchList extends React.Component {
   constructor() {
     super();
     this.state = {
-      watchlist: []
+      list: []
     }
   
   }
 
   render() {
-    const {watchlist} = this.state
+    const {list} = this.state
    
     return(
       <div>
         {/* <h1>Currently on your watch list:</h1> */}
         <ul>
           {
-            watchlist.length === 0 ? (
+            list.length === 0 ? (
               <h3>Your watchlist is currently empty</h3>
             ) : (
               <div>
                 <h3>Here are your saved movies:</h3>
-                {watchlist.map((m) => {
+                {list.map((m) => {
                   <SingleMedia
                   />
 

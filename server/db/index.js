@@ -8,7 +8,7 @@ const Relationship = require("./models/Relationship");
 const Media = require("./models/Media");
 const Ratings = require("./models/Ratings");
 const Posts = require("./models/Posts")
-const WatchList = require('./models/WatchList');
+const List = require('./models/List');
 
 
 //associations could go here!
@@ -21,9 +21,9 @@ Ratings.hasMany(Comments);
 
 Posts.belongsTo(User)
 
-
-Media.belongsTo(WatchList)
-WatchList.hasMany(Media, {foreignKey: 'mediaId'})
+List.belongsTo(Media, {foreignKey: 'mediaId'})
+// Media.belongsTo(WatchList)
+// WatchList.hasMany(Media, {foreignKey: 'mediaId'})
 
 
 
@@ -36,6 +36,6 @@ module.exports = {
     Media,
     Ratings,
     Posts,
-    WatchList
+    List
   },
 };

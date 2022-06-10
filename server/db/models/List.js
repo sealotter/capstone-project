@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const db = require("../db");
 
-const WatchList = db.define('watchlist', {
+const List = db.define('list', {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true
@@ -9,5 +9,5 @@ const WatchList = db.define('watchlist', {
   
 })
 
-module.exports = WatchList
+module.exports = List
 

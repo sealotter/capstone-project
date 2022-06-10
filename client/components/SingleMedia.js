@@ -1,17 +1,21 @@
 import React from 'react'
 import { connect } from "react-redux";
-import { findSingleMedia, createRating } from '../store'
+import { findSingleMedia, createRating, createList } from '../store'
 import { Link } from "react-router-dom";
 import Rating from '@material-ui/lab/Rating';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
+
+
 class SingleMedia extends React.Component{
   constructor(props){
     super(props)
     this.state={
+      list : []
       
     }
+    this.handleOnClick = this.handleOnClick.bind(this)
   }
   componentDidMount(){
     const {findSingleMedia, match:{params:{id}, path}} = this.props
@@ -25,9 +29,20 @@ class SingleMedia extends React.Component{
     if(this.props.media.results) findSingleMedia({id, media:type})
   }
 
+  handleOnClick(media){
+    const {match:{params:{id}, path, list}} = this.props
+    console.log(list)
+    //cannot read properties of undefined -> adding button component to handle state
+    const l = list.find((l) => l.mediaId === media.id)
+    
+    if(!l) {
+      this.props.createList(l.id, match.params.id*1)
+    }//else movie is already in list
+
+  }
+
   render(){
-    const {media, auth, createRating, ratings, users, findSingleMedia, match:{params:{id}, path}} = this.props
-    console.log(media)
+    const {media, auth, createRating, ratings, users, findSingleMedia, match:{params:{id}, path}, watchlist} = this.props
     const movieRatings = ratings.filter(rating => rating.mediaId === media.id)
     console.log(movieRatings)
     const type = path.slice(1,6)==='movie'?path.slice(1,6):path.slice(1,3)
@@ -58,6 +73,10 @@ class SingleMedia extends React.Component{
         <p>Produced by: {combineArr(media.production_companies)}</p>
         <p>Website: {media.homepage?<a href={`${media.homepage}`}>{media.homepage}</a>:'N/A'}</p>
         <p>Overview: {media.overview}</p>
+        <div className='watchBtn'>
+          <button onClick={() => this.handleOnClick(media)}>Add to Watch List</button>
+
+        </div>
 
         <Box component="fieldset" mb={3} borderColor="transparent">
           <Typography component="legend"><h2>Rate this movie!</h2></Typography>
@@ -97,9 +116,10 @@ const mapDispatch = (dispatch)=>{
     createRating: (rating, authId, mediaId) => {
       dispatch(createRating(rating, authId, mediaId))
     },
-    // addWatchlist: (media) => {
-    //   dispatch(addWatchlist(media))
-    // }
+    createList: (list, mediaId) => {
+      dispatch(createList(list, mediaId))
+    }
+  
   }
 }
 
