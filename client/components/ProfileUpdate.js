@@ -1,4 +1,4 @@
-import react, { Compoenent } from 'react';
+import react, { Component } from 'react';
 
 class ProfileUpdate extends Component {
   constructor() {
@@ -6,7 +6,7 @@ class ProfileUpdate extends Component {
     this.state = {
       username: '',
       avatarUrl: '',
-      
+      bio: '',
     };
   }
 }

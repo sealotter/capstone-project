@@ -10,8 +10,7 @@ class Post extends Component {
     this.state = {
       content: '',
       username: this.props.auth.username ? this.props.auth.username : '',
-      avatarUrl:
-        'https://lh3.googleusercontent.com/ogw/ADea4I4QIDvtZGTxFFQm4iseETZ78UUTpL9r85jLQYVecw=s32-c-mo',
+      avatarUrl: this.props.auth.avatarUrl ? this.props.auth.avatarUrl : '',
       userId: this.props.auth.id ? this.props.auth.id : '',
     };
     this.onChange = this.onChange.bind(this);
@@ -41,7 +40,7 @@ class Post extends Component {
 
     return (
       <div className="postBox">
-        <form>
+        <form onSubmit={onSubmit}>
           <div className="postBox_input">
             <Link to={`/profile/${userId}`}>
               <Avatar src={avatarUrl} />

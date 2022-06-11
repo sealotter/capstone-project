@@ -14,12 +14,28 @@ async function seed() {
 
   // Creating Users
   const [cody, murphy, doug, angel, anna, jiayu] = await Promise.all([
-    User.create({ username: 'cody', password: '123' }),
-    User.create({ username: 'murphy', password: '123' }),
-    User.create({ username: 'doug', password: '123' }),
-    User.create({ username: 'angel', password: '123' }),
-    User.create({ username: 'anna', password: '123' }),
-    User.create({ username: 'jiayu', password: '123' }),
+    User.create({ username: 'cody', password: '123', avatarUrl: '', bio: '' }),
+    User.create({
+      username: 'murphy',
+      password: '123',
+      avatarUrl: '',
+      bio: '',
+    }),
+    User.create({ username: 'doug', password: '123', avatarUrl: '', bio: '' }),
+    User.create({
+      username: 'angel',
+      password: '123',
+      avatarUrl:
+        'https://lh3.googleusercontent.com/ogw/ADea4I4QIDvtZGTxFFQm4iseETZ78UUTpL9r85jLQYVecw=s32-c-mo',
+      bio: "hi, i'm angel. I will change your life!",
+    }),
+    User.create({ username: 'anna', password: '123', avatarUrl: '', bio: '' }),
+    User.create({
+      username: 'jiayu',
+      password: '123,',
+      avatarUrl: '',
+      bio: '',
+    }),
   ]);
 
   //creating sample posts
@@ -28,12 +44,23 @@ async function seed() {
     Posts.create({
       content: 'this is a post for test angel',
       userId: angel.id,
+      username: angel.username,
+      avatarUrl: angel.avatarUrl,
     }),
-    Posts.create({ content: 'this is a post for test anna', userId: anna.id }),
-    Posts.create({ content: 'this is a post for test doug', userId: doug.id }),
+    Posts.create({
+      content: 'this is a post for test anna',
+      userId: anna.id,
+      username: anna.username,
+    }),
+    Posts.create({
+      content: 'this is a post for test doug',
+      userId: doug.id,
+      username: doug.username,
+    }),
     Posts.create({
       content: 'this is a post for test jiayu',
       userId: jiayu.id,
+      username: jiayu.username,
     }),
   ]);
 
