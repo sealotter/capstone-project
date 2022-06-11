@@ -5,6 +5,9 @@ const Ratings = db.define("ratings", {
   rating: {
     type: Sequelize.INTEGER,
   },
+  likes:{
+    type: Sequelize.ARRAY(Sequelize.STRING)
+  }
 });
 
 module.exports = Ratings;
