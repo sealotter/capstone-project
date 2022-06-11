@@ -21,6 +21,9 @@ const User = db.define("user", {
   },
   avatarUrl: {
     type: Sequelize.STRING,
+  },
+  bio: {
+    type: Sequelize.TEXT,
   }
 });
 
