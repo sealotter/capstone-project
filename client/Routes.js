@@ -12,6 +12,7 @@ import {
   loadPosts,
   loadRatings,
   loadDBMedia,
+  loadRecommendations
 } from './store';
 import FriendsList from './components/FriendsList';
 import SingleMedia from './components/SingleMedia';
@@ -88,6 +89,7 @@ const mapDispatch = (dispatch) => {
       dispatch(loadGenres());
       dispatch(loadRatings());
       dispatch(loadDBMedia());
+      dispatch(loadRecommendations())
     },
   };
 };
