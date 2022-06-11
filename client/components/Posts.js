@@ -11,7 +11,6 @@ const Posts = ({ posts }) => {
   return (
     <div>
       {posts.map((post) => {
-        console.log(post);
         return (
           <div key={post.id} className="postOut">
             <div className="post">

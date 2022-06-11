@@ -20,7 +20,6 @@ const LOAD_DB_MEDIA = 'LOAD_DB_MEDIA';
 export const loadDBMedia = () => {
   return async (dispatch) => {
     const DBMedia = (await axios.get('/api/media')).data;
-    console.log('LDB thunk', DBMedia);
     dispatch({
       type: LOAD_DB_MEDIA,
       DBMedia,

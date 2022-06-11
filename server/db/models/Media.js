@@ -13,6 +13,9 @@ const Media = db.define("media", {
   service: {
     type: Sequelize.STRING,
   },
+  genres:{
+    type: Sequelize.ARRAY(Sequelize.STRING)
+  },
   totalRating: {
     type: Sequelize.INTEGER,
     defaultValue:0
