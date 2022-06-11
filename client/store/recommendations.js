@@ -14,14 +14,16 @@ const SEND_REQUEST = 'SEND_REQUEST';
 /**
  * THUNK CREATORS
  */
-export const sendRec = (senderId, recipientId, mediaId) => {
+export const sendRec = (friendId, userId, mediaId) => {
   return async (dispatch) => {
-    const rec = (await axios.post(`/api/recommendations`),
-    {
-      senderId,
-      recipientId,
-      mediaId,
-    }).data;
+    const rec = (
+      await axios.post(`/api/recommendations`, {
+        friendId,
+        userId,
+        mediaId,
+      })
+    ).data;
+
     dispatch({
       type: SEND_REQUEST,
       rec,

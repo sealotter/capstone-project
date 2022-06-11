@@ -17,8 +17,8 @@ Media.hasMany(Ratings, { foreignKey: 'mediaId' });
 User.hasMany(Relationship, { foreignKey: 'senderId' });
 Relationship.belongsTo(User, { as: 'recipient' });
 Ratings.hasMany(Comments);
-Recommendations.belongsTo(User, { as: 'sender' });
-Recommendations.belongsTo(User, { as: 'recipient' });
+Recommendations.belongsTo(User, { as: 'user' });
+Recommendations.belongsTo(User, { as: 'friend' });
 Recommendations.belongsTo(Media, { as: 'media' });
 
 Posts.belongsTo(User);
