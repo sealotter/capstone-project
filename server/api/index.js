@@ -1,14 +1,15 @@
-const router = require('express').Router()
-module.exports = router
+const router = require('express').Router();
+module.exports = router;
 
-router.use('/users', require('./users'))
-router.use('/media', require('./media'))
-router.use('/relationships', require('./relationships'))
-router.use('/posts', require('./posts'))
-router.use('/ratings', require('./ratings'))
+router.use('/users', require('./users'));
+router.use('/media', require('./media'));
+router.use('/relationships', require('./relationships'));
+router.use('/posts', require('./posts'));
+router.use('/ratings', require('./ratings'));
+router.use('/recommendations', require('./recommendations'));
 
 router.use((req, res, next) => {
-  const error = new Error('Not Found')
-  error.status = 404
-  next(error)
-})
+  const error = new Error('Not Found');
+  error.status = 404;
+  next(error);
+});

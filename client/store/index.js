@@ -10,6 +10,7 @@ import ratings from './ratings';
 import posts from './posts';
 import genres from './genres';
 import dbMedia from './dbMedia';
+import recommendations from './recommendations';
 
 const reducer = combineReducers({
   auth,
@@ -20,6 +21,7 @@ const reducer = combineReducers({
   genres,
   ratings,
   dbMedia,
+  recommendations,
 });
 
 const middleware = composeWithDevTools(
@@ -36,3 +38,4 @@ export * from './posts';
 export * from './genres';
 export * from './ratings';
 export * from './dbMedia';
+export * from './recommendations';
