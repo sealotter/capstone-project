@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const Users = (props) => {
-  console.log(props);
   const usersList = props.users.length
     ? props.users.map((user) => {
         return (
