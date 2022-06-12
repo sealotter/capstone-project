@@ -18,6 +18,7 @@ const Navbar = ({ handleClick, isLoggedIn, auth}) => (
           <Link to='/friendslist'>Friends List</Link>
           <Link to="/media">Media</Link>
           <Link to ='/watchlist'>Watch List: ({media.length})</Link>
+          <Link to='/chat'>Chat</Link>
           <a href="#" onClick={handleClick}>
             Logout
           </a>

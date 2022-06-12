@@ -13,6 +13,7 @@ import genres from './genres';
 import dbMedia from './dbMedia';
 import lists from './lists'
 import recommendations from './recommendations';
+import chats from './chats'
 
 
 const reducer = combineReducers({
@@ -26,6 +27,7 @@ const reducer = combineReducers({
   dbMedia,
   lists,
   recommendations,
+  chats
 });
 
 const middleware = composeWithDevTools(
@@ -44,4 +46,4 @@ export * from './ratings';
 export * from './dbMedia';
 export * from './lists';
 export * from './recommendations';
-
+export * from './chats'

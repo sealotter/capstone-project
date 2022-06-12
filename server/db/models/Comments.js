@@ -10,14 +10,4 @@ const Comments = db.define("comments", {
   }
 });
 
-// Comments.findOne({
-//   where:{
-//     userId:user.id,
-//     postId:post.id
-//   }
-// }
-// ).likes
-
-//comment.likes = [doug, angel, anna]
-
 module.exports = Comments;

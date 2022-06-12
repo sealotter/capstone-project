@@ -12,9 +12,9 @@ import {
   loadPosts,
   loadRatings,
   loadDBMedia,
-  loadWatchList,
-  loadRecommendations
-
+  loadRecommendations,
+  loadChats,
+  loadWatchList
 } from './store';
 import FriendsList from './components/FriendsList';
 import SingleMedia from './components/SingleMedia';
@@ -27,6 +27,7 @@ import WatchList from './components/WatchList';
 
 import Ratings from './components/Ratings';
 import Recommendations from './components/Recommendations';
+import Chat from './components/Chat'
 
 
 /**
@@ -60,7 +61,7 @@ class Routes extends Component {
 
             <Route path="/ratings" component={Ratings} />
             <Route path="/recommendations" component={Recommendations} />
-
+            <Route path='/chat' component={Chat}/>
             {/* <Redirect to="/home" /> */}
 
           </Switch>
@@ -96,15 +97,14 @@ const mapDispatch = (dispatch) => {
       dispatch(me());
       dispatch(loadMedia());
       dispatch(loadRelationships());
-      
       dispatch(loadUsers());
       dispatch(loadPosts());
       dispatch(loadGenres());
       dispatch(loadRatings());
       dispatch(loadDBMedia());
+      dispatch(loadRecommendations());
+      dispatch(loadChats())
       dispatch(loadWatchList())
-      dispatch(loadRecommendations())
-
     },
   };
 };
