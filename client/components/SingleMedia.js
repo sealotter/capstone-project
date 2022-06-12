@@ -1,16 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { findSingleMedia, createRating } from '../store';
+import { findSingleMedia, createRating, createList } from '../store';
 import { Link } from 'react-router-dom';
 import Rating from '@material-ui/lab/Rating';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Recommendations from './Recommendations';
 
+
 class SingleMedia extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.handleOnClick = this.handleOnClick.bind(this)
   }
   componentDidMount() {
     const {
@@ -38,6 +40,13 @@ class SingleMedia extends React.Component {
     if (this.props.media.results) findSingleMedia({ id, media: type });
   }
 
+
+  handleOnClick(media){
+    const {match, lists} = this.props
+    this.props.createList(lists.id, match.params.id*1)
+
+  }
+
   render() {
     const {
       media,
@@ -63,6 +72,7 @@ class SingleMedia extends React.Component {
       (rating) =>
         rating.mediaId === media.dataValues.id && rating.userId === auth.id
     );
+
 
     const combineArr = (arr) => {
       let str = '';
@@ -108,6 +118,12 @@ class SingleMedia extends React.Component {
           )}
         </p>
         <p>Overview: {media.overview}</p>
+        <div className='watchBtn'>
+
+          <button onClick={() => this.handleOnClick(media)}>Add to Watch List</button>
+
+        </div>
+
         <Box component="fieldset" mb={3} borderColor="transparent">
           <Typography component="legend">
             <h2>Rate this movie!</h2>
@@ -140,20 +156,22 @@ class SingleMedia extends React.Component {
               })
             : 'No ratings yet!'}
         </ul>
+
         <Recommendations media={media} />
       </div>
     );
   }
 }
 
-const mapState = ({ media, auth, ratings, users }) => {
-  return {
+const mapState = ({media, auth, ratings, users, lists})=>{
+  return{
     media,
-    auth,
-    ratings,
+    auth, 
+    ratings, 
     users,
-  };
-};
+    lists,
+  }
+}
 
 const mapDispatch = (dispatch) => {
   return {
@@ -161,9 +179,15 @@ const mapDispatch = (dispatch) => {
       dispatch(findSingleMedia(search));
     },
     createRating: (rating, authId, mediaId) => {
-      dispatch(createRating(rating, authId, mediaId));
+      dispatch(createRating(rating, authId, mediaId))
     },
-  };
-};
+    createList: (list, mediaId) => {
+      dispatch(createList(list, mediaId))
+    }
+  
+  }
+}
+
+
 
 export default connect(mapState, mapDispatch)(SingleMedia);

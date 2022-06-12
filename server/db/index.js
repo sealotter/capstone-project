@@ -2,13 +2,16 @@
 
 const db = require('./db');
 
-const User = require('./models/User');
-const Comments = require('./models/Comments');
-const Relationship = require('./models/Relationship');
-const Media = require('./models/Media');
-const Ratings = require('./models/Ratings');
-const Posts = require('./models/Posts');
+
+const User = require("./models/User");
+const Comments = require("./models/Comments");
+const Relationship = require("./models/Relationship");
+const Media = require("./models/Media");
+const Ratings = require("./models/Ratings");
+const Posts = require("./models/Posts")
+const Watchlist = require('./models/Watchlist');
 const Recommendations = require('./models/Recommendations');
+
 
 //associations could go here!
 User.hasMany(Comments);
@@ -23,6 +26,9 @@ Recommendations.belongsTo(Media, { as: 'media' });
 
 Posts.belongsTo(User);
 
+Watchlist.belongsTo(Media, {foreignKey: 'mediaId'})
+
+
 module.exports = {
   db,
   models: {
@@ -32,6 +38,8 @@ module.exports = {
     Media,
     Ratings,
     Posts,
+    Watchlist,
     Recommendations,
+
   },
 };

@@ -38,6 +38,10 @@ const Media = db.define("media", {
   },
   vote_average:{
     type:Sequelize.DECIMAL(10, 1)
+  },
+  inWatchList: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   }
 });
 
