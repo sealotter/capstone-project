@@ -96,7 +96,7 @@ const mapDispatch = (dispatch) => {
       dispatch(me());
       dispatch(loadMedia());
       dispatch(loadRelationships());
-
+      
       dispatch(loadUsers());
       dispatch(loadPosts());
       dispatch(loadGenres());

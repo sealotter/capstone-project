@@ -33,7 +33,6 @@ export const createList = (list, mediaId) => {
 }
 
 
-
 /**
  * REDUCER
  */

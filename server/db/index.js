@@ -27,9 +27,6 @@ Recommendations.belongsTo(Media, { as: 'media' });
 Posts.belongsTo(User);
 
 Watchlist.belongsTo(Media, {foreignKey: 'mediaId'})
-// Media.belongsTo(WatchList)
-// WatchList.hasMany(Media, {foreignKey: 'mediaId'})
-
 
 
 module.exports = {

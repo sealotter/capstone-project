@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import {loadWatchList} from '../store'
 import SingleMedia from './SingleMedia'
 
 class WatchList extends React.Component {
@@ -8,13 +7,9 @@ class WatchList extends React.Component {
     super();
     this.state = {
       lists: []
-     
     }
-
   }
   
-
-
   render() {
     const {lists} = this.state
     console.log(lists)

@@ -1,6 +1,5 @@
 const router = require('express').Router()
 module.exports = router
-// require('dotenv').config();
 const {models: {Watchlist, Media}} = require('../db')
 
 
@@ -25,17 +24,9 @@ router.post('/', async(req, res, next) => {
      }
     })
 
- 
   let myList = await Watchlist.create({ mediaId: myMedia.id})
 
-   
-  
   res.json(myList).status(201)
-
-
-   
-
-  
 
   }catch(err) {
     next(err)
