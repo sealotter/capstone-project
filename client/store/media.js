@@ -4,12 +4,15 @@ import { loadDBMedia } from './dbMedia';
 
 const TOKEN = 'token';
 
+
 /**
  * ACTION TYPES
  */
 const SET_MEDIA = 'SET_MEDIA';
 const FIND_SINGLE_MEDIA = 'FIND_SINGLE_MEDIA';
 const FIND_MULTIPLE_MEDIA = 'FIND_MULTIPLE_MEDIA'
+
+
 
 /**
  * ACTION CREATORS
@@ -67,6 +70,8 @@ export const findMultipleMedia = (search = { id: id, media: 'movie' }) => {
     });
   };
 };
+
+
 
 /**
  * REDUCER

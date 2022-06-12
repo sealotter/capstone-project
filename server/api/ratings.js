@@ -8,7 +8,9 @@ const axios = require('axios');
 
 router.get('/', async(req, res, next)=>{
   try{
+
     res.json(await Ratings.findAll())
+
   }catch(err){
     next(err)
   }
