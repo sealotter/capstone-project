@@ -1,3 +1,4 @@
+
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { createLogger } from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
@@ -10,6 +11,9 @@ import ratings from './ratings';
 import posts from './posts';
 import genres from './genres';
 import dbMedia from './dbMedia';
+import lists from './lists'
+import recommendations from './recommendations';
+
 
 const reducer = combineReducers({
   auth,
@@ -20,6 +24,8 @@ const reducer = combineReducers({
   genres,
   ratings,
   dbMedia,
+  lists,
+  recommendations,
 });
 
 const middleware = composeWithDevTools(
@@ -36,3 +42,6 @@ export * from './posts';
 export * from './genres';
 export * from './ratings';
 export * from './dbMedia';
+export * from './lists';
+export * from './recommendations';
+

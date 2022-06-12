@@ -9,6 +9,7 @@ import InfoIcon from '@material-ui/icons/Info';
 import { Link } from "react-router-dom";
 import MultipleSelect, {BasicSelects, SearchBox} from './Filters';
 
+
 const useStyles = (theme) => ({
   root: {
     display: 'flex',
@@ -85,7 +86,7 @@ class Media extends React.Component{
         <div style={{display:'flex'}}>
           <BasicSelects media={{movie:'Movies', tv:'TV Shows'}} onChangeValue={this.handleChangeValue}/>
           <SearchBox onChangeValue={this.handleNameSearchChange} genres={this.state.with_genres} peopleSearch={this.state.peopleSearch} searchBy={'title'}/>
-          <SearchBox onChangeValue={this.handlePeopleSearchChange} genres={this.state.with_genres} nameSearch={this.state.nameSearch} peopleSearch={this.state.peopleSearch} media={this.state.media} searchBy={'people'}/>
+          {/* <SearchBox onChangeValue={this.handlePeopleSearchChange} genres={this.state.with_genres} nameSearch={this.state.nameSearch} peopleSearch={this.state.peopleSearch} media={this.state.media} searchBy={'people'}/> */}
           <MultipleSelect genres={this.state.genres} media={this.state.media} nameSearch={this.state.nameSearch} peopleSearch={this.state.peopleSearch} setNewGenres={this.setNewGenres} onChangeValue={this.handleGenreChange}/>
         </div>
         <div className={classes.root}>

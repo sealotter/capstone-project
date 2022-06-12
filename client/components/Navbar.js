@@ -2,8 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logout } from '../store';
+import media from '../store/media';
 
-const Navbar = ({ handleClick, isLoggedIn }) => (
+const Navbar = ({ handleClick, isLoggedIn}) => (
+  
   <div>
     <h1>FS-App-Template</h1>
     <nav>
@@ -17,6 +19,8 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
           <Link to='/friendslist'>Friends List</Link>
 
           <Link to="/media">Media</Link>
+
+          <Link to ='/watchlist'>Watch List: ({media.length})</Link>
 
           <a href="#" onClick={handleClick}>
 

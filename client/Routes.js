@@ -12,6 +12,9 @@ import {
   loadPosts,
   loadRatings,
   loadDBMedia,
+  loadWatchList,
+  loadRecommendations
+
 } from './store';
 import FriendsList from './components/FriendsList';
 import SingleMedia from './components/SingleMedia';
@@ -19,7 +22,12 @@ import Media from './components/Media';
 import Profile from './components/Profile';
 import Users from './components/Users';
 import FriendRequests from './components/FriendRequests';
+
+import WatchList from './components/WatchList';
+
 import Ratings from './components/Ratings';
+import Recommendations from './components/Recommendations';
+
 
 /**
  * COMPONENT
@@ -45,8 +53,16 @@ class Routes extends Component {
             <Route path="/media" exact component={Media} />
             <Route path="/movie/:id" component={SingleMedia} />
             <Route path="/tv/:id" component={SingleMedia} />
+            <Route path = '/watchlist' component={WatchList} />
+            
+
+            <Redirect to="/home" />
+
             <Route path="/ratings" component={Ratings} />
+            <Route path="/recommendations" component={Recommendations} />
+
             {/* <Redirect to="/home" /> */}
+
           </Switch>
         ) : (
           <Switch>
@@ -80,11 +96,15 @@ const mapDispatch = (dispatch) => {
       dispatch(me());
       dispatch(loadMedia());
       dispatch(loadRelationships());
+      
       dispatch(loadUsers());
       dispatch(loadPosts());
       dispatch(loadGenres());
       dispatch(loadRatings());
       dispatch(loadDBMedia());
+      dispatch(loadWatchList())
+      dispatch(loadRecommendations())
+
     },
   };
 };
