@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import SingleMedia from './SingleMedia'
+import {createList} from '../store'
 
 class WatchList extends React.Component {
   constructor() {
@@ -9,11 +10,14 @@ class WatchList extends React.Component {
       lists: []
     }
   }
+  componentDidMount() {
+  
+  
+  }
   
   render() {
     const {lists} = this.state
-    console.log(lists)
-   
+    
     return(
       <div>
         {/* <h1>Currently on your watch list:</h1> */}
@@ -26,13 +30,12 @@ class WatchList extends React.Component {
                 <h3>Here are your saved movies:</h3>
                 {lists.map((l) => {
                   <SingleMedia
-                    id = {l.id}
+                    id = {l.mediaId}
                     title = {l.title}
                   />
 
                 })}
               </div>
-
             )
           }
         </ul>
@@ -41,5 +44,11 @@ class WatchList extends React.Component {
   }
 }
 
+const mapState = ( { lists }) => {
+  return {
+    lists
+  }
+}
 
-export default connect((state) => state)(WatchList)
+
+export default connect(mapState)(WatchList)

@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logout } from '../store';
-import media from '../store/media';
+import list from '../store';
 
-const Navbar = ({ handleClick, isLoggedIn}) => (
+const Navbar = ({ handleClick, isLoggedIn, list}) => (
   
   <div>
     <h1>FS-App-Template</h1>
@@ -20,7 +20,7 @@ const Navbar = ({ handleClick, isLoggedIn}) => (
 
           <Link to="/media">Media</Link>
 
-          <Link to ='/watchlist'>Watch List: ({media.length})</Link>
+          <Link to ='/watchlist'>Watch List: ({list.length})</Link>
 
           <a href="#" onClick={handleClick}>
 
@@ -46,6 +46,7 @@ const Navbar = ({ handleClick, isLoggedIn}) => (
 const mapState = (state) => {
   return {
     isLoggedIn: !!state.auth.id,
+    list
   };
 };
 

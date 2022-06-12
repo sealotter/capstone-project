@@ -6,7 +6,7 @@ const {models: {Watchlist, Media}} = require('../db')
 
 router.get('/', async(req, res, next) => {
   try{
-    const userList = Watchlist.findAll()
+    const userList = await Watchlist.findAll()
     res.json(userList)
   }catch(err) {
     next(err)
@@ -16,7 +16,7 @@ router.get('/', async(req, res, next) => {
 router.post('/', async(req, res, next) => {
  
   try{
-    const {mediaId} = req.body
+    const {list, mediaId} = req.body
 
     let myMedia = await Media.findOne({
       where:{
@@ -24,7 +24,12 @@ router.post('/', async(req, res, next) => {
      }
     })
 
-  let myList = await Watchlist.create({ mediaId: myMedia.id})
+    // let myList = await Watchlist.findOne({mediaId: myMedia.id})
+    // if(!myList) {
+      let myList = await Watchlist.create({ list: list, mediaId: myMedia.id})
+    // }else {
+    //   res.send('already in watchlist')
+    // }
 
   res.json(myList).status(201)
 

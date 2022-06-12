@@ -42,6 +42,7 @@ export const loadRatings = () =>{
  * REDUCER
  */
 export default function(state = [], action) {
+  
   switch (action.type) {
     case SET_RATINGS:
       return action.ratings

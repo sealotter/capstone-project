@@ -11,7 +11,9 @@ import Recommendations from './Recommendations';
 class SingleMedia extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      
+    };
     this.handleOnClick = this.handleOnClick.bind(this)
   }
   componentDidMount() {
@@ -42,8 +44,13 @@ class SingleMedia extends React.Component {
 
 
   handleOnClick(media){
-    const {match, lists} = this.props
-    this.props.createList(lists.id, match.params.id*1)
+    const { match, list} = this.props
+    //const list = lists.find((watchlist) => watchlist.mediaId === media.id)
+    //if(!list) 
+    this.props.createList(list, match.params.id*1)
+    // }else {
+    //   this.setState({lists: 'Already in watchlist'})
+    // }
 
   }
 
@@ -60,11 +67,11 @@ class SingleMedia extends React.Component {
         path,
       },
     } = this.props;
-    console.log(media);
+   // console.log(media);
     const movieRatings = ratings.filter(
       (rating) => rating.mediaId === media.id
     );
-    console.log(movieRatings);
+    //console.log(movieRatings);
     const type =
       path.slice(1, 6) === 'movie' ? path.slice(1, 6) : path.slice(1, 3);
     if (!media.id) return null;
