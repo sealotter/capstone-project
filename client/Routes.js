@@ -13,7 +13,8 @@ import {
   loadRatings,
   loadDBMedia,
   loadRecommendations,
-  loadChats
+  loadChats,
+  loadWatchList
 } from './store';
 import FriendsList from './components/FriendsList';
 import SingleMedia from './components/SingleMedia';
@@ -21,9 +22,13 @@ import Media from './components/Media';
 import Profile from './components/Profile';
 import Users from './components/Users';
 import FriendRequests from './components/FriendRequests';
+
+import WatchList from './components/WatchList';
+
 import Ratings from './components/Ratings';
 import Recommendations from './components/Recommendations';
 import Chat from './components/Chat'
+
 
 /**
  * COMPONENT
@@ -43,16 +48,22 @@ class Routes extends Component {
             <Route path="/home" component={Home} />
             <Route path="/users" component={Users} />
             <Route path="/profile/:id" component={Profile} />
-            <Route path="/profile"  component={Profile} />
+            {/* <Route path="/profile"  component={Profile} /> */}
             <Route path="/friendrequests" component={FriendRequests} />
             <Route path="/friendsList" component={FriendsList} />
             <Route path="/media" exact component={Media} />
             <Route path="/movie/:id" component={SingleMedia} />
             <Route path="/tv/:id" component={SingleMedia} />
+            <Route path = '/watchlist' component={WatchList} />
+            
+
+            <Redirect to="/home" />
+
             <Route path="/ratings" component={Ratings} />
             <Route path="/recommendations" component={Recommendations} />
             <Route path='/chat' component={Chat}/>
             {/* <Redirect to="/home" /> */}
+
           </Switch>
         ) : (
           <Switch>
@@ -93,6 +104,7 @@ const mapDispatch = (dispatch) => {
       dispatch(loadDBMedia());
       dispatch(loadRecommendations());
       dispatch(loadChats())
+      dispatch(loadWatchList())
     },
   };
 };

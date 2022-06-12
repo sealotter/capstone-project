@@ -28,10 +28,10 @@ nav a {
   /* border-radius: 30px; */
 }
 
-.postBox > form {
+/* .postBox > form {
   display: flex;
   flex-direction: column;
-}
+} */
 
 .postBox_input {
   padding: 20px;
@@ -277,3 +277,16 @@ nav a {
 .hide {
   opacity: 0 !important;
 }
+
+
+.updateProfile {
+  padding-top: 2rem;
+}
+
+.updateProfile > form {
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
