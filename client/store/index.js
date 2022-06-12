@@ -11,7 +11,7 @@ import ratings from './ratings';
 import posts from './posts';
 import genres from './genres';
 import dbMedia from './dbMedia';
-import list from './list'
+import lists from './lists'
 
 const reducer = combineReducers({
   auth,
@@ -22,7 +22,7 @@ const reducer = combineReducers({
   genres,
   ratings,
   dbMedia,
-  list
+  lists,
 });
 
 const middleware = composeWithDevTools(
@@ -39,4 +39,4 @@ export * from './posts';
 export * from './genres';
 export * from './ratings';
 export * from './dbMedia';
-export * from './list'
+export * from './lists';

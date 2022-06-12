@@ -11,10 +11,7 @@ import Box from '@material-ui/core/Box';
 class SingleMedia extends React.Component{
   constructor(props){
     super(props)
-    this.state={
-      list : []
-      
-    }
+    
     this.handleOnClick = this.handleOnClick.bind(this)
   }
   componentDidMount(){
@@ -30,24 +27,44 @@ class SingleMedia extends React.Component{
   }
 
   handleOnClick(media){
-    const {match:{params:{id}, path, list}} = this.props
-    console.log(list)
-    //cannot read properties of undefined -> adding button component to handle state
-    const l = list.find((l) => l.mediaId === media.id)
+    const {match, lists} = this.props
+   
     
-    if(!l) {
-      this.props.createList(l.id, match.params.id*1)
-    }//else movie is already in list
+    //console.log( match.params.id)
+    //const item = list.find((item) => item.mediaId === media.id)
+   
+    this.props.createList(lists.id, match.params.id*1)
+  
+    
+    // const {match:{params:{id}, path},list} = this.props
+    // // const {list} = this.state
+    // console.log(media.isInWatchList, media.id)
+    // this.props.createList(this.state.list)
+  
+    // // //cannot read properties of undefined -> adding button component to handle state
+    // // const l = list.find((l) => l.mediaId === media.id)
+    // //console.log(media.isInWatchList)
+    // if(!!media.isInWatchList) {
+    //   console.log('no')
+    // }
+    //console.log(!!media.isInWatchList)
+    
+    
+    // if(!l) {
+    //   this.props.createList(l.id, match.params.id*1)
+    //   // console.log(l)
+    // }//else movie is already in list
 
   }
 
   render(){
-    const {media, auth, createRating, ratings, users, findSingleMedia, match:{params:{id}, path}, watchlist} = this.props
+    const {media, auth, createRating, ratings, users, findSingleMedia, match:{params:{id}, path}} = this.props
     const movieRatings = ratings.filter(rating => rating.mediaId === media.id)
     console.log(movieRatings)
     const type = path.slice(1,6)==='movie'?path.slice(1,6):path.slice(1,3)
     if(!media.id) return null
     const myRating = ratings.find(rating=> rating.mediaId === media.dataValues.id && rating.userId === auth.id)
+    
 
     const combineArr = (arr)=>{
       let str = ''
@@ -74,6 +91,7 @@ class SingleMedia extends React.Component{
         <p>Website: {media.homepage?<a href={`${media.homepage}`}>{media.homepage}</a>:'N/A'}</p>
         <p>Overview: {media.overview}</p>
         <div className='watchBtn'>
+
           <button onClick={() => this.handleOnClick(media)}>Add to Watch List</button>
 
         </div>
@@ -99,12 +117,13 @@ class SingleMedia extends React.Component{
   }
 }
 
-const mapState = ({media, auth, ratings, users})=>{
+const mapState = ({media, auth, ratings, users, lists})=>{
   return{
     media,
     auth, 
     ratings, 
-    users
+    users,
+    lists,
   }
 }
 

@@ -2,7 +2,6 @@ import axios from 'axios';
 import history from 'history';
 
 
-
 const TOKEN = 'token';
 
 /**
@@ -18,16 +17,16 @@ const ADD_WATCHLIST = 'ADD_WATCHLIST'
  */
 
 
-export const loadWatchList = (media) => {
+export const loadWatchList = () => {
   return async(dispatch) => {
-    const watchlist = (await axios.get('/api/watchlist')).data
-    dispatch({type: SET_WATCHLIST, watchlist})
+    const lists = (await axios.get('/api/watchlist')).data
+    dispatch({type: SET_WATCHLIST, lists})
   }
 }
 
-export const createList = (watchlist, mediaId) => {
+export const createList = (list, mediaId) => {
   return async(dispatch) => {
-    const newList = (await axios.post('/api/watchlist' , {watchlist, mediaId}))
+    const newList = (await axios.post('/api/watchlist' , {list, mediaId})).data
     dispatch({type: ADD_WATCHLIST, list: newList})
 
   }
@@ -40,16 +39,14 @@ export const createList = (watchlist, mediaId) => {
  */
 
 export default function(state = [], action) {
-  console.log(action.type)
   switch(action.type) {
     case SET_WATCHLIST :
-      return action.watchlist
+      return action.lists
     case ADD_WATCHLIST :
-      const findMedia = state.find((m => m.id === action.watchlist.id))
-      return [...state, findMedia]
-      
+      console.log(action.list)
+     // return [...state, action.list]
    
-      default: 
+    default: 
       return state
   }
 }

@@ -1,13 +1,14 @@
 const router = require('express').Router()
 module.exports = router
 // require('dotenv').config();
-const {models: {List, Media}} = require('../db')
+const {models: {Watchlist, Media}} = require('../db')
 
 
 
 router.get('/', async(req, res, next) => {
   try{
-    res.json('watchlisttt')
+    const userList = Watchlist.findAll()
+    res.json(userList)
   }catch(err) {
     next(err)
   }
@@ -15,24 +16,47 @@ router.get('/', async(req, res, next) => {
 
 router.post('/', async(req, res, next) => {
   try{
-   const MediaAdded = await List.create()
-   let {list} = req.body
-   let myMedia = await Media.findOne({
+   
+  //  const MediaAdded = await List.create()
+  // const list = await List.create(req.body) 
+  // res.json(list)
+  const {mediaId, list} = req.body
+  
+
+  //  const idContext = req.body.idNewList
+  let myMedia = await Media.findOne({
     where:{
-      apiId : mediaId
+      apiId:mediaId
     }
   })
 
-  if(!myMedia) myMedia = await Media.create({apiId:mediaId})
-  let myList = await List.findone({
-    where: {
-      mediaId: myMedia.id
-    }
-  })
-
-  if(!myList) {
-    myList = await List.create({list:list, mediaId: myMedia.id})
+  if(!myMedia) {
+    myMedia = await Media.create({apiId:mediaId})
   }
+ 
+
+ 
+
+  // let myList = await List.findOne({
+  //   where: {
+  //     mediaId: myMedia.id
+  //   }
+  // })
+
+
+
+ 
+  let myList = await Watchlist.create({list:list, mediaId:myMedia.id})
+
+   
+  
+  res.json(myList)
+
+
+   
+
+  
+
   }catch(err) {
     next(err)
   }
