@@ -10,6 +10,9 @@ const Posts = db.define("posts", {
   },
   avatarUrl: {
     type: Sequelize.STRING,
+  },
+  likes:{
+    type: Sequelize.ARRAY(Sequelize.STRING)
   }
 });
 

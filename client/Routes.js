@@ -12,7 +12,9 @@ import {
   loadPosts,
   loadRatings,
   loadDBMedia,
-  loadWatchList
+  loadWatchList,
+  loadRecommendations
+
 } from './store';
 import FriendsList from './components/FriendsList';
 import SingleMedia from './components/SingleMedia';
@@ -24,6 +26,7 @@ import FriendRequests from './components/FriendRequests';
 import WatchList from './components/WatchList';
 
 import Ratings from './components/Ratings';
+import Recommendations from './components/Recommendations';
 
 
 /**
@@ -56,6 +59,8 @@ class Routes extends Component {
             <Redirect to="/home" />
 
             <Route path="/ratings" component={Ratings} />
+            <Route path="/recommendations" component={Recommendations} />
+
             {/* <Redirect to="/home" /> */}
 
           </Switch>
@@ -98,6 +103,7 @@ const mapDispatch = (dispatch) => {
       dispatch(loadRatings());
       dispatch(loadDBMedia());
       dispatch(loadWatchList())
+      dispatch(loadRecommendations())
 
     },
   };
