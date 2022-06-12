@@ -43,8 +43,7 @@ export default function(state = [], action) {
     case SET_WATCHLIST :
       return action.lists
     case ADD_WATCHLIST :
-      console.log(action.list)
-     // return [...state, action.list]
+      
    
     default: 
       return state

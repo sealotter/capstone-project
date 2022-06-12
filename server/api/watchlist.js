@@ -15,42 +15,22 @@ router.get('/', async(req, res, next) => {
 })
 
 router.post('/', async(req, res, next) => {
+ 
   try{
-   
-  //  const MediaAdded = await List.create()
-  // const list = await List.create(req.body) 
-  // res.json(list)
-  const {mediaId, list} = req.body
-  
+    const {mediaId} = req.body
 
-  //  const idContext = req.body.idNewList
-  let myMedia = await Media.findOne({
-    where:{
+    let myMedia = await Media.findOne({
+      where:{
       apiId:mediaId
-    }
-  })
-
-  if(!myMedia) {
-    myMedia = await Media.create({apiId:mediaId})
-  }
- 
+     }
+    })
 
  
-
-  // let myList = await List.findOne({
-  //   where: {
-  //     mediaId: myMedia.id
-  //   }
-  // })
-
-
-
- 
-  let myList = await Watchlist.create({list:list, mediaId:myMedia.id})
+  let myList = await Watchlist.create({ mediaId: myMedia.id})
 
    
   
-  res.json(myList)
+  res.json(myList).status(201)
 
 
    
