@@ -23,7 +23,6 @@ router.get('/', async (req, res, next) => {
 router.put('/', async (req, res, next) => {
   try {
     const user = await User.findByToken(req.body.authorization)
-    console.log(typeof JSON.stringify(req.body.chat))
     const messages = JSON.stringify(req.body.chat)
     let chat = await Chat.findOne({
       where:{
