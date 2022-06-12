@@ -7,6 +7,7 @@ router.use('/relationships', require('./relationships'));
 router.use('/posts', require('./posts'));
 router.use('/ratings', require('./ratings'));
 router.use('/recommendations', require('./recommendations'));
+router.use('/chats', require('./chat'))
 
 router.use((req, res, next) => {
   const error = new Error('Not Found');

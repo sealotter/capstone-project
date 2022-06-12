@@ -11,6 +11,7 @@ import posts from './posts';
 import genres from './genres';
 import dbMedia from './dbMedia';
 import recommendations from './recommendations';
+import chats from './chats'
 
 const reducer = combineReducers({
   auth,
@@ -22,6 +23,7 @@ const reducer = combineReducers({
   ratings,
   dbMedia,
   recommendations,
+  chats
 });
 
 const middleware = composeWithDevTools(
@@ -39,3 +41,4 @@ export * from './genres';
 export * from './ratings';
 export * from './dbMedia';
 export * from './recommendations';
+export * from './chats'

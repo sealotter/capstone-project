@@ -12,7 +12,8 @@ import {
   loadPosts,
   loadRatings,
   loadDBMedia,
-  loadRecommendations
+  loadRecommendations,
+  loadChats
 } from './store';
 import FriendsList from './components/FriendsList';
 import SingleMedia from './components/SingleMedia';
@@ -22,6 +23,7 @@ import Users from './components/Users';
 import FriendRequests from './components/FriendRequests';
 import Ratings from './components/Ratings';
 import Recommendations from './components/Recommendations';
+import Chat from './components/Chat'
 
 /**
  * COMPONENT
@@ -49,7 +51,7 @@ class Routes extends Component {
             <Route path="/tv/:id" component={SingleMedia} />
             <Route path="/ratings" component={Ratings} />
             <Route path="/recommendations" component={Recommendations} />
-
+            <Route path='/chat' component={Chat}/>
             {/* <Redirect to="/home" /> */}
           </Switch>
         ) : (
@@ -89,7 +91,8 @@ const mapDispatch = (dispatch) => {
       dispatch(loadGenres());
       dispatch(loadRatings());
       dispatch(loadDBMedia());
-      dispatch(loadRecommendations())
+      dispatch(loadRecommendations());
+      dispatch(loadChats())
     },
   };
 };
