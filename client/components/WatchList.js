@@ -11,12 +11,14 @@ class WatchList extends React.Component {
     }
   }
   componentDidMount() {
+    
   
   
   }
   
   render() {
     const {lists} = this.state
+    console.log(lists.length)
     
     return(
       <div>
