@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logout } from '../store';
+import { Avatar } from '@material-ui/core';
+
 
 const Navbar = ({ handleClick, isLoggedIn, auth}) => (
 
@@ -15,7 +17,7 @@ const Navbar = ({ handleClick, isLoggedIn, auth}) => (
 
          
         
-          <Link to={`/profile/${auth?.id}`}>Profile</Link>
+          <Link to={`/profile/${auth?.id}`}>{auth? <Avatar src={auth.avatarUrl}/> : null} {auth.username}</Link>
           <Link to="/users">Users</Link>
 
 

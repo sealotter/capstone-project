@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const FriendRequests = (props) => {
-  console.log('FR props', props);
   const { user, relationships } = props;
   const pendingFriends =
     user && relationships.length
