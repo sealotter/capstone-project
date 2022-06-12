@@ -13,7 +13,6 @@ router.get('/', async (req, res, next) => {
 });
 //addfriend API
 router.post('/', async (req, res, next) => {
-  console.log('MR post body', req.body);
   const senderId = req.body.userId;
   const recipientId = req.body.friendId * 1;
   const mediaId = req.body.mediaId;
