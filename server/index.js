@@ -8,8 +8,10 @@ const cors = require('cors')
 app.use(cors())
 const server = http.createServer(app)
 
-server.listen(8081, ()=>{
-  console.log('server 8081 running')
+const socketPort = process.env.SOCKETPORT || 8081
+
+server.listen(socketPort, ()=>{
+  console.log(`socket io running on port ${socketPort}`)
 })
 
 const io = new Server(server, {

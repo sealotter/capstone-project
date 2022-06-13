@@ -13,10 +13,8 @@ function usePrevious(value) {
 
 const Chatroom = ({socket, username, room, otherUser, chats, updateChat, auth, handleShowChat})=>{
   if(!otherUser) return null
-  console.log(otherUser)
   const [currentMessage, setCurrentMessage] = useState('')
   const thisChat = chats.find(chat=>(chat.user1Id === auth.id && chat.user2Id === otherUser.id) || (chat.user2Id === auth.id && chat.user1Id === otherUser.id))
-  console.log(thisChat)
 
   const [messageList, setMessageList] = thisChat?.messages?useState(JSON.parse(thisChat.messages)):useState([])
   const prevMessageList = usePrevious(messageList)

@@ -16,7 +16,7 @@ const Profile = (props) => {
     user && relationships.length
       ? relationships
           .filter((rel) => {
-            return rel.senderId === user.id || rel.recipientId === user.id && rel.status === 'accepted'
+            return (rel.senderId === user.id || rel.recipientId === user.id) && rel.status === 'accepted'
           })
       : [];
   // addFriend (userId, authId) {
@@ -24,20 +24,47 @@ const Profile = (props) => {
   // };
 
   const temp = relationships.find(rel=>(rel.senderId === user?.id && rel.recipientId === auth.id) || (rel.recipientId === user?.id && rel.senderId === auth.id))
+
   return (
-    <div>
-      <div>Wallpaper</div>
-      <div>{user?.id === auth.id? <Avatar src={auth.avatarUrl}/> : <Avatar src={user?.avatarUrl}/>}</div>
-      <div>{user?.id === auth.id ? auth.username : user?.username}</div>
-      <div>{user?.id === auth.id ? auth.bio : user?.bio}</div>
-      <div> {acceptedFriends ? acceptedFriends.length : null} Friends</div>
-      {/* changed page to be the users id, based on who is logged in */}
-      <div>{user?.id !== auth.id ? <button disabled={temp} onClick={() => props.addFriend(auth.id, user.id)}>
-        Add Friend
-      </button> : null }</div>
-      <FriendRequests user={user} />
-      <div>{user?.id === auth.id ? <ProfileUpdate match = {props.match}/>: null} </div>
-    </div>
+    <>
+      {user?.id === auth.id?
+        <div>
+          <div>Wallpaper</div>
+          <div>{<Avatar src={auth.avatarUrl}/>}</div>
+          <div>{auth.username}</div>
+          <div>{auth.bio}</div>
+          <div> {acceptedFriends.length === 1? `${acceptedFriends.length} Friend`: `${acceptedFriends.length} Friends`}</div>
+          <ul>{acceptedFriends.map(rel=>{
+            const friendId = rel.senderId === id*1? rel.recipientId: rel.senderId
+            const friend = users.find(user=> user.id === friendId)
+            return (
+              <li key={rel.id}>
+                {friend.username}
+              </li> 
+            )
+          })}</ul>
+          {/* changed page to be the users id, based on who is logged in */}
+          <div>
+            <FriendRequests user={user} />
+            <ProfileUpdate match = {props.match}/>
+          </div>
+        </div>:
+        <div>
+          <div>Wallpaper</div>
+            <div><Avatar src={user?.avatarUrl}/></div>
+            <div>{user?.username}</div>
+            <button disabled={temp} onClick={() => props.addFriend(auth.id, user.id)}>{temp?'Already friends!':'Add Friend'}</button>
+            <div>{user?.bio}</div>
+            <div> {acceptedFriends.length === 1? `${acceptedFriends.length} Friend`: `${acceptedFriends.length} Friends`}</div>
+            <ul>{acceptedFriends.map(rel=>{
+              const friendId = rel.senderId === id*1? rel.recipientId: rel.senderId
+              const friend = users.find(user=> user.id === friendId)
+              return <li key={rel.id}>{friend.username}</li>
+            })}</ul>
+            {/* changed page to be the users id, based on who is logged in */}
+        </div>
+      }
+    </>
   );
 };
 const mapDispatch = (dispatch) => {

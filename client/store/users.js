@@ -7,6 +7,7 @@ const TOKEN = 'token'
  * ACTION TYPES
  */
 const SET_USERS = 'SET_USERS'
+const UPDATE_USERS ='UPDATE_USERS'
 
 /**
  * ACTION CREATORS
@@ -36,6 +37,8 @@ export default function(state = [], action) {
   switch (action.type) {
     case SET_USERS:
       return action.users
+    case UPDATE_USERS:
+      return state.map(user=> user.id === action.user.id? action.user:user)
     default:
       return state
   }

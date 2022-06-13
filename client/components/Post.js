@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { createPost } from '../store';
 import { Avatar, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import Posts from './Posts'
 
 class Post extends Component {
   constructor(props) {
@@ -39,29 +40,32 @@ class Post extends Component {
     const { onChange, onSubmit } = this;
 
     return (
-      <div className="postBox">
-        <form onSubmit={onSubmit}>
-          <div className="postBox_input">
-            <Link to={`/profile/${userId}`}>
-              <Avatar src={avatarUrl} />
-            </Link>
+      <>
+        <div className="postBox">
+          <form onSubmit={onSubmit}>
+            <div className="postBox_input">
+              <Link to={`/profile/${userId}`}>
+                <Avatar src={avatarUrl} />
+              </Link>
 
-            <input
-              onChange={onChange}
-              name="content"
-              value={content}
-              placeholder="what's on your mind?"
-            ></input>
-          </div>
-          <Button
-            onClick={onSubmit}
-            className="postBox_button"
-            disabled={!content}
-          >
-            +
-          </Button>
-        </form>
-      </div>
+              <input
+                onChange={onChange}
+                name="content"
+                value={content}
+                placeholder="what's on your mind?"
+              ></input>
+            </div>
+            <Button
+              onClick={onSubmit}
+              className="postBox_button"
+              disabled={!content}
+            >
+              +
+            </Button>
+          </form>
+        </div>
+        <Posts/>
+      </>
     );
   }
 }
