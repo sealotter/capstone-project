@@ -7,7 +7,7 @@ const Media = db.define("media", {
   },
   //movie/ show/ documentary/ etc..
   medium: {
-    type: Sequelize.ENUM(['movie', 'show']),
+    type: Sequelize.ENUM(['movie', 'tv']),
   },
   //where to watch
   service: {

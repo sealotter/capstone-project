@@ -5,15 +5,18 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const Users = (props) => {
-  const usersList = props.users.length
-    ? props.users.map((user) => {
+  const {users, auth} = props
+  if(!users) return 'loading'
+
+  const usersList = users.map((user) => {
+        if(user.id === auth.id) return null
         return (
           <div key={user.id}>
             <Link to={`/profile/${user.id}`}>{user.username}</Link>
           </div>
         );
       })
-    : null;
+
   return <div>{usersList}</div>;
 };
 

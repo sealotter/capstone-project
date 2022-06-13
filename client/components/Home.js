@@ -1,7 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import Post from './Post'
-import Posts from './Posts'
 
 /**
  * COMPONENT
@@ -13,7 +12,6 @@ export const Home = props => {
     <div>
       <h3>Welcome, {username}</h3>
       <Post/>
-      <Posts />
     </div>
   )
 }
