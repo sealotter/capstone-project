@@ -25,10 +25,6 @@ export const loadChats = () => {
           authorization: token
         }
       })).data;
-      // chats.map(item=>{
-      //   return item.messages.map(message => JSON.parse(message))
-      // })
-      console.log(chats)
       dispatch({
         type: SET_CHATS,
         chats
@@ -47,8 +43,6 @@ export const updateChat = (chat, otherUser) => {
         chat,
         id
       })).data;
-
-      console.log(updatedChat)
       dispatch({
         type: UPDATE_CHATS,
         chat:updatedChat

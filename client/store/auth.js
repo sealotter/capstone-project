@@ -59,7 +59,11 @@ export const updateProfile = (user) => {
         },
       })
     ).data;
-    return dispatch(updateAuth(updatedUser));
+    dispatch(updateAuth(updatedUser));
+    dispatch({
+      type:'UPDATE_USERS',
+      user:updatedUser
+    })
   };
 };
 
