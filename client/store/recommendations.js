@@ -35,7 +35,6 @@ export const sendRec = (friendId, userId, mediaId) => {
         mediaId,
       })
     ).data;
-
     dispatch({
       type: SEND_REQUEST,
       rec,

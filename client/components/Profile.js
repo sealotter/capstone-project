@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addFriend } from '../store/relationships';
 import FriendRequests from './FriendRequests';
-import { Avatar,} from '@material-ui/core';
+import { Avatar} from '@material-ui/core';
 import ProfileUpdate from './ProfileUpdate';
 
 const Profile = (props) => {
