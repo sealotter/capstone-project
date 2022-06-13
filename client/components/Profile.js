@@ -23,7 +23,7 @@ const Profile = (props) => {
   //   return props.addFriend(userId, authId);
   // };
 
-  const temp = relationships.find(rel=>(rel.senderId === user?.id && rel.recipientId === auth.id) || (rel.recipientId === user?.id && rel.senderId === auth.id))
+  const relExists = relationships.find(rel=>(rel.senderId === user?.id && rel.recipientId === auth.id) || (rel.recipientId === user?.id && rel.senderId === auth.id))
 
   return (
     <>
@@ -53,7 +53,7 @@ const Profile = (props) => {
           <div>Wallpaper</div>
             <div><Avatar src={user?.avatarUrl}/></div>
             <div>{user?.username}</div>
-            <button disabled={temp} onClick={() => props.addFriend(auth.id, user.id)}>{temp?'Already friends!':'Add Friend'}</button>
+            <button disabled={relExists} onClick={() => props.addFriend(auth.id, user.id)}>{relExists? relExists.status ==='accepted'?'Already friends!':'Waiting for reply!':'Add Friend'}</button>
             <div>{user?.bio}</div>
             <div> {acceptedFriends.length === 1? `${acceptedFriends.length} Friend`: `${acceptedFriends.length} Friends`}</div>
             <ul>{acceptedFriends.map(rel=>{

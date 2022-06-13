@@ -4,13 +4,11 @@ import { updateRelationship } from '../store';
 
 const FriendRequests = (props) => {
   const { user, relationships, users, updateRelationship, auth } = props;
-  const pendingFriends =
-    user && relationships.length
-      ? relationships
-          .filter((rel) => {
-            return rel.recipientId === user.id && rel.status === 'pending'
-          })
-      : [];
+
+  if(!user || !relationships) return null
+
+  const pendingFriends = relationships.filter((rel) => rel.recipientId === user.id && rel.status === 'pending')
+
   return (
     <div>
       {pendingFriends.length} Friend Requests
