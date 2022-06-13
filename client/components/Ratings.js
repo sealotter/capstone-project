@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { findMultipleMedia } from '../store';
 
 const RatingsList = (props) => {
-  console.log('rl props', props);
-  const { ratings, auth, dbMedia } = props;
+  const { ratings, auth, dbMedia, findMultipleMedia } = props;
   const usersRatings =
     ratings.length && auth.id
       ? ratings.filter((rating) => {
@@ -12,27 +12,20 @@ const RatingsList = (props) => {
       : null;
   const ratingsList = usersRatings
     ? usersRatings.map((rating) => {
-        const media = dbMedia
-          ? dbMedia.find((media) => {
-              return media.id === rating.mediaId;
-            })
-          : null;
-        console.log(media);
-        const mediaDisplay = media ? (
-          <div>
-            <img src={`https://image.tmdb.org/t/p/w300/${media.poster_path}`} />
-            <div>{media.title}</div>
-          </div>
-        ) : null;
         return (
           <div key={rating.id}>
-            {mediaDisplay}
+            <div>Movie/ Show: {rating.mediaId}</div>
             <div>Rating: {rating.rating} stars</div>
           </div>
         );
       })
     : null;
+  // console.log(usersRatings);
+  //need help with calling findSingleMedia
+  //want to get the name and picture of movie to display on ratings list
+  
 
+  
   return (
     <div>
       <div>Ratings List</div>
@@ -41,4 +34,10 @@ const RatingsList = (props) => {
   );
 };
 
-export default connect((state) => state)(RatingsList);
+const mapDispatch = (dispatch) => {
+  return {
+    findMultipleMedia: (search) => dispatch(findMultipleMedia(search)),
+  };
+};
+
+export default connect((state) => state, mapDispatch)(RatingsList);

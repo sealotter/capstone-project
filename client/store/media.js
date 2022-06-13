@@ -4,15 +4,12 @@ import { loadDBMedia } from './dbMedia';
 
 const TOKEN = 'token';
 
-
 /**
  * ACTION TYPES
  */
 const SET_MEDIA = 'SET_MEDIA';
 const FIND_SINGLE_MEDIA = 'FIND_SINGLE_MEDIA';
 const FIND_MULTIPLE_MEDIA = 'FIND_MULTIPLE_MEDIA'
-
-
 
 /**
  * ACTION CREATORS
@@ -22,7 +19,6 @@ const FIND_MULTIPLE_MEDIA = 'FIND_MULTIPLE_MEDIA'
  * THUNK CREATORS
  */
 export const loadMedia = (search = { page: 1, media: 'movie' }) => {
-  // console.log(search);
   return async (dispatch) => {
     const media = (
       await axios.get(`/api/media/page/${search.page}`, {
@@ -70,8 +66,6 @@ export const findMultipleMedia = (search = { id: id, media: 'movie' }) => {
     });
   };
 };
-
-
 
 /**
  * REDUCER

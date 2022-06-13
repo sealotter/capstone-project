@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from "react-redux";
 import {updateRelationship} from '../store'
+import { Link } from 'react-router-dom';
 
 const FriendsList = ({auth, users, relationships, updateRelationship})=>{
   if(!relationships.length || !auth.id || !users) return null
@@ -15,9 +16,10 @@ const FriendsList = ({auth, users, relationships, updateRelationship})=>{
         {friends.map((item, idx)=>{
           const friendId = auth.id ===item.recipientId?item.senderId:item.recipientId
           const friend = users.find(user => user.id ===friendId)
+          if(!friend) return null
           return(
             <li key={idx}>
-              {friend?.username}
+              <Link to={`/profile/${friend.id}`}>{friend.username}</Link>
             </li>
           )
         })}
@@ -27,9 +29,10 @@ const FriendsList = ({auth, users, relationships, updateRelationship})=>{
       <ul>
         {pendingOut.map((item, idx)=>{
           const friend = users.find(user=> user.id === item.recipientId)
+          if(!friend) return null
           return(
             <li key={idx}>
-              {friend?.username}
+              <Link to={`/profile/${friend.id}`}>{friend.username}</Link>
             </li>
           )
         })}
@@ -39,10 +42,10 @@ const FriendsList = ({auth, users, relationships, updateRelationship})=>{
       <ul>
         {pendingIn.map((item, idx)=>{
           const friend = users.find(user=> user.id === item.senderId)
+          if(!friend) return null
           return(
             <li key={idx}>
-              {friend?.username}
-              {console.log(item)}
+              <Link to={`/profile/${friend.id}`}>{friend.username}</Link>
               <button onClick={()=>updateRelationship(item.senderId, auth.id, 'accept')}>Accept</button>
               <button onClick={()=>updateRelationship(item.senderId, auth.id, 'decline')}>Decline</button>
             </li>
