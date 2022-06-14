@@ -1,6 +1,7 @@
 const router = require('express').Router()
 module.exports = router
 const {models: {Watchlist, Media}} = require('../db')
+require('dotenv').config();
 
 
 
@@ -16,22 +17,24 @@ router.get('/', async(req, res, next) => {
 router.post('/', async(req, res, next) => {
  
   try{
-    const {list, mediaId} = req.body
+  
+    const { mediaId } = req.body
 
     let myMedia = await Media.findOne({
       where:{
-      apiId:mediaId
+      apiId:mediaId,
      }
     })
-
-    // let myList = await Watchlist.findOne({mediaId: myMedia.id})
-    // if(!myList) {
-      let myList = await Watchlist.create({ list: list, mediaId: myMedia.id})
-    // }else {
-    //   res.send('already in watchlist')
-    // }
-
-  res.json(myList).status(201)
+   let myList = await Watchlist.findOne({
+     where: {
+       mediaId: myMedia.id
+      }
+     })
+     
+    if(!myList) myList = await Watchlist.create({mediaId: myMedia.id})
+    
+  
+    res.json(myList).status(201)
 
   }catch(err) {
     next(err)

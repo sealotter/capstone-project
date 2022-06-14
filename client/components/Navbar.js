@@ -6,7 +6,7 @@ import lists from '../store';
 import { Avatar } from '@material-ui/core';
 
 
-const Navbar = ({ handleClick, isLoggedIn, auth, lists}) => (
+const Navbar = ({ handleClick, isLoggedIn, auth}) => (
 
   <div>
     <h1>FS-App-Template</h1>
@@ -19,7 +19,7 @@ const Navbar = ({ handleClick, isLoggedIn, auth, lists}) => (
           <Link to="/users">Users</Link>
           <Link to='/friendslist'>Friends List</Link>
           <Link to="/media">Media</Link>
-          <Link to ='/watchlist'>Watch List: ({lists.length})</Link>
+          <Link to ='/watchlist'>Watch List</Link>
 
           <Link to='/chat'>Chat</Link>
           <a href="#" onClick={handleClick}>
@@ -46,7 +46,6 @@ const mapState = (state) => {
   return {
     auth: state.auth,
     isLoggedIn: !!state.auth.id,
-    lists
   };
 };
 
