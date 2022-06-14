@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {Card, CardActions, CardContent, Button, Typography, Avatar, Grid, Container} from '@material-ui/core'
+import {Card, CardActions, CardContent, Button, Typography, Avatar, Grid, Container, TextField} from '@material-ui/core'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { addFriend } from '../store/relationships';
@@ -15,24 +15,55 @@ const useStyles = makeStyles({
   pos: {
     marginBottom: 12,
   },
+  button:{
+    display:'flex',
+    alignItems:'center'
+  }, 
+  root2: {
+    '& > *': {
+      width: '25ch',
+    },
+  },
 });
+
+function usePrevious(value) {
+  const ref = useRef();
+  useEffect(() => {
+    ref.current = value;
+  });
+  return ref.current;
+}
 
 function Users(props) {
   const classes = useStyles();
-  const {users, auth, relationships} = props
-  if(!users) return 'loading'
+  const { users, auth, relationships } = props
+  const prevUsers = usePrevious(users)
+  
+  const [filter, setFilter] = useState('')
+  const [searchUsers, setSearchUsers] = useState(users)
 
+  useEffect(() => {
+    if(!prevUsers?.length && users.length) setSearchUsers(users)
+  })
+
+  if(!users.length) return 'loading'
   return (
     <Container style={{paddingTop:'50px'}}>
+      <TextField id="standard-basic" value={filter} label={`Search for people`} onChange={(ev)=> {
+          setFilter(ev.target.value) 
+          setSearchUsers(users.filter(user=>user.username.includes(ev.target.value)))
+        }}/>
+      <Button className={classes.button} onClick={()=>{setFilter(''); setSearchUsers(users)}}>Reset</Button>
+      <br/>
       <h1>Users:</h1>
       <Grid container spacing={4} style={{paddingTop:'50px'}}>
-        {users.map(user=>{
+        {searchUsers.map(user=>{
 
           const relExists = relationships.find(rel=>(rel.senderId === user?.id && rel.recipientId === auth.id) || (rel.recipientId === user?.id && rel.senderId === auth.id))
 
           if(user.id === auth.id) return null
           return(
-            <Grid item xs={12} md={4} lg={3}>
+            <Grid item xs={6} md={4} lg={3} key={user.id}>
               <Card className={classes.root} variant="outlined" key={user.id} style={{width:'300px'}}>
                 <CardContent>
                   <Typography variant="h5" component="h2">
