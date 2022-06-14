@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {Card, CardActions, CardContent, Button, Typography, Avatar, Grid, Container, TextField} from '@material-ui/core'
 import { connect } from 'react-redux';
@@ -26,34 +26,24 @@ const useStyles = makeStyles({
   },
 });
 
-function usePrevious(value) {
-  const ref = useRef();
-  useEffect(() => {
-    ref.current = value;
-  });
-  return ref.current;
-}
-
 function Users(props) {
   const classes = useStyles();
   const { users, auth, relationships } = props
-  const prevUsers = usePrevious(users)
   
   const [filter, setFilter] = useState('')
-  const [searchUsers, setSearchUsers] = useState(users)
+  
+  const filterUsers =(filter, users)=>{
+    return users.filter(user=> user.username.toLowerCase().includes(filter.toLowerCase()))
+  }
 
-  useEffect(() => {
-    if(!prevUsers?.length && users.length) setSearchUsers(users)
-  })
+  const searchUsers = filterUsers(filter, users)
 
   if(!users.length) return 'loading'
+
   return (
     <Container style={{paddingTop:'50px'}}>
-      <TextField id="standard-basic" value={filter} label={`Search for people`} onChange={(ev)=> {
-          setFilter(ev.target.value) 
-          setSearchUsers(users.filter(user=>user.username.includes(ev.target.value)))
-        }}/>
-      <Button className={classes.button} onClick={()=>{setFilter(''); setSearchUsers(users)}}>Reset</Button>
+      <TextField id="standard-basic" value={filter} label={`Search for people`} onChange={(ev)=> setFilter(ev.target.value)}/>
+      <Button className={classes.button} onClick={()=>{setFilter('')}}>Reset</Button>
       <br/>
       <h1>Users:</h1>
       <Grid container spacing={4} style={{paddingTop:'50px'}}>
