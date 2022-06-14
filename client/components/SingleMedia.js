@@ -45,13 +45,8 @@ class SingleMedia extends React.Component {
 
   handleOnClick(media){
     const { match, list} = this.props
-    //const list = lists.find((watchlist) => watchlist.mediaId === media.id)
-    //if(!list) 
     this.props.createList(list, match.params.id*1)
-    // }else {
-    //   this.setState({lists: 'Already in watchlist'})
-    // }
-
+  
   }
 
   render() {
