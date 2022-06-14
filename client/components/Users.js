@@ -59,7 +59,7 @@ function Users(props) {
                   <Typography variant="h5" component="h2">
                     <Link to={`/profile/${user.id}`}>{user.username}</Link>
                   </Typography>
-                    <Avatar src={auth.avatarUrl}/>
+                    <Avatar src={user.avatarUrl}/>
                   <Typography variant="body2" component="p">
                     User Bio:
                     <br/>
