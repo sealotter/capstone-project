@@ -1,45 +1,80 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import SingleMedia from './SingleMedia'
+import {createList} from '../store'
+import Media from './Media'
+import { Link } from 'react-router-dom'
 
-class WatchList extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      lists: []
-    }
-  }
-  
-  render() {
-    const {lists} = this.state
-    console.log(lists)
+const WatchList = ({ lists, dbMedia, media, match }) => {
+  console.log(dbMedia)
+  //const me = media.map(media => media.id === match.params.id*1)
+  // let med = dbMedia.find(m => m.apiId)
+  // // if(med.length > 1) {
+  // //   let p = med.pop()
+  // //   med = p
+    
    
-    return(
-      <div>
-        {/* <h1>Currently on your watch list:</h1> */}
-        <ul>
+  // // }
+
+ 
+  
+
+  return (
+    <div>
+       <ul>
           {
             lists.length === 0 ? (
               <h3>Your watchlist is currently empty</h3>
             ) : (
               <div>
                 <h3>Here are your saved movies:</h3>
-                {lists.map((l) => {
-                  <SingleMedia
-                    id = {l.id}
-                    title = {l.title}
-                  />
+                {lists.map(list => {
+                  const WList = dbMedia.find((media => media.id === list.mediaId))
 
-                })}
+                  // const movie = dbMedia.find(m => m.id === )
+                  // const wMedia = media.find(m => m.id === list.nediaId)
+
+                 
+                  return(
+                  <li key = {list.id}>
+                    <span style={{display: 'flex'}}>
+                    <Link to={`/movie`}>
+                     <img
+                        src={
+                         WList.poster_path
+                          ? `https://image.tmdb.org/t/p/w300/${WList.poster_path}`
+                           : 'https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png'
+                         } />
+                      
+                    
+                    </Link>
+                   </span>
+
+                    </li>
+                   
+                  )
+                  
+                    
+                  })}
+                 
+               
+              
+                
+              
               </div>
-
             )
           }
         </ul>
-      </div>
-    )
+    </div>
+  )
+} 
+
+const mapState = ( { lists, dbMedia, media }) => {
+  return {
+    lists,
+    dbMedia,
+    media
   }
 }
 
 
-export default connect((state) => state)(WatchList)
+export default connect(mapState)(WatchList)
