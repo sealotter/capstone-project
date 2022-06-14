@@ -5,18 +5,7 @@ import Media from './Media'
 import { Link } from 'react-router-dom'
 
 const WatchList = ({ lists, dbMedia, media, match }) => {
-  console.log(dbMedia)
-  //const me = media.map(media => media.id === match.params.id*1)
-  // let med = dbMedia.find(m => m.apiId)
-  // // if(med.length > 1) {
-  // //   let p = med.pop()
-  // //   med = p
-    
-   
-  // // }
 
- 
-  
 
   return (
     <div>
