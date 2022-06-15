@@ -22,9 +22,7 @@ import Media from './components/Media';
 import Profile from './components/Profile';
 import Users from './components/Users';
 import FriendRequests from './components/FriendRequests';
-
 import WatchList from './components/WatchList';
-
 import Ratings from './components/Ratings';
 import Recommendations from './components/Recommendations';
 import Chat from './components/Chat'
@@ -36,6 +34,10 @@ import Chat from './components/Chat'
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData();
+  }
+
+  componentDidUpdate(prevProps){
+    if(!prevProps.isLoggedIn && this.props.isLoggedIn) this.props.loadChats()
   }
 
   render() {
@@ -100,9 +102,11 @@ const mapDispatch = (dispatch) => {
       dispatch(loadRatings());
       dispatch(loadDBMedia());
       dispatch(loadRecommendations());
-      dispatch(loadChats())
       dispatch(loadWatchList())
     },
+    loadChats(){
+      dispatch(loadChats())
+    }
   };
 };
 

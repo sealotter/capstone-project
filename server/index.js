@@ -9,7 +9,7 @@ const http = require('http')
 const server = http.createServer(app)
 
 // const socketPort = process.env.SOCKETPORT || 8081
-const socketOrigin = process.env.SOCKETORIGIN || 'http://localhost:8080'
+// const socketOrigin = process.env.SOCKETORIGIN || 'http://localhost:8080'
 
 // server.listen(socketPort, ()=>{
 //   console.log(`socket io running on port ${socketPort}`)
