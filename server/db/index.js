@@ -33,6 +33,8 @@ Chat.belongsTo(User, {as:'user2'})
 Watchlist.belongsTo(Media, {foreignKey: 'mediaId'})
 Watchlist.belongsTo(User)
 
+Posts.hasMany(Posts)
+
 
 module.exports = {
   db,
