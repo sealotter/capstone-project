@@ -6,7 +6,6 @@ const Recommendations = (props) => {
   const [friendState, setFriendState] = React.useState(null);
   const { sendRec, relationships, auth, users, media, recommendations, dbMedia } = props;
   const thisMedia = dbMedia.find(med => med.apiId === media.id)
-  console.log(thisMedia)
 
   const friends = relationships
     ? relationships.filter((rel) => {
@@ -37,7 +36,7 @@ const Recommendations = (props) => {
                 ? friend.recipientId
                 : friend.senderId;
             const fName = users?.find((user) => user.id === friendId)?.username;
-            const recommendation = recommendations.find(rec => rec.userId === auth.id && rec.friendId === friendId*1 && rec.mediaId === thisMedia.id)
+            const recommendation = recommendations.find(rec => rec.userId === auth.id && rec.friendId === friendId*1 && rec.mediaId === thisMedia?.id)
             if(recommendation) return null
             return (
               <option value={friendId} key={friend.id}>

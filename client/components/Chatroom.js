@@ -18,6 +18,7 @@ const Chatroom = ({socket, username, room, otherUser, chats, updateChat, auth, h
 
   const [messageList, setMessageList] = thisChat?.messages?useState(JSON.parse(thisChat.messages)):useState([])
   const prevMessageList = usePrevious(messageList)
+  const prevOtherUser = usePrevious(otherUser)
 
   const sendMessage = async()=>{
     if(currentMessage !== ''){
@@ -35,8 +36,12 @@ const Chatroom = ({socket, username, room, otherUser, chats, updateChat, auth, h
   }
   
   useEffect(() => {
-    if(prevMessageList !== messageList && messageList.length){
+    if(prevMessageList !== messageList && messageList?.length){
       updateChat(messageList, otherUser)
+    }
+    if(prevOtherUser  && (prevOtherUser !== otherUser)){
+      socket.disconnect()
+      thisChat?.messages?setMessageList(JSON.parse(thisChat.messages)):setMessageList([])
     }
   })
 
