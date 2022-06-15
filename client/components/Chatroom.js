@@ -33,7 +33,7 @@ const Chatroom = ({socket, username, room, otherUser, chats, updateChat, auth, h
       setCurrentMessage('')
     }
   }
-
+  
   useEffect(() => {
     if(prevMessageList !== messageList && messageList.length){
       updateChat(messageList, otherUser)

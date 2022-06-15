@@ -3,24 +3,26 @@ const PORT = process.env.PORT || 8080
 const app = require('./app')
 const seed = require('../script/seed');
 const http = require('http')
-const {Server} = require('socket.io')
-const cors = require('cors')
-app.use(cors())
+// const {Server} = require('socket.io')
+// const cors = require('cors')
+// app.use(cors())
 const server = http.createServer(app)
 
-const socketPort = process.env.SOCKETPORT || 8081
+// const socketPort = process.env.SOCKETPORT || 8081
 const socketOrigin = process.env.SOCKETORIGIN || 'http://localhost:8080'
 
-server.listen(socketPort, ()=>{
-  console.log(`socket io running on port ${socketPort}`)
-})
+// server.listen(socketPort, ()=>{
+//   console.log(`socket io running on port ${socketPort}`)
+// })
 
-const io = new Server(server, {
-  cors: {
-    origin: socketOrigin,
-    methods:['GET', 'POST']
-  }
-})
+const io = require('socket.io')(server)
+
+// const io = new Server(server, {
+//   cors: {
+//     origin: socketOrigin,
+//     methods:['GET', 'POST']
+//   }
+// })
 
 io.on('connection', (socket)=>{
   console.log(`User connected: ${socket.id}`)
@@ -48,7 +50,7 @@ const init = async () => {
       await db.sync()
     }
     // start listening (and create a 'server' object representing our server)
-    app.listen(PORT, () => console.log(`Mixing it up on port ${PORT}`))
+    server.listen(PORT, () => console.log(`Mixing it up on port ${PORT}`))
   } catch (ex) {
     console.log(ex)
   }
