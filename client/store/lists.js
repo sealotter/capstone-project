@@ -38,7 +38,6 @@ export const createList = (list, mediaId, userId) => {
  */
 
 export default function(state = [], action) {
-  console.log(action.list)
   switch(action.type) {
     case SET_WATCHLIST :
       return action.lists

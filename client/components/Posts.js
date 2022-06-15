@@ -1,16 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { connect } from 'react-redux';
-import { loadPosts } from '../store';
+import { loadPosts, createPost } from '../store';
 import { Avatar } from '@material-ui/core';
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import { Link } from 'react-router-dom';
-
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
-const Posts = ({ posts }) => {
+const Posts = ({ posts, writeComment }) => {
   return (
     <div>
       {posts.map((post) => {
+        if(post.postId) return null 
         return (
           <div key={post.id} className="postOut">
             <div className="post">
@@ -34,7 +34,8 @@ const Posts = ({ posts }) => {
                 </div>
               </div>
               <div className="post_footer">
-                <ChatBubbleOutlineIcon fontSize="small" />
+                <button><ChatBubbleOutlineIcon fontSize="small" /></button>
+
 
                 <FavoriteBorderIcon fontSize="small" />
               </div>
@@ -59,6 +60,9 @@ const mapDispatch = (dispatch) => {
     loadPosts: () => {
       dispatch(loadPosts());
     },
+    writeComment: ()=>{
+      dispatch(createPost())
+    }
   };
 };
 
