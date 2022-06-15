@@ -17,7 +17,7 @@ const useStyles = makeStyles({
   },
   button:{
     display:'flex',
-    alignItems:'center'
+    alignItems:'center',
   }, 
   root2: {
     '& > *': {
@@ -28,7 +28,7 @@ const useStyles = makeStyles({
 
 function Users(props) {
   const classes = useStyles();
-  const { users, auth, relationships } = props
+  const { users, auth, relationships, addFriend } = props
   
   const [filter, setFilter] = useState('')
   
@@ -54,7 +54,7 @@ function Users(props) {
           if(user.id === auth.id) return null
           return(
             <Grid item xs={6} md={4} lg={3} key={user.id}>
-              <Card className={classes.root} variant="outlined" key={user.id} style={{width:'300px'}}>
+              <Card className={classes.root} variant="outlined" key={user.id} style={{width:'300px', height:'300px'}}>
                 <CardContent>
                   <Typography variant="h5" component="h2">
                     <Link to={`/profile/${user.id}`}>{user.username}</Link>
