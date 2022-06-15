@@ -3,13 +3,14 @@ import React, {useState} from 'react'
 import Chatroom from './Chatroom'
 import { connect } from 'react-redux';
 
-const socket = io.connect('http://localhost:8081')
+const socket = io.connect(`${process.env.WEBSITE}`)
 
 function Chat(props){
   const [room, setRoom] = useState('')
   const [showChat, setShowChat] = useState(false)
   const [otherUser, setOtherUser] = useState({})
   const {users, auth} = props
+
   const joinRoom =(username, user)=>{
     const room = auth.id>user.id?`${auth.id}&${user.id}`:`${user.id}&${auth.id}`
     if(username !== '' && room !== ''){
@@ -36,7 +37,19 @@ function Chat(props){
           </ul>
         </div>
       ) : (
-        <Chatroom socket={socket} username={auth.username} otherUser={otherUser} room={room} handleShowChat={handleShowChat}/>
+        <>
+          <div>
+            <ul>
+              {users.map(user=>{
+                if(user.id === auth.id) return null
+                return(
+                  <button key={user.id} onClick={()=>{setRoom(auth.id>user.id?`${auth.id}&${user.id}`:`${user.id}&${auth.id}`), setOtherUser(user), joinRoom(auth.username, user)}}>{user.username}</button>
+                )
+              })}
+            </ul>
+          </div>
+          <Chatroom socket={socket} username={auth.username} otherUser={otherUser} room={room} handleShowChat={handleShowChat}/>
+        </>
       )}
     </div>
   )
