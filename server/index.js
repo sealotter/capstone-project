@@ -9,6 +9,7 @@ app.use(cors())
 const server = http.createServer(app)
 
 const socketPort = process.env.SOCKETPORT || 8081
+const socketOrigin = process.env.SOCKETORIGIN || 'http://localhost:8080'
 
 server.listen(socketPort, ()=>{
   console.log(`socket io running on port ${socketPort}`)
@@ -16,7 +17,7 @@ server.listen(socketPort, ()=>{
 
 const io = new Server(server, {
   cors: {
-    origin: 'http://localhost:8080',
+    origin: socketOrigin,
     methods:['GET', 'POST']
   }
 })
