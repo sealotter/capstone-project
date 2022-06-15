@@ -17,21 +17,23 @@ router.get('/', async(req, res, next) => {
 router.post('/', async(req, res, next) => {
  
   try{
-  
-    const { mediaId } = req.body
 
+    const { mediaId, authId } = req.body
     let myMedia = await Media.findOne({
       where:{
       apiId:mediaId,
+      
      }
     })
+    
    let myList = await Watchlist.findOne({
      where: {
-       mediaId: myMedia.id
+       mediaId: myMedia.id,
+       
       }
      })
      
-    if(!myList) myList = await Watchlist.create({mediaId: myMedia.id})
+    if(!myList) myList = await Watchlist.create({mediaId: myMedia.id, userId: authId})
     
   
     res.json(myList).status(201)

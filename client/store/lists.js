@@ -24,9 +24,9 @@ export const loadWatchList = () => {
   }
 }
 
-export const createList = (list, mediaId) => {
+export const createList = (list, mediaId, userId) => {
   return async(dispatch) => {
-    const newList = (await axios.post('/api/watchlist' , {mediaId})).data
+    const newList = (await axios.post('/api/watchlist' , {mediaId, userId})).data
     dispatch({type: ADD_WATCHLIST, list: newList})
 
   }

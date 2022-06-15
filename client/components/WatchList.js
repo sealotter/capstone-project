@@ -5,8 +5,6 @@ import Media from './Media'
 import { Link } from 'react-router-dom'
 
 const WatchList = ({ lists, dbMedia, media, match }) => {
-
-
   return (
     <div>
        <ul>
