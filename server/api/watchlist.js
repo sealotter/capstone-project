@@ -5,56 +5,63 @@ require('dotenv').config();
 
 router.get('/', async(req, res, next) => {
   try{
-    //const user = await User.findByToken(req.headers.authorization)
-    const userList = await Watchlist.findAll( 
-      //{
-    //   where: {
-    //     userId: user.id,
-    //   }
-      
-    // }
-    )
+    res.send('hi')
 
-    res.json(userList)
-  }catch(err) {
-    next(err)
+  }catch(ex) {
+    console.log(ex)
   }
+
+  // try{
+  //   //const user = await User.findByToken(req.headers.authorization)
+  //   const userList = await Watchlist.findAll( 
+  //     //{
+  //   //   where: {
+  //   //     userId: user.id,
+  //   //   }
+      
+  //   // }
+  //   )
+
+  //   res.json(userList)
+  // }catch(err) {
+  //   next(err)
+  // }
 })
 
 router.post('/', async(req, res, next) => {
  
-  try{
+  // try{
 
-    const { mediaId, authId} = req.body
-   // const {auth} = req.params.id
+  //   const { mediaId, authId} = req.body
+  //  // const {auth} = req.params.id
    
 
-    let myMedia = await Media.findOne({
-      where:{
-      apiId:mediaId,
+  //   let myMedia = await Media.findOne({
+  //     where:{
+  //     apiId:mediaId,
       
       
-     }
-    })
+  //    }
+  //   })
 
-    //if(!myMedia) myMedia = await Media.create({userId:auth})
+  //   //if(!myMedia) myMedia = await Media.create({userId:auth})
     
-   let myList = await Watchlist.findOne({
-     where: {
-       mediaId: myMedia.id,
-       userId: authId,
+  //  let myList = await Watchlist.findOne({
+  //    where: {
+  //      mediaId: myMedia.id,
+  //      userId: authId,
    
-      }
-     })
+  //     }
+  //    })
      
-    if(!myList) myList = await Watchlist.create({mediaId: myMedia.id, userId: authId})
+  //   if(!myList) myList = await Watchlist.create({mediaId: myMedia.id, userId: authId})
     
   
-    res.json(myList).status(201)
+  //   res.json(myList).status(201)
 
-  }catch(err) {
-    next(err)
-  }
+  // }catch(err) {
+  //   next(err)
+  // }
 })
 
 
