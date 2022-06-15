@@ -55,11 +55,12 @@ const WatchList = ({ lists, dbMedia, media, match }) => {
   )
 } 
 
-const mapState = ( { lists, dbMedia, media }) => {
+const mapState = ( { lists, dbMedia, media}) => {
   return {
     lists,
     dbMedia,
-    media
+    media,
+    
   }
 }
 

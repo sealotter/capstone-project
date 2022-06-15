@@ -12,9 +12,9 @@ import {
   loadPosts,
   loadRatings,
   loadDBMedia,
-  loadRecommendations,
-  loadChats,
-  loadWatchList
+  loadWatchList,
+  loadRecommendations
+
 } from './store';
 import FriendsList from './components/FriendsList';
 import SingleMedia from './components/SingleMedia';
@@ -27,7 +27,6 @@ import WatchList from './components/WatchList';
 
 import Ratings from './components/Ratings';
 import Recommendations from './components/Recommendations';
-import Chat from './components/Chat'
 
 
 /**
@@ -48,17 +47,20 @@ class Routes extends Component {
             <Route path="/home" component={Home} />
             <Route path="/users" component={Users} />
             <Route path="/profile/:id" component={Profile} />
-            {/* <Route path="/profile"  component={Profile} /> */}
+            <Route path="/profile"  component={Profile} />
             <Route path="/friendrequests" component={FriendRequests} />
             <Route path="/friendsList" component={FriendsList} />
             <Route path="/media" exact component={Media} />
             <Route path="/movie/:id" component={SingleMedia} />
             <Route path="/tv/:id" component={SingleMedia} />
             <Route path = '/watchlist' component={WatchList} />
+            
+
+            <Redirect to="/home" />
+
             <Route path="/ratings" component={Ratings} />
             <Route path="/recommendations" component={Recommendations} />
-            <Route path='/chat' component={Chat}/>
-            <Redirect to="/home" />
+
             {/* <Redirect to="/home" /> */}
 
           </Switch>
@@ -94,14 +96,15 @@ const mapDispatch = (dispatch) => {
       dispatch(me());
       dispatch(loadMedia());
       dispatch(loadRelationships());
+
       dispatch(loadUsers());
       dispatch(loadPosts());
       dispatch(loadGenres());
       dispatch(loadRatings());
       dispatch(loadDBMedia());
-      dispatch(loadRecommendations());
-      dispatch(loadChats())
       dispatch(loadWatchList())
+      dispatch(loadRecommendations())
+
     },
   };
 };

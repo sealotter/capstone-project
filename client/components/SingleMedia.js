@@ -44,8 +44,8 @@ class SingleMedia extends React.Component {
 
 
   handleOnClick(media){
-    const { match, list} = this.props
-    this.props.createList(list, match.params.id*1)
+    const { match, list, auth} = this.props
+    this.props.createList(list, match.params.id*1, auth.id)
   
   }
 
@@ -183,8 +183,8 @@ const mapDispatch = (dispatch) => {
     createRating: (rating, authId, mediaId) => {
       dispatch(createRating(rating, authId, mediaId))
     },
-    createList: (list, mediaId) => {
-      dispatch(createList(list, mediaId))
+    createList: (list, mediaId, authId) => {
+      dispatch(createList(list, mediaId, authId))
     }
   
   }

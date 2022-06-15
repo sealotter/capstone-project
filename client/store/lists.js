@@ -18,15 +18,27 @@ const ADD_WATCHLIST = 'ADD_WATCHLIST'
 
 
 export const loadWatchList = () => {
-  return async(dispatch) => {
-    const lists = (await axios.get('/api/watchlist')).data
-    dispatch({type: SET_WATCHLIST, lists})
+  const token = window.localStorage.getItem(TOKEN)
+  if(token) {
+    return async(dispatch) => {
+      const lists = (await axios.get('/api/watchlist',
+      {
+        headers: {
+          authorization: token
+        }
+      })).data
+
+      dispatch({type: SET_WATCHLIST, lists})
+    }
+
   }
+  
+ 
 }
 
-export const createList = (list, mediaId, userId) => {
+export const createList = (list, mediaId, authId) => {
   return async(dispatch) => {
-    const newList = (await axios.post('/api/watchlist' , {mediaId, userId})).data
+    const newList = (await axios.post('/api/watchlist' , {mediaId, authId})).data
     dispatch({type: ADD_WATCHLIST, list: newList})
 
   }
@@ -38,6 +50,7 @@ export const createList = (list, mediaId, userId) => {
  */
 
 export default function(state = [], action) {
+  
   switch(action.type) {
     case SET_WATCHLIST :
       return action.lists
