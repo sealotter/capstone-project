@@ -4,12 +4,14 @@ import { loadPosts } from '../store';
 import { Avatar } from '@material-ui/core';
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import { Link } from 'react-router-dom';
-
+import RepeatIcon from "@material-ui/icons/Repeat";
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import FlipMove from "react-flip-move";
 
 const Posts = ({ posts }) => {
   return (
     <div>
+      <FlipMove>
       {posts.map((post) => {
         return (
           <div key={post.id} className="postOut">
@@ -35,13 +37,14 @@ const Posts = ({ posts }) => {
               </div>
               <div className="post_footer">
                 <ChatBubbleOutlineIcon fontSize="small" />
-
+                <RepeatIcon fontSize="small"/>
                 <FavoriteBorderIcon fontSize="small" />
               </div>
             </div>
           </div>
         );
       })}
+      </FlipMove>
     </div>
   );
 };
