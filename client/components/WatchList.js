@@ -16,10 +16,6 @@ const WatchList = ({ lists, dbMedia, media, match }) => {
                 <h3>Here are your saved movies:</h3>
                 {lists.map(list => {
                   const WList = dbMedia.find((media => media.id === list.mediaId))
-
-                  // const movie = dbMedia.find(m => m.id === )
-                  // const wMedia = media.find(m => m.id === list.nediaId)
-
                  
                   return(
                   <li key = {list.id}>
