@@ -13,7 +13,8 @@ import {
   loadRatings,
   loadDBMedia,
   loadWatchList,
-  loadRecommendations
+  loadRecommendations,
+  loadChats
 
 } from './store';
 import FriendsList from './components/FriendsList';
@@ -36,7 +37,10 @@ class Routes extends Component {
   }
 
   componentDidUpdate(prevProps){
-    if(!prevProps.isLoggedIn && this.props.isLoggedIn) this.props.loadChats()
+    if(!prevProps.isLoggedIn && this.props.isLoggedIn) {
+      this.props.loadChats()
+      this.props.loadWatchList()
+    }
   }
 
   render() {
@@ -89,6 +93,7 @@ const mapState = (state) => {
     // Being 'logged in' for our purposes will be defined has having a state.auth that has a truthy id.
     // Otherwise, state.auth will be an empty object, and state.auth.id will be falsey
     isLoggedIn: !!state.auth.id,
+  
   };
 };
 
@@ -105,12 +110,14 @@ const mapDispatch = (dispatch) => {
       dispatch(loadRatings());
       dispatch(loadDBMedia());
       dispatch(loadRecommendations());
-      dispatch(loadWatchList())
       dispatch(loadRecommendations())
 
     },
     loadChats(){
       dispatch(loadChats())
+    },
+    loadWatchList() {
+      dispatch(loadWatchList())
     }
   };
 };

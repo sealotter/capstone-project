@@ -18,17 +18,18 @@ const ADD_WATCHLIST = 'ADD_WATCHLIST'
 
 
 export const loadWatchList = () => {
- // const token = window.localStorage.getItem(TOKEN)
- // if(token) {
+ const token = window.localStorage.getItem(TOKEN)
+ if(token) {
     return async(dispatch) => {
-      const lists = (await axios.get('/api/watchlist')).data
-      // {
-      //   headers: {
-      //     authorization: token
-      //   }
-      // })).data
+      const lists = (await axios.get('/api/watchlist',
+      {
+        headers: {
+          authorization: token
+        }
+      })).data
 
       dispatch({type: SET_WATCHLIST, lists})
+    }
     
   }
   
