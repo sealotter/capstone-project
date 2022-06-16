@@ -1,10 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import {createList} from '../store'
+import {createList, removeWList} from '../store'
 import Media from './Media'
 import { Link } from 'react-router-dom'
 
-const WatchList = ({ lists, dbMedia, media, match }) => {
+
+const WatchList = ({ lists, dbMedia, media, match, destroy}) => {
   return (
     <div>
        <ul>
@@ -16,7 +17,6 @@ const WatchList = ({ lists, dbMedia, media, match }) => {
                 <h3>Here are your saved movies:</h3>
                 {lists.map(list => {
                   const WList = dbMedia.find((media => media.id === list.mediaId))
-                 
                   return(
                   <li key = {list.id}>
                     <span style={{display: 'flex'}}>
@@ -30,6 +30,7 @@ const WatchList = ({ lists, dbMedia, media, match }) => {
                       
                     
                     </Link>
+                    <button onClick={() => destroy(list)}>Remove</button>
                    </span>
 
                     </li>
@@ -51,6 +52,14 @@ const WatchList = ({ lists, dbMedia, media, match }) => {
   )
 } 
 
+const mapDispatch = function(dispatch) {
+  return {
+    destroy: (list) => {
+      dispatch(removeWList(list))
+    }
+  }
+}
+
 const mapState = ( { lists, dbMedia, media}) => {
   return {
     lists,
@@ -61,4 +70,4 @@ const mapState = ( { lists, dbMedia, media}) => {
 }
 
 
-export default connect(mapState)(WatchList)
+export default connect(mapState, mapDispatch)(WatchList)

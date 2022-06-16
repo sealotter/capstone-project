@@ -51,4 +51,15 @@ router.post('/', async(req, res, next) => {
   }
 })
 
+router.delete('/:id', async(req, res, next) => {
+  try{
+    const removeFromList = await Watchlist.findByPk(req.params.id)
+    await removeFromList.destroy()
+    res.send(removeFromList).status(204)
+
+  }catch(err) {
+    next(err)
+  }
+})
+
 
