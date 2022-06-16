@@ -3,7 +3,8 @@ import React, {useState} from 'react'
 import Chatroom from './Chatroom'
 import { connect } from 'react-redux';
 
-const socket = io.connect(`${process.env.WEBSITE}`)
+// const socket = io.connect(`${process.env.WEBSITE}`)
+const socket = io.connect(`http://localhost:8080`)
 
 function Chat(props){
   const [room, setRoom] = useState('')
@@ -22,7 +23,7 @@ function Chat(props){
   const handleShowChat = ()=>{
     setShowChat(false)
   }
-
+  
   return(
     <div className="App">
       {!showChat ? (
