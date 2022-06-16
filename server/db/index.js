@@ -35,6 +35,10 @@ Recommendations.belongsTo(Media, { as: 'media' });
 Chat.belongsTo(User, {as:'user1'})
 Chat.belongsTo(User, {as:'user2'})
 Watchlist.belongsTo(Media, {foreignKey: 'mediaId'})
+Watchlist.belongsTo(User)
+
+
+Posts.hasMany(Posts)
 
 
 module.exports = {
