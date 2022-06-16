@@ -8,13 +8,11 @@ import Box from '@material-ui/core/Box';
 import Recommendations from './Recommendations';
 
 
-
-
 class SingleMedia extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      lists: this.props.lists.mediaId ? 'in lists' : ''
+      
     };
     this.handleOnClick = this.handleOnClick.bind(this)
   }
@@ -31,7 +29,7 @@ class SingleMedia extends React.Component {
     if (this.props.media.results) findSingleMedia({ id, media: type });
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate() {
     const {
       findSingleMedia,
       match: {
@@ -49,15 +47,7 @@ class SingleMedia extends React.Component {
 
   handleOnClick(media){
     const { match, lists, auth, dbMedia} = this.props
-    const checkList = lists.find((l) => l.mediaId === media.id)
-    if(!checkList) {
-      this.props.createList(lists, match.params.id*1, auth.id)
-    }else {
-      this.setState({errors: 'In watchlist'})
-
-    }
-    //console.log(lists.getState())
-    
+    this.props.createList(lists, match.params.id*1, auth.id)
   
   }
 
@@ -75,9 +65,6 @@ class SingleMedia extends React.Component {
         path,
       },
     } = this.props;
-    const {lists} = this.state
-    //console.log(lists)
-   // console.log(media);
     const movieRatings = ratings.filter(
       (rating) => rating.mediaId === media.id
     );
@@ -100,11 +87,6 @@ class SingleMedia extends React.Component {
       });
       return str;
     };
-
-    // const checkList = lists.find((l) => l.mediaId === media.id)
-  
-
-    // checkWatchlist()
 
     return (
       <div>
@@ -141,16 +123,7 @@ class SingleMedia extends React.Component {
         </p>
         <p>Overview: {media.overview}</p>
         <div className='watchBtn'>
-          {!lists ? (
             <button onClick={() => this.handleOnClick(media)}>Add to Watch List</button>
-          ) : (
-          <div>
-            <button disabled>Already in Watch List</button>
-          </div>
-          )
-          
-          }
-  
         </div>
 
         <Box component="fieldset" mb={3} borderColor="transparent">

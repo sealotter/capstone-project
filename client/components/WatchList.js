@@ -5,7 +5,7 @@ import Media from './Media'
 import { Link } from 'react-router-dom'
 
 
-const WatchList = ({ lists, dbMedia, media, match, destroy}) => {
+const WatchList = ({ lists, dbMedia, destroy}) => {
   return (
     <div>
        <ul>
@@ -20,7 +20,7 @@ const WatchList = ({ lists, dbMedia, media, match, destroy}) => {
                   return(
                   <li key = {list.id}>
                     <span style={{display: 'flex'}}>
-                    <Link to={`/movie`}>
+                    <Link to={`/movie/${WList.apiId}`}>
                      <img
                         src={
                          WList.poster_path
@@ -36,14 +36,9 @@ const WatchList = ({ lists, dbMedia, media, match, destroy}) => {
                     </li>
                    
                   )
-                  
-                    
+       
                   })}
-                 
-               
-              
-                
-              
+
               </div>
             )
           }
