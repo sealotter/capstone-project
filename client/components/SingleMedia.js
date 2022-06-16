@@ -35,17 +35,19 @@ class SingleMedia extends React.Component {
       match: {
         params: { id },
         path,
-      },
+      }, lists
     } = this.props;
     const type =
       path.slice(1, 6) === 'movie' ? path.slice(1, 6) : path.slice(1, 3);
     if (this.props.media.results) findSingleMedia({ id, media: type });
+
+
   }
 
 
   handleOnClick(media){
-    const { match, list, auth} = this.props
-    this.props.createList(list, match.params.id*1, auth.id)
+    const { match, lists, auth, dbMedia} = this.props
+    this.props.createList(lists, match.params.id*1, auth.id)
   
   }
 
@@ -57,12 +59,12 @@ class SingleMedia extends React.Component {
       ratings,
       users,
       findSingleMedia,
+      
       match: {
         params: { id },
         path,
       },
     } = this.props;
-   // console.log(media);
     const movieRatings = ratings.filter(
       (rating) => rating.mediaId === media.id
     );
@@ -121,9 +123,7 @@ class SingleMedia extends React.Component {
         </p>
         <p>Overview: {media.overview}</p>
         <div className='watchBtn'>
-
-          <button onClick={() => this.handleOnClick(media)}>Add to Watch List</button>
-
+            <button onClick={() => this.handleOnClick(media)}>Add to Watch List</button>
         </div>
 
         <Box component="fieldset" mb={3} borderColor="transparent">
@@ -166,12 +166,13 @@ class SingleMedia extends React.Component {
 }
 
 const mapState = ({media, auth, ratings, users, lists})=>{
+  
   return{
     media,
     auth, 
     ratings, 
     users,
-    lists,
+    lists
   }
 }
 

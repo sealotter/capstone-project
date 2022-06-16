@@ -2,6 +2,7 @@ import axios from 'axios';
 import history from 'history';
 
 
+
 const TOKEN = 'token';
 
 /**
@@ -10,6 +11,7 @@ const TOKEN = 'token';
 
 const SET_WATCHLIST = 'SET_WATCHLIST'
 const ADD_WATCHLIST = 'ADD_WATCHLIST'
+const REMOVE_WATCHLIST = 'REMOVE_WATCHLIST'
 
 
 /**
@@ -44,6 +46,12 @@ export const createList = (list, mediaId, authId) => {
   }
 }
 
+export const removeWList = (list) => {
+  return async(dispatch) => {
+   await axios.delete(`/api/watchlist/${list.id}`).data
+    dispatch({type: REMOVE_WATCHLIST, list})
+  }
+}
 
 /**
  * REDUCER
@@ -56,7 +64,9 @@ export default function(state = [], action) {
       return action.lists
     case ADD_WATCHLIST :
       return [...state, action.list]
-   
+    case REMOVE_WATCHLIST : 
+      return state.filter((list) => list.id !== action.list.id)
+      
     default: 
       return state
   }
