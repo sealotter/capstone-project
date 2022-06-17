@@ -6,6 +6,7 @@ import { Avatar } from '@material-ui/core';
 import ProfileUpdate from './ProfileUpdate';
 import Home from './Home';
 import MuiNav from './muiNav';
+import { Link } from 'react-router-dom';
 
 const Profile = (props) => {
   const {
@@ -50,23 +51,24 @@ const Profile = (props) => {
           <div>{auth.bio}</div>
           <div>
             {' '}
-            {acceptedFriends.length === 1
-              ? `${acceptedFriends.length} Friend`
-              : `${acceptedFriends.length} Friends`}
+            {acceptedFriends.length === 1 ? (
+              <Link to="/friendsList">{acceptedFriends.length} Friend</Link>
+            ) : (
+              `${acceptedFriends.length} Friends`
+            )}
           </div>
-          <ul>
+          {/* <ul>
             {acceptedFriends.map((rel) => {
               const friendId =
                 rel.senderId === id * 1 ? rel.recipientId : rel.senderId;
               const friend = users.find((user) => user.id === friendId);
               return <li key={rel.id}>{friend.username}</li>;
             })}
-          </ul>
+          </ul> */}
           {/* changed page to be the users id, based on who is logged in */}
-
+          {/* do we need to change the FriendRequest functionality to use auth instead of user to make this a link without a prop? */}
           <FriendRequests user={user} />
           <Home />
-          <ProfileUpdate match={props.match} />
         </div>
       ) : (
         <div>
