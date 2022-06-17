@@ -14,9 +14,8 @@ import {
   loadDBMedia,
   loadWatchList,
   loadRecommendations,
-
   loadChats,
-  loadWatchList,
+
 
 } from './store';
 import FriendsList from './components/FriendsList';
