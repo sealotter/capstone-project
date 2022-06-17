@@ -27,7 +27,7 @@ import Ratings from './components/Ratings';
 import Recommendations from './components/Recommendations';
 import Chat from './components/Chat';
 import ProfileUpdate from './components/ProfileUpdate';
-
+import LandingPage from './components/LandingPage';
 
 /**
  * COMPONENT
@@ -37,10 +37,10 @@ class Routes extends Component {
     this.props.loadInitialData();
   }
 
-  componentDidUpdate(prevProps){
-    if(!prevProps.isLoggedIn && this.props.isLoggedIn) {
-      this.props.loadChats()
-      this.props.loadWatchList()
+  componentDidUpdate(prevProps) {
+    if (!prevProps.isLoggedIn && this.props.isLoggedIn) {
+      this.props.loadChats();
+      this.props.loadWatchList();
     }
   }
 
@@ -54,7 +54,7 @@ class Routes extends Component {
             <Route path="/home" component={Home} />
             <Route path="/users" component={Users} />
             <Route path="/profile/:id" component={Profile} />
-            <Route path="/profile"  component={Profile} />
+            <Route path="/profile" component={Profile} />
             <Route path="/friendrequests" component={FriendRequests} />
             <Route path="/friendsList" component={FriendsList} />
             <Route path="/media" exact component={Media} />
@@ -69,6 +69,7 @@ class Routes extends Component {
           </Switch>
         ) : (
           <Switch>
+            <Route path="/landing" component={LandingPage} />
             <Route path="/" exact component={Login} />
             <Route path="/media" exact component={Media} />
             <Route path="/movie/:id" component={SingleMedia} />
@@ -90,7 +91,6 @@ const mapState = (state) => {
     // Being 'logged in' for our purposes will be defined has having a state.auth that has a truthy id.
     // Otherwise, state.auth will be an empty object, and state.auth.id will be falsey
     isLoggedIn: !!state.auth.id,
-  
   };
 };
 
@@ -106,15 +106,14 @@ const mapDispatch = (dispatch) => {
       dispatch(loadRatings());
       dispatch(loadDBMedia());
       dispatch(loadRecommendations());
-      dispatch(loadRecommendations())
+      dispatch(loadRecommendations());
     },
-    loadChats(){
-      dispatch(loadChats())
-
+    loadChats() {
+      dispatch(loadChats());
     },
     loadWatchList() {
-      dispatch(loadWatchList())
-    }
+      dispatch(loadWatchList());
+    },
   };
 };
 
