@@ -5,7 +5,7 @@ import FriendRequests from './FriendRequests';
 import { Avatar } from '@material-ui/core';
 import ProfileUpdate from './ProfileUpdate';
 import Home from './Home';
-import MuiNav from './muiNav';
+import MuiNav from './MuiNav';
 import { Link } from 'react-router-dom';
 
 const Profile = (props) => {
