@@ -15,8 +15,6 @@ import {
   loadWatchList,
   loadRecommendations,
   loadChats,
-
-
 } from './store';
 import FriendsList from './components/FriendsList';
 import SingleMedia from './components/SingleMedia';
@@ -27,9 +25,7 @@ import FriendRequests from './components/FriendRequests';
 import WatchList from './components/WatchList';
 import Ratings from './components/Ratings';
 import Recommendations from './components/Recommendations';
-
 import Chat from './components/Chat';
-import MuiNav from './components/MuiNav';
 import ProfileUpdate from './components/ProfileUpdate';
 
 
@@ -64,15 +60,12 @@ class Routes extends Component {
             <Route path="/media" exact component={Media} />
             <Route path="/movie/:id" component={SingleMedia} />
             <Route path="/tv/:id" component={SingleMedia} />
-
             <Route path="/watchlist" component={WatchList} />
             <Route path="/ratings" component={Ratings} />
             <Route path="/recommendations" component={Recommendations} />
             <Route path="/chat" component={Chat} />
             <Route path="/updateProfile" component={ProfileUpdate} />
-            <Route path="/test" component={MuiNav} />
             <Redirect to="/home" />
-
           </Switch>
         ) : (
           <Switch>
@@ -107,17 +100,13 @@ const mapDispatch = (dispatch) => {
       dispatch(me());
       dispatch(loadMedia());
       dispatch(loadRelationships());
-
       dispatch(loadUsers());
       dispatch(loadPosts());
       dispatch(loadGenres());
       dispatch(loadRatings());
       dispatch(loadDBMedia());
       dispatch(loadRecommendations());
-
-
       dispatch(loadRecommendations())
-
     },
     loadChats(){
       dispatch(loadChats())
