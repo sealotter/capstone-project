@@ -73,7 +73,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function MuiNav(props) {
-  console.log('mui nave', props);
   const { auth } = props;
   const classes = useStyles();
 
