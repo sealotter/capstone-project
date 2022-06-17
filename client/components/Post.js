@@ -3,16 +3,13 @@ import { connect } from 'react-redux';
 import { createPost } from '../store';
 import { Avatar, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import Posts from './Posts'
+import Posts from './posts'
 
 class Post extends Component {
   constructor(props) {
     super(props);
     this.state = {
       content: '',
-      username: this.props.auth.username ? this.props.auth.username : '',
-      avatarUrl: this.props.auth.avatarUrl ? this.props.auth.avatarUrl : '',
-      userId: this.props.auth.id ? this.props.auth.id : '',
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -25,12 +22,11 @@ class Post extends Component {
   };
 
   onSubmit = (ev) => {
+    const {auth} = this.props
     ev.preventDefault();
     this.props.createPost(
       this.state.content,
-      this.state.username,
-      this.state.avatarUrl,
-      this.state.userId
+      auth.id
     );
     this.setState({ content: '' });
   };
@@ -38,14 +34,15 @@ class Post extends Component {
   render() {
     const { content, avatarUrl, userId } = this.state;
     const { onChange, onSubmit } = this;
+    const {auth} = this.props
 
     return (
       <>
         <div className="postBox">
           <form onSubmit={onSubmit}>
             <div className="postBox_input">
-              <Link to={`/profile/${userId}`}>
-                <Avatar src={avatarUrl} />
+              <Link to={`/profile/${auth.id}`}>
+                <Avatar src={auth.avatarUrl} />
               </Link>
 
               <input

@@ -1,13 +1,19 @@
 const router = require('express').Router()
 module.exports = router
-const {models: {Watchlist, Media}} = require('../db')
-require('dotenv').config();
-
-
+const {models: {Watchlist, Media, User}} = require('../db')
 
 router.get('/', async(req, res, next) => {
+ 
   try{
-    const userList = await Watchlist.findAll()
+    const user = await User.findByToken(req.headers.authorization)
+    const userList = await Watchlist.findAll( 
+      {
+      where: {
+        userId: user.id,
+       }
+      }
+    )
+
     res.json(userList)
   }catch(err) {
     next(err)
@@ -17,24 +23,39 @@ router.get('/', async(req, res, next) => {
 router.post('/', async(req, res, next) => {
  
   try{
-  
-    const { mediaId } = req.body
+
+    const { mediaId, authId} = req.body
+   
 
     let myMedia = await Media.findOne({
       where:{
       apiId:mediaId,
      }
     })
+    
    let myList = await Watchlist.findOne({
      where: {
-       mediaId: myMedia.id
+       mediaId: myMedia.id,
+       userId: authId,
+   
       }
      })
      
-    if(!myList) myList = await Watchlist.create({mediaId: myMedia.id})
+    if(!myList) myList = await Watchlist.create({mediaId: myMedia.id, userId: authId})
     
   
     res.json(myList).status(201)
+
+  }catch(err) {
+    next(err)
+  }
+})
+
+router.delete('/:id', async(req, res, next) => {
+  try{
+    const removeFromList = await Watchlist.findByPk(req.params.id)
+    await removeFromList.destroy()
+    res.send(removeFromList).status(204)
 
   }catch(err) {
     next(err)

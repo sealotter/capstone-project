@@ -1,23 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import {createList} from '../store'
+import {createList, removeWList} from '../store'
 import Media from './Media'
 import { Link } from 'react-router-dom'
 
-const WatchList = ({ lists, dbMedia, media, match }) => {
-  console.log(dbMedia)
-  //const me = media.map(media => media.id === match.params.id*1)
-  // let med = dbMedia.find(m => m.apiId)
-  // // if(med.length > 1) {
-  // //   let p = med.pop()
-  // //   med = p
-    
-   
-  // // }
 
- 
-  
-
+const WatchList = ({ lists, dbMedia, destroy}) => {
   return (
     <div>
        <ul>
@@ -29,15 +17,10 @@ const WatchList = ({ lists, dbMedia, media, match }) => {
                 <h3>Here are your saved movies:</h3>
                 {lists.map(list => {
                   const WList = dbMedia.find((media => media.id === list.mediaId))
-
-                  // const movie = dbMedia.find(m => m.id === )
-                  // const wMedia = media.find(m => m.id === list.nediaId)
-
-                 
                   return(
                   <li key = {list.id}>
                     <span style={{display: 'flex'}}>
-                    <Link to={`/movie`}>
+                    <Link to={`/movie/${WList.apiId}`}>
                      <img
                         src={
                          WList.poster_path
@@ -47,19 +30,15 @@ const WatchList = ({ lists, dbMedia, media, match }) => {
                       
                     
                     </Link>
+                    <button onClick={() => destroy(list)}>Remove</button>
                    </span>
 
                     </li>
                    
                   )
-                  
-                    
+       
                   })}
-                 
-               
-              
-                
-              
+
               </div>
             )
           }
@@ -68,13 +47,22 @@ const WatchList = ({ lists, dbMedia, media, match }) => {
   )
 } 
 
-const mapState = ( { lists, dbMedia, media }) => {
+const mapDispatch = function(dispatch) {
+  return {
+    destroy: (list) => {
+      dispatch(removeWList(list))
+    }
+  }
+}
+
+const mapState = ( { lists, dbMedia, media}) => {
   return {
     lists,
     dbMedia,
-    media
+    media,
+    
   }
 }
 
 
-export default connect(mapState)(WatchList)
+export default connect(mapState, mapDispatch)(WatchList)
