@@ -26,12 +26,12 @@ export const loadPosts = () => {
   };
 };
 
-export const createPost = (content, username, avatarUrl, userId) => {
+export const createPost = (content, userId, postId) => {
   return async (dispatch) => {
-    const post = (await axios.post('/api/posts/', {content, username, avatarUrl, userId})).data;
+    const post = (await axios.post('/api/posts/', {content, userId, postId})).data;
     dispatch({
       type: CREATE_POST,
-      post,
+      post
     });
   };
 };

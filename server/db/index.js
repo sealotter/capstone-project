@@ -14,8 +14,8 @@ const Chat = require('./models/Chat')
 
 //associations could go here!
 User.hasMany(Comments);
-Comments.belongsTo(User)
-Comments.belongsTo(Posts)
+// Comments.belongsTo(User)
+// Comments.belongsTo(Posts)
 User.hasMany(Ratings);
 Media.hasMany(Ratings ,{foreignKey: 'mediaId'});
 User.hasMany(Relationship, {foreignKey:'senderId'});
@@ -23,14 +23,22 @@ Relationship.belongsTo(User, {as:'recipient'})
 Ratings.hasMany(Comments);
 Posts.belongsTo(User)
 User.hasMany(Posts)
-Comments.belongsTo(Ratings)
-Ratings.hasMany(Comments)
+Posts.belongsTo(Ratings)
+
+Posts.hasMany(Posts)
+Posts.belongsTo(Posts)
+
+Ratings.hasMany(Posts, {as:'comment'})
 Recommendations.belongsTo(User, { as: 'user' });
 Recommendations.belongsTo(User, { as: 'friend' });
 Recommendations.belongsTo(Media, { as: 'media' });
 Chat.belongsTo(User, {as:'user1'})
 Chat.belongsTo(User, {as:'user2'})
 Watchlist.belongsTo(Media, {foreignKey: 'mediaId'})
+Watchlist.belongsTo(User)
+
+
+Posts.hasMany(Posts)
 
 
 module.exports = {
