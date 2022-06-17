@@ -55,7 +55,7 @@ export default function (state = [], action) {
     case SET_POSTS:
       return action.posts;
     case CREATE_POST:
-      return [...state, action.post];
+      return [action.post, ...state];
     case UPDATE_POST:
       return state.map(post=>action.post.id === post.id?action.post:post)
     default:

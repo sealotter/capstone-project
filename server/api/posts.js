@@ -6,7 +6,9 @@ module.exports = router;
 
 router.get('/', async (req, res, next) => {
   try {
-    const posts = await Posts.findAll();
+    const posts = await Posts.findAll({
+      order:[['createdAt', 'DESC']]
+    });
     res.json(posts);
   } catch (err) {
     next(err);
