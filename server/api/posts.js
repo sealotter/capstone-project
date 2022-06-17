@@ -15,8 +15,24 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    console.log(req.body)
     const post = await Posts.create(req.body);
+    res.json(post);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.put('/', async (req, res, next) => {
+  try {
+    const {postId, username} = req.body
+    const post = await Posts.findByPk(postId)
+    if(post.likes.includes(username)){
+      const updatedLikes = post.likes.filter(item=>item !== username)
+      await post.update({likes:updatedLikes})
+    }else {
+      const updatedLikes = [...post.likes, username]
+      await post.update({likes:updatedLikes})
+    }
     res.json(post);
   } catch (err) {
     next(err);

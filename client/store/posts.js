@@ -8,6 +8,7 @@ const TOKEN = 'token';
  */
 const SET_POSTS = 'SET_POSTS';
 const CREATE_POST = 'CREATE_POST';
+const UPDATE_POST = 'UPDATE_POST'
 
 /**
  * ACTION CREATORS
@@ -36,6 +37,16 @@ export const createPost = (content, userId, postId) => {
   };
 };
 
+export const updatePost = (postId, username) =>{
+  return async(dispatch) =>{
+    const updatedPost = (await axios.put('/api/posts', {postId, username})).data
+    dispatch({
+      type:UPDATE_POST,
+      post:updatedPost
+    })
+  }
+}
+
 /**
  * REDUCER
  */
@@ -45,6 +56,8 @@ export default function (state = [], action) {
       return action.posts;
     case CREATE_POST:
       return [...state, action.post];
+    case UPDATE_POST:
+      return state.map(post=>action.post.id === post.id?action.post:post)
     default:
       return state;
   }
