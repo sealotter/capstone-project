@@ -104,6 +104,7 @@ class Posts extends React.Component {
                       <div className="post_footer">
                         {comment.likes.includes(auth.username)?<Button><FavoriteIcon fontSize='small' onClick={()=>{updatePost(comment.id, auth.username)}}/></Button>:<Button><FavoriteBorderIcon fontSize="small" onClick={()=>{updatePost(comment.id, auth.username)}}/></Button>}
                       </div>
+                      <h4>{!comment.likes.length? '': likedBy(comment.likes)}</h4>
                     </div>
                   </div>
                 )
