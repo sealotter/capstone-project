@@ -48,7 +48,7 @@ class SingleMedia extends React.Component {
 
 
   handleOnClick(media){
-    const { match, lists, auth, dbMedia} = this.props
+    const { match, lists, auth, dbMedia, findSingleMedia} = this.props
     this.props.createList(lists, match.params.id*1, auth.id)
   
   }
@@ -61,6 +61,7 @@ class SingleMedia extends React.Component {
       createPost,
       posts,
       updatePostContent,
+      findSingleMedia,
       
       match: {
         params: { id },
@@ -136,6 +137,7 @@ class SingleMedia extends React.Component {
             max={10}
             onChange={(ev) => {
               createPost(null, auth.id, null, media.id, ev.target.value * 1);
+              findSingleMedia({id, media:type})
             }}
           />
         </Box>

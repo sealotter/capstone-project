@@ -2,12 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addFriend } from '../store/relationships';
 import FriendRequests from './FriendRequests';
-import { Avatar } from '@material-ui/core';
+import { Avatar, Button } from '@material-ui/core';
 import ProfileUpdate from './ProfileUpdate';
 import Home from './Home';
 import MuiNav from './MuiNav';
 import { Link } from 'react-router-dom';
 import Post from './Post'
+import {HighestRated, OwnTopRated, Trending} from './Suggestions'
 
 const Profile = (props) => {
   const {
@@ -32,9 +33,6 @@ const Profile = (props) => {
           );
         })
       : [];
-  // addFriend (userId, authId) {
-  //   return props.addFriend(userId, authId);
-  // };
 
   const relExists = relationships.find(
     (rel) =>
@@ -46,6 +44,12 @@ const Profile = (props) => {
     <>
       {user?.id === auth.id ? (
         <div>
+          <HighestRated/>
+          <br/>
+          <OwnTopRated/>
+          <br/>
+          <Trending/>
+          <br/>
           <div>Wallpaper</div>
           <div>{<Avatar src={auth.avatarUrl} />}</div>
           <div>{auth.username}</div>
@@ -55,7 +59,7 @@ const Profile = (props) => {
             {acceptedFriends.length === 1 ? (
               <Link to="/friendsList">{acceptedFriends.length} Friend</Link>
             ) : (
-              `${acceptedFriends.length} Friends`
+              <Link to="/friendsList">{acceptedFriends.length} Friends</Link>
             )}
           </div>
           {/* <ul>
@@ -68,7 +72,7 @@ const Profile = (props) => {
           </ul> */}
           {/* changed page to be the users id, based on who is logged in */}
           {/* do we need to change the FriendRequest functionality to use auth instead of user to make this a link without a prop? */}
-          <FriendRequests user={user} />
+          <Link to='/friendrequests'>Friend Requests</Link>
           <Post id={id}/>
         </div>
       ) : (
@@ -78,7 +82,7 @@ const Profile = (props) => {
             <Avatar src={user?.avatarUrl} />
           </div>
           <div>{user?.username}</div>
-          <button
+          <Button
             disabled={relExists}
             onClick={() => props.addFriend(auth.id, user.id)}
           >
@@ -87,13 +91,14 @@ const Profile = (props) => {
                 ? 'Already friends!'
                 : 'Waiting for reply!'
               : 'Add Friend'}
-          </button>
+          </Button>
           <div>{user?.bio}</div>
           <div>
             {' '}
             {acceptedFriends.length === 1
-              ? `${acceptedFriends.length} Friend`
-              : `${acceptedFriends.length} Friends`}
+              ? <Link to="/friendsList">{acceptedFriends.length} Friend</Link>
+              : <Link to="/friendsList">{acceptedFriends.length} Friends</Link>
+            }
           </div>
           <ul>
             {acceptedFriends.map((rel) => {
@@ -119,4 +124,3 @@ const mapDispatch = (dispatch) => {
 };
 export default connect((state) => state, mapDispatch)(Profile);
 
-//props.addFriend(user.id, auth.id)

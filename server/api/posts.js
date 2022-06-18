@@ -19,6 +19,7 @@ router.get('/', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     const {userId, mediaId, rating} = req.body
+    
     let post
     if(mediaId && rating){
       let media = await Media.findOne({
@@ -31,7 +32,7 @@ router.post('/', async (req, res, next) => {
           apiId:mediaId
         }
       })
-      
+
       post = await Posts.findOne({
         where:{
           [Op.and]:[
@@ -40,8 +41,16 @@ router.post('/', async (req, res, next) => {
           ]
         }
       })
-      if(post) await post.update({rating:rating})
+
+      if(post) {
+        const newTotalRating = media.totalRating - post.rating + rating
+        await post.update({rating:rating})
+        await media.update({totalRating:newTotalRating})
+      }
       else {
+        const newNumOfRatings = media.numOfRatings +1
+        const newTotalRating = media.totalRating + rating*1
+        await media.update({numOfRatings:newNumOfRatings, totalRating:newTotalRating})
         post = await Posts.create({...req.body, mediaId:media.id})
       }
     }

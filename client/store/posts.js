@@ -1,5 +1,6 @@
 import axios from 'axios';
 import history from '../history';
+import {loadDBMedia} from './dbMedia'
 
 const TOKEN = 'token';
 
@@ -34,6 +35,7 @@ export const createPost = (content, userId, postId, mediaId, rating) => {
       type: CREATE_POST,
       post
     });
+    dispatch(loadDBMedia())
   };
 };
 
