@@ -100,7 +100,6 @@ const mapDispatch = (dispatch) => {
       dispatch(loadUsers());
       dispatch(loadPosts());
       dispatch(loadGenres());
-      dispatch(loadRatings());
       dispatch(loadDBMedia());
       dispatch(loadRecommendations());
       dispatch(loadRecommendations())

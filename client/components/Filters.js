@@ -25,7 +25,8 @@ const useStyles = makeStyles((theme) => ({
   button:{
     display:'flex',
     alignItems:'center'
-  }, root: {
+  }, 
+  root: {
     '& > *': {
       margin: theme.spacing(1),
       width: '25ch',
