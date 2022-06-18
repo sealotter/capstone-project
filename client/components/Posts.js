@@ -24,7 +24,10 @@ class Posts extends React.Component {
   }
 
   render(){
-    const {posts, users, updatePostLikes, auth, dbMedia} = this.props
+    const { posts, users, updatePostLikes, auth, dbMedia, id } = this.props
+    let myPosts
+    if(id) myPosts = posts.filter(post => post.userId === id*1)
+    else myPosts = posts.filter(post => post.userId === auth.id)
     const {showCommentBox} = this.state
 
     const likedBy = (likes)=>{
@@ -38,7 +41,7 @@ class Posts extends React.Component {
 
     return (
       <div>
-        {posts.map((post) => {
+        {myPosts.map((post) => {
           const comments = []
           const media = dbMedia.find(media=>media.id === post.mediaId)
           const user = users.find(user=> user.id === post.userId)

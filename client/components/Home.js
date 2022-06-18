@@ -6,12 +6,12 @@ import Post from './Post';
  * COMPONENT
  */
 const Home = (props) => {
-  const { username } = props;
+  const { username, id } = props;
 
   return (
     <div>
       <h3>Welcome, {username}</h3>
-      <Post />
+      <Post/>
     </div>
   );
 };
