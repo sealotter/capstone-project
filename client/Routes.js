@@ -70,9 +70,6 @@ class Routes extends Component {
         ) : (
           <Switch>
             <Route path="/" exact component={Login} />
-            <Route path="/media" exact component={Media} />
-            <Route path="/movie/:id" component={SingleMedia} />
-            <Route path="/tv/:id" component={SingleMedia} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
           </Switch>

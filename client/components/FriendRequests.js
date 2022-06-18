@@ -2,13 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { updateRelationship } from '../store';
 import { Button } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 const FriendRequests = (props) => {
   const { user, relationships, users, updateRelationship, auth } = props;
 
-  if(!user || !relationships) return null
+  if(!auth || !relationships) return null
 
-  const pendingFriends = relationships.filter((rel) => rel.recipientId === user.id && rel.status === 'pending')
+  const pendingFriends = relationships.filter((rel) => rel.recipientId === auth.id && rel.status === 'pending')
 
   return (
     <div>
@@ -17,7 +18,7 @@ const FriendRequests = (props) => {
         const friend = users.find(user=> user.id === pending.senderId)
         return(
           <li key={pending.id}>
-            {friend?.username} wants to be your friend!
+            <Link to={`/profile/${friend.id}`}>{friend.username}</Link> wants to be your friend!
             <Button onClick={()=>updateRelationship(pending.senderId, auth.id, 'accept')}>Accept</Button>
             <Button onClick={()=>updateRelationship(pending.senderId, auth.id, 'decline')}>Decline</Button>
           </li>
