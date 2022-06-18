@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import { Button } from '@material-ui/core';
 
 
-const socket = io.connect(`http://localhost:8080`)
+// const socket = io.connect(`http://localhost:8080`)
+const socket = io.connect(`${process.env.WEBSITE}`)
 
 
 function Chat(props){
