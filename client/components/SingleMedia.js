@@ -1,11 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { findSingleMedia, createRating, createList } from '../store';
+import { findSingleMedia, createList, createPost, updatePostContent } from '../store';
 import { Link } from 'react-router-dom';
 import Rating from '@material-ui/lab/Rating';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Recommendations from './Recommendations';
+import MultilineTextFields from './Textfield'
+import { Button } from '@material-ui/core';
 
 
 class SingleMedia extends React.Component {
@@ -55,29 +57,27 @@ class SingleMedia extends React.Component {
     const {
       media,
       auth,
-      createRating,
-      ratings,
       users,
-      findSingleMedia,
+      createPost,
+      posts,
+      updatePostContent,
       
       match: {
         params: { id },
         path,
       },
     } = this.props;
-    const movieRatings = ratings.filter(
-      (rating) => rating.mediaId === media.id
-    );
-    //console.log(movieRatings);
-    const type =
-      path.slice(1, 6) === 'movie' ? path.slice(1, 6) : path.slice(1, 3);
+
+    const ratings = posts.filter(post=>post?.rating !== null && post.mediaId === media.dataValues?.id)
+
+    const type = path.slice(1, 6) === 'movie' ? path.slice(1, 6) : path.slice(1, 3);
     if (!media.id) return null;
     const myRating = ratings.find(
       (rating) =>
-        rating.mediaId === media.dataValues.id && rating.userId === auth.id
+        rating?.mediaId === media.dataValues.id && rating?.userId === auth.id
     );
 
-
+    
     const combineArr = (arr) => {
       let str = '';
       if (arr.length === 1) return arr[0].name;
@@ -123,7 +123,7 @@ class SingleMedia extends React.Component {
         </p>
         <p>Overview: {media.overview}</p>
         <div className='watchBtn'>
-            <button onClick={() => this.handleOnClick(media)}>Add to Watch List</button>
+            <Button onClick={() => this.handleOnClick(media)}>Add to Watch List</Button>
         </div>
 
         <Box component="fieldset" mb={3} borderColor="transparent">
@@ -135,11 +135,13 @@ class SingleMedia extends React.Component {
             value={myRating?.rating ? myRating.rating : 0}
             max={10}
             onChange={(ev) => {
-              createRating(ev.target.value * 1, auth.id, media.id);
-              findSingleMedia({ id, media: type });
+              createPost(null, auth.id, null, media.id, ev.target.value * 1);
             }}
           />
         </Box>
+        {myRating?<>
+          <MultilineTextFields handleSubmit={updatePostContent} postId={myRating.id}/>
+        </>:null}
         <ul>
           <h2>User ratings</h2>
           {ratings.length
@@ -165,14 +167,15 @@ class SingleMedia extends React.Component {
   }
 }
 
-const mapState = ({media, auth, ratings, users, lists})=>{
+const mapState = ({media, auth, ratings, users, lists, posts})=>{
   
   return{
     media,
     auth, 
     ratings, 
     users,
-    lists
+    lists, 
+    posts
   }
 }
 
@@ -186,6 +189,12 @@ const mapDispatch = (dispatch) => {
     },
     createList: (list, mediaId, authId) => {
       dispatch(createList(list, mediaId, authId))
+    },
+    createPost:(content, userId, postId, mediaId, rating)=>{
+      dispatch(createPost(content, userId, postId, mediaId, rating))
+    },
+    updatePostContent:(postId, content)=>{
+      dispatch(updatePostContent(postId, content))
     }
   
   }

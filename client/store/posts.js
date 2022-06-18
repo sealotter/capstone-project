@@ -27,9 +27,9 @@ export const loadPosts = () => {
   };
 };
 
-export const createPost = (content, userId, postId) => {
+export const createPost = (content, userId, postId, mediaId, rating) => {
   return async (dispatch) => {
-    const post = (await axios.post('/api/posts/', {content, userId, postId})).data;
+    const post = (await axios.post('/api/posts/', {content, userId, postId, mediaId, rating})).data;
     dispatch({
       type: CREATE_POST,
       post
@@ -37,9 +37,19 @@ export const createPost = (content, userId, postId) => {
   };
 };
 
-export const updatePost = (postId, username) =>{
+export const updatePostLikes = (postId, username) =>{
   return async(dispatch) =>{
-    const updatedPost = (await axios.put('/api/posts', {postId, username})).data
+    const updatedPost = (await axios.put('/api/posts/likes', {postId, username})).data
+    dispatch({
+      type:UPDATE_POST,
+      post:updatedPost
+    })
+  }
+}
+
+export const updatePostContent = (postId, content) =>{
+  return async(dispatch) =>{
+    const updatedPost = (await axios.put('/api/posts/content', {postId, content})).data
     dispatch({
       type:UPDATE_POST,
       post:updatedPost
@@ -55,6 +65,8 @@ export default function (state = [], action) {
     case SET_POSTS:
       return action.posts;
     case CREATE_POST:
+      const exists = state.find(post=>post.id ===action.post.id)
+      if(exists) return state.map(item => item.id === action.post.id? action.post: item)
       return [action.post, ...state];
     case UPDATE_POST:
       return state.map(post=>action.post.id === post.id?action.post:post)

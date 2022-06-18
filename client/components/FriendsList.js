@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from "react-redux";
 import {updateRelationship} from '../store'
 import { Link } from 'react-router-dom';
+import { Button } from '@material-ui/core';
 
 const FriendsList = ({auth, users, relationships, updateRelationship})=>{
   if(!relationships.length || !auth.id || !users) return null
@@ -46,8 +47,8 @@ const FriendsList = ({auth, users, relationships, updateRelationship})=>{
           return(
             <li key={idx}>
               <Link to={`/profile/${friend.id}`}>{friend.username}</Link>
-              <button onClick={()=>updateRelationship(item.senderId, auth.id, 'accept')}>Accept</button>
-              <button onClick={()=>updateRelationship(item.senderId, auth.id, 'decline')}>Decline</button>
+              <Button onClick={()=>updateRelationship(item.senderId, auth.id, 'accept')}>Accept</Button>
+              <Button onClick={()=>updateRelationship(item.senderId, auth.id, 'decline')}>Decline</Button>
             </li>
           )
         })}
