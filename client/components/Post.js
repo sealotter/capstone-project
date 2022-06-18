@@ -34,8 +34,7 @@ class Post extends Component {
   render() {
     const { content, avatarUrl, userId } = this.state;
     const { onChange, onSubmit } = this;
-    const {auth} = this.props
-
+    const {auth, id} = this.props
     return (
       <>
         <div className="postBox">
@@ -61,7 +60,7 @@ class Post extends Component {
             </Button>
           </form>
         </div>
-        <Posts/>
+        <Posts id={id}/>
       </>
     );
   }
