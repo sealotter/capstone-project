@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { createPost } from '../store';
 import { Avatar, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import Posts from './posts'
+import Posts from './Posts'
 
 class Post extends Component {
   constructor(props) {
