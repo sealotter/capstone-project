@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { updateRelationship } from '../store';
+import { Button } from '@material-ui/core';
 
 const FriendRequests = (props) => {
   const { user, relationships, users, updateRelationship, auth } = props;
@@ -17,8 +18,8 @@ const FriendRequests = (props) => {
         return(
           <li key={pending.id}>
             {friend?.username} wants to be your friend!
-            <button onClick={()=>updateRelationship(pending.senderId, auth.id, 'accept')}>Accept</button>
-            <button onClick={()=>updateRelationship(pending.senderId, auth.id, 'decline')}>Decline</button>
+            <Button onClick={()=>updateRelationship(pending.senderId, auth.id, 'accept')}>Accept</Button>
+            <Button onClick={()=>updateRelationship(pending.senderId, auth.id, 'decline')}>Decline</Button>
           </li>
         )
       })}</ul>

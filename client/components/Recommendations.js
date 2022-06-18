@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { sendRec } from '../store';
+import { Button } from '@material-ui/core';
 
 const Recommendations = (props) => {
   const [friendState, setFriendState] = React.useState(null);
@@ -45,7 +46,7 @@ const Recommendations = (props) => {
             );
           })}
         </select>
-        <button> Recommend</button>
+        <Button> Recommend</Button>
       </form>
     </div>
   );

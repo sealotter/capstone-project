@@ -8,6 +8,9 @@ const Posts = db.define("posts", {
   likes:{
     type: Sequelize.ARRAY(Sequelize.STRING),
     defaultValue:[]
+  },
+  rating:{
+    type:Sequelize.INTEGER
   }
 });
 

@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
 import { connect } from 'react-redux';
-import { loadPosts, createPost, updatePost } from '../store';
+import { loadPosts, createPost, updatePostLikes } from '../store';
 import { Avatar, Button } from '@material-ui/core';
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import { Link } from 'react-router-dom';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import PostComment from './PostComment';
+import Rating from '@material-ui/lab/Rating';
 import Post from './Post';
 
 class Posts extends React.Component {
@@ -23,7 +24,7 @@ class Posts extends React.Component {
   }
 
   render(){
-    const {posts, users, updatePost, auth} = this.props
+    const {posts, users, updatePostLikes, auth, dbMedia} = this.props
     const {showCommentBox} = this.state
 
     const likedBy = (likes)=>{
@@ -39,6 +40,7 @@ class Posts extends React.Component {
       <div>
         {posts.map((post) => {
           const comments = []
+          const media = dbMedia.find(media=>media.id === post.mediaId)
           const user = users.find(user=> user.id === post.userId)
           if(post.postId || !user) return null
           posts.forEach(item =>{
@@ -61,6 +63,14 @@ class Posts extends React.Component {
                         </span>
                       </h3>
                     </div>
+                    {post.rating?<>
+                    <div className="postDetail">Review for {media?.title}</div>
+                    <Rating
+                      name="Rated"
+                      readOnly
+                      value={post.rating}
+                      max={10}
+                    /></>:null}
                     <div className="post_headerDesc">
                       <p>{post.content}</p>
                     </div>
@@ -71,7 +81,7 @@ class Posts extends React.Component {
                     if(showCommentBox !== post.id) this.setState({showCommentBox:post.id})
                     else this.setState({showCommentBox:null})
                   }}><ChatBubbleOutlineIcon fontSize="small" /></Button>
-                  {post.likes.includes(auth.username)?<Button><FavoriteIcon fontSize='small' onClick={()=>{updatePost(post.id, auth.username)}}/></Button>:<Button><FavoriteBorderIcon fontSize="small" onClick={()=>{updatePost(post.id, auth.username)}}/></Button>}
+                  {post.likes.includes(auth.username)?<Button><FavoriteIcon fontSize='small' onClick={()=>{updatePostLikes(post.id, auth.username)}}/></Button>:<Button><FavoriteBorderIcon fontSize="small" onClick={()=>{updatePostLikes(post.id, auth.username)}}/></Button>}
                 </div>
                 <h4>{!post.likes.length? '': likedBy(post.likes)}</h4>
               </div>
@@ -102,7 +112,7 @@ class Posts extends React.Component {
                         </div>
                       </div>
                       <div className="post_footer">
-                        {comment.likes.includes(auth.username)?<Button><FavoriteIcon fontSize='small' onClick={()=>{updatePost(comment.id, auth.username)}}/></Button>:<Button><FavoriteBorderIcon fontSize="small" onClick={()=>{updatePost(comment.id, auth.username)}}/></Button>}
+                        {comment.likes.includes(auth.username)?<Button><FavoriteIcon fontSize='small' onClick={()=>{updatePostLikes(comment.id, auth.username)}}/></Button>:<Button><FavoriteBorderIcon fontSize="small" onClick={()=>{updatePostLikes(comment.id, auth.username)}}/></Button>}
                       </div>
                       <h4>{!comment.likes.length? '': likedBy(comment.likes)}</h4>
                     </div>
@@ -130,8 +140,8 @@ const mapDispatch = (dispatch) => {
     loadPosts: () => {
       dispatch(loadPosts());
     },
-    updatePost: (postId, username)=>{
-      dispatch(updatePost(postId, username))
+    updatePostLikes: (postId, username)=>{
+      dispatch(updatePostLikes(postId, username))
     }
   };
 };
