@@ -78,7 +78,7 @@ function MuiNav(props) {
 
   return (
     <div className={classes.grow}>
-      <div display="flex" flexDirection="row" className={classes.root}>
+      <div display="flex" flexdirection="row" className={classes.root}>
         <AppBar elevation={0} position="sticky">
           <Typography className={classes.title} variant="h6" noWrap>
             Watch Party

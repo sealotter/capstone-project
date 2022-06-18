@@ -2,6 +2,7 @@ import io from 'socket.io-client'
 import React, {useState} from 'react'
 import Chatroom from './Chatroom'
 import { connect } from 'react-redux';
+import { Button } from '@material-ui/core';
 
 
 const socket = io.connect(`http://localhost:8080`)
@@ -33,7 +34,7 @@ function Chat(props){
             {users.map(user=>{
               if(user.id === auth.id) return null
               return(
-                <button key={user.id} onClick={()=>{setRoom(auth.id>user.id?`${auth.id}&${user.id}`:`${user.id}&${auth.id}`), setOtherUser(user), joinRoom(auth.username, user)}}>{user.username}</button>
+                <Button key={user.id} onClick={()=>{setRoom(auth.id>user.id?`${auth.id}&${user.id}`:`${user.id}&${auth.id}`), setOtherUser(user), joinRoom(auth.username, user)}}>{user.username}</Button>
               )
             })}
           </ul>
@@ -45,7 +46,7 @@ function Chat(props){
               {users.map(user=>{
                 if(user.id === auth.id) return null
                 return(
-                  <button key={user.id} onClick={()=>{setRoom(auth.id>user.id?`${auth.id}&${user.id}`:`${user.id}&${auth.id}`), setOtherUser(user), joinRoom(auth.username, user)}}>{user.username}</button>
+                  <Button key={user.id} onClick={()=>{setRoom(auth.id>user.id?`${auth.id}&${user.id}`:`${user.id}&${auth.id}`), setOtherUser(user), joinRoom(auth.username, user)}}>{user.username}</Button>
                 )
               })}
             </ul>

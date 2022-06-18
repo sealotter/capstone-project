@@ -7,6 +7,7 @@ import ProfileUpdate from './ProfileUpdate';
 import Home from './Home';
 import MuiNav from './MuiNav';
 import { Link } from 'react-router-dom';
+import Post from './Post'
 
 const Profile = (props) => {
   const {
@@ -68,7 +69,7 @@ const Profile = (props) => {
           {/* changed page to be the users id, based on who is logged in */}
           {/* do we need to change the FriendRequest functionality to use auth instead of user to make this a link without a prop? */}
           <FriendRequests user={user} />
-          <Home />
+          <Post id={id}/>
         </div>
       ) : (
         <div>
@@ -102,7 +103,7 @@ const Profile = (props) => {
               return <li key={rel.id}>{friend.username}</li>;
             })}
           </ul>
-          <Home />
+          <Post id={id}/>
           {/* changed page to be the users id, based on who is logged in */}
         </div>
       )}

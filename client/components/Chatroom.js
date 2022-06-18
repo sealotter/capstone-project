@@ -2,6 +2,7 @@ import React, {useEffect, useState, useRef} from 'react'
 import ScrollToBottom from 'react-scroll-to-bottom'
 import {updateChat} from '../store'
 import { connect } from 'react-redux';
+import { Button } from '@material-ui/core';
 
 function usePrevious(value) {
   const ref = useRef();
@@ -84,7 +85,7 @@ const Chatroom = ({socket, username, room, otherUser, chats, updateChat, auth, h
           <button onClick={sendMessage}>&#9658;</button>
         </div>
       </div>
-      <button onClick={()=>{socket.disconnect(), handleShowChat()}}>Disconnect</button>
+      <Button onClick={()=>{socket.disconnect(), handleShowChat()}}>Disconnect</Button>
     </>
   )
 }

@@ -23,12 +23,11 @@ Relationship.belongsTo(User, {as:'recipient'})
 Ratings.hasMany(Comments);
 Posts.belongsTo(User)
 User.hasMany(Posts)
-Posts.belongsTo(Ratings)
 
 Posts.hasMany(Posts)
 Posts.belongsTo(Posts)
+Posts.belongsTo(Media, {as: 'media'})
 
-Ratings.hasMany(Posts, {as:'comment'})
 Recommendations.belongsTo(User, { as: 'user' });
 Recommendations.belongsTo(User, { as: 'friend' });
 Recommendations.belongsTo(Media, { as: 'media' });
@@ -36,9 +35,6 @@ Chat.belongsTo(User, {as:'user1'})
 Chat.belongsTo(User, {as:'user2'})
 Watchlist.belongsTo(Media, {foreignKey: 'mediaId'})
 Watchlist.belongsTo(User)
-
-
-Posts.hasMany(Posts)
 
 
 module.exports = {
