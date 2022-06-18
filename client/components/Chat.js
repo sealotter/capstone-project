@@ -46,7 +46,7 @@ function Chat(props){
               {users.map(user=>{
                 if(user.id === auth.id) return null
                 return(
-                  <button key={user.id} onClick={()=>{setRoom(auth.id>user.id?`${auth.id}&${user.id}`:`${user.id}&${auth.id}`), setOtherUser(user), joinRoom(auth.username, user)}}>{user.username}</button>
+                  <Button key={user.id} onClick={()=>{setRoom(auth.id>user.id?`${auth.id}&${user.id}`:`${user.id}&${auth.id}`), setOtherUser(user), joinRoom(auth.username, user)}}>{user.username}</Button>
                 )
               })}
             </ul>

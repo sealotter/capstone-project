@@ -25,10 +25,16 @@ class Posts extends React.Component {
 
   render(){
     const { posts, users, updatePostLikes, auth, dbMedia, id } = this.props
+    let {friendsId} = this.props
     let myPosts
     if(id) myPosts = posts.filter(post => post.userId === id*1)
     else myPosts = posts.filter(post => post.userId === auth.id)
     const {showCommentBox} = this.state
+
+    if(friendsId) {
+      friendsId = [...friendsId, auth.id]
+      myPosts = posts.filter(post=>friendsId.includes(post.userId))
+    }
 
     const likedBy = (likes)=>{
       let string = ''

@@ -34,7 +34,8 @@ class Post extends Component {
   render() {
     const { content, avatarUrl, userId } = this.state;
     const { onChange, onSubmit } = this;
-    const {auth, id} = this.props
+    const {auth, id, friendsId} = this.props
+
     return (
       <>
         <div className="postBox">
@@ -60,7 +61,7 @@ class Post extends Component {
             </Button>
           </form>
         </div>
-        <Posts id={id}/>
+        <Posts id={id} friendsId={friendsId}/>
       </>
     );
   }
