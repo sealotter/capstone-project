@@ -49,9 +49,8 @@ class Posts extends React.Component {
     const filterPosts =(filter, posts)=>{
       return posts.filter(post=> post.rating && dbMedia.find(media=> media.id === post.mediaId)?.title.toLowerCase().includes(filter.toLowerCase()))
     }
-    console.log(myPosts)
+    
     const searchPosts = filterPosts(filter, myPosts)
-    console.log(searchPosts)
 
     return (
       <div>
