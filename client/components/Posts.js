@@ -49,14 +49,14 @@ class Posts extends React.Component {
     const filterPosts =(filter, posts)=>{
       return posts.filter(post=> post.rating && dbMedia.find(media=> media.id === post.mediaId)?.title.toLowerCase().includes(filter.toLowerCase()))
     }
-  
-    const searchPosts = filterPosts(filter, posts)
+    
+    const searchPosts = filterPosts(filter, myPosts)
 
     return (
       <div>
         <TextField id="standard-basic" value={filter} label={`Find movie review`} onChange={(ev)=> this.setState({filter:ev.target.value})}/>
         <Button onClick={()=>{setFilter('')}}>Reset</Button>
-        {searchPosts.map((post) => {
+        {(filter?searchPosts:myPosts).map((post) => {
           const comments = []
           const media = dbMedia.find(media=>media.id === post.mediaId)
           const user = users.find(user=> user.id === post.userId)
