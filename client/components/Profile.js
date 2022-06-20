@@ -105,7 +105,7 @@ const Profile = (props) => {
               const friendId =
                 rel.senderId === id * 1 ? rel.recipientId : rel.senderId;
               const friend = users.find((user) => user.id === friendId);
-              return <li key={rel.id}>{friend.username}</li>;
+              return <li key={rel.createdAt}>{friend.username}</li>;
             })}
           </ul>
           <Post id={id}/>

@@ -51,6 +51,7 @@ class Routes extends Component {
       <div>
         {isLoggedIn ? (
           <Switch>
+            <Navbar />
             <Route path="/home" component={Home} />
             <Route path="/users" component={Users} />
             <Route path="/profile/:id" component={Profile} />

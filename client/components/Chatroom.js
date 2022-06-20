@@ -1,6 +1,6 @@
 import React, {useEffect, useState, useRef} from 'react'
 import ScrollToBottom from 'react-scroll-to-bottom'
-import {updateChat} from '../store'
+import {updateChat, loadChats} from '../store'
 import { connect } from 'react-redux';
 import { Button } from '@material-ui/core';
 
@@ -12,15 +12,14 @@ function usePrevious(value) {
   return ref.current;
 }
 
-const Chatroom = ({socket, username, room, otherUser, chats, updateChat, auth, handleShowChat})=>{
+const Chatroom = ({socket, username, room, otherUser, chats, updateChat, auth})=>{
   if(!otherUser) return null
   const [currentMessage, setCurrentMessage] = useState('')
   const thisChat = chats.find(chat=>(chat.user1Id === auth.id && chat.user2Id === otherUser.id) || (chat.user2Id === auth.id && chat.user1Id === otherUser.id))
-
   const [messageList, setMessageList] = thisChat?.messages?useState(JSON.parse(thisChat.messages)):useState([])
   const prevMessageList = usePrevious(messageList)
   const prevOtherUser = usePrevious(otherUser)
-
+  const prevThisChat = usePrevious(thisChat)
   const sendMessage = async()=>{
     if(currentMessage !== ''){
       const messageData ={
@@ -37,9 +36,8 @@ const Chatroom = ({socket, username, room, otherUser, chats, updateChat, auth, h
   }
   
   useEffect(() => {
-    if(prevMessageList !== messageList && messageList?.length){
-      updateChat(messageList, otherUser)
-    }
+    if(prevMessageList !== messageList && messageList?.length) updateChat(messageList, otherUser)
+    if(!prevThisChat?.messages && thisChat?.messages) setMessageList(JSON.parse(thisChat.messages))
     if(prevOtherUser  && (prevOtherUser !== otherUser)){
       socket.disconnect()
       thisChat?.messages?setMessageList(JSON.parse(thisChat.messages)):setMessageList([])
@@ -85,7 +83,6 @@ const Chatroom = ({socket, username, room, otherUser, chats, updateChat, auth, h
           <button onClick={sendMessage}>&#9658;</button>
         </div>
       </div>
-      <Button onClick={()=>{socket.disconnect(), handleShowChat()}}>Disconnect</Button>
     </>
   )
 }

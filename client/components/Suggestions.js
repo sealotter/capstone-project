@@ -50,8 +50,10 @@ const _Trending = (props)=>{
   const {dbMedia, posts} = props
   if(!dbMedia.length) return null
   const ratings = posts.filter(post=> post.rating)
-  const ratedMedia = ratings.map(rating=>dbMedia.find(media=>media.id === rating.mediaId))
-  const trending = ratedMedia.slice(0,3)
+  const ratedMedia = new Set()
+  ratings.forEach(rating=>ratedMedia.add(dbMedia.find(media=>media.id === rating.mediaId)))
+  const ratedMediaArr = Array.from(ratedMedia)
+  const trending = ratedMediaArr.slice(0,3)
   return(
     <div>
       Trending movies:
