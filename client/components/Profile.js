@@ -1,11 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { addFriend } from '../store/relationships';
-import FriendRequests from './FriendRequests';
 import { Avatar, Button } from '@material-ui/core';
-import ProfileUpdate from './ProfileUpdate';
-import Home from './Home';
-import MuiNav from './MuiNav';
 import { Link } from 'react-router-dom';
 import Post from './Post'
 import {HighestRated, OwnTopRated, Trending} from './Suggestions'
@@ -43,7 +39,7 @@ const Profile = (props) => {
   return (
     <>
       {user?.id === auth.id ? (
-        <div>
+        <div className='profilePage'>
           <HighestRated/>
           <br/>
           <OwnTopRated/>
@@ -94,7 +90,7 @@ const Profile = (props) => {
           </Button>
           <div>{user?.bio}</div>
           <div>
-            {' '}
+            <br/>
             {acceptedFriends.length === 1
               ? <Link to="/friendsList">{acceptedFriends.length} Friend</Link>
               : <Link to="/friendsList">{acceptedFriends.length} Friends</Link>
@@ -105,7 +101,7 @@ const Profile = (props) => {
               const friendId =
                 rel.senderId === id * 1 ? rel.recipientId : rel.senderId;
               const friend = users.find((user) => user.id === friendId);
-              return <li key={rel.createdAt}>{friend.username}</li>;
+              return <li key={rel.id}>{friend.username}</li>;
             })}
           </ul>
           <Post id={id}/>

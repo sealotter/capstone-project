@@ -79,8 +79,8 @@ function MuiNav(props) {
   return (
     <>
       {auth.id?
-        <div className={classes.grow}>
-          <div display="flex" flexdirection="row" className={classes.root}>
+        <div display="flex" flexDirection="row" className={classes.root}>
+          <div flexGrow={0}>
             <AppBar elevation={0} position="sticky">
               <Typography className={classes.title} variant="h6" noWrap>
                 Watch Party
@@ -100,7 +100,7 @@ function MuiNav(props) {
               </div>
               <Button className={classes.options}>Messages</Button>
               <Button>
-                <Link to={`/profile/${auth?.id}`}>
+                <Link className={classes.options} to={`/profile/${auth?.id}`}>
                   {auth ? <Avatar src={auth.avatarUrl} /> : null} Profile{' '}
                 </Link>
               </Button>

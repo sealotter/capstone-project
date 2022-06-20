@@ -7,13 +7,7 @@ import Routes from './Routes';
 const App = () => {
   return (
     <div>
-      <Navbar />
-      <div id="mainDiv">
-        <MuiNav />
-        <div id="routes">
-          <Routes />
-        </div>
-      </div>
+      <Routes/>
     </div>
   );
 };

@@ -27,7 +27,9 @@ import Ratings from './components/Ratings';
 import Recommendations from './components/Recommendations';
 import Chat from './components/Chat';
 import ProfileUpdate from './components/ProfileUpdate';
-
+import LandingPage from './components/LandingPage';
+import Navbar from './components/Navbar';
+import MuiNav from './components/MuiNav';
 
 /**
  * COMPONENT
@@ -51,27 +53,43 @@ class Routes extends Component {
       <div>
         {isLoggedIn ? (
           <Switch>
-            <Route path="/home" component={Home} />
-            <Route path="/users" component={Users} />
-            <Route path="/profile/:id" component={Profile} />
-            <Route path="/profile"  exact component={Profile} />
-            <Route path="/friendrequests" component={FriendRequests} />
-            <Route path="/friendsList" component={FriendsList} />
-            <Route path="/media" exact component={Media} />
-            <Route path="/movie/:id" component={SingleMedia} />
-            <Route path="/tv/:id" component={SingleMedia} />
-            <Route path="/watchlist" component={WatchList} />
-            <Route path="/ratings" component={Ratings} />
-            <Route path="/recommendations" component={Recommendations} />
-            <Route path="/chat" component={Chat} />
-            <Route path="/updateProfile" component={ProfileUpdate} />
-            <Redirect to="/home" />
+            <Route exact path="/" component={LandingPage}/>
+            <Route>
+              <Navbar/>
+              <div id='mainDiv' style={{display:'flex'}}>
+              <MuiNav/>
+              <div style={{flexGrow:1}}>
+                <Switch>
+                  <Route path="/home" component={Home} />
+                  <Route path="/users" component={Users} />
+                  <Route path="/profile/:id" component={Profile} />
+                  <Route path="/profile"  exact component={Profile} />
+                  <Route path="/friendrequests" component={FriendRequests} />
+                  <Route path="/friendsList" component={FriendsList} />
+                  <Route path="/media" exact component={Media} />
+                  <Route path="/movie/:id" component={SingleMedia} />
+                  <Route path="/tv/:id" component={SingleMedia} />
+                  <Route path="/watchlist" component={WatchList} />
+                  <Route path="/ratings" component={Ratings} />
+                  <Route path="/recommendations" component={Recommendations} />
+                  <Route path="/chat" component={Chat} />
+                  <Route path="/updateProfile" component={ProfileUpdate} />
+                  <Redirect to="/home" />
+                </Switch>
+              </div>
+              </div>
+            </Route>
           </Switch>
         ) : (
           <Switch>
-            <Route path="/" exact component={Login} />
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
+            <Route exact path="/" component={LandingPage}/>
+            <Route>
+              <Switch>
+                {/* <Route path="/" exact component={Login} /> */}
+                <Route path="/login" component={Login} />
+                <Route path="/signup" component={Signup} />
+              </Switch>
+            </Route>
           </Switch>
         )}
       </div>
