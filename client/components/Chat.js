@@ -31,7 +31,7 @@ function Chat(props){
       <Grid container className="App" columns={12}>
         <Grid item xs={8}><Chatroom socket={socket} username={auth.username} otherUser={otherUser.id?otherUser:friends[0]} room={room?room:joinRoom(friends[0].username, friends[0])} /></Grid>
         <Grid item xs={4}>
-          <Box sx={{display:'flex', flexDirection:'column'}}>
+          <Box sx={{display:'flex', flexDirection:'column', border:'1px solid black', height:'100%'}}>
             {friends.map(user=>{
               if(!user || user.id === auth.id) return null
               const messagesList = chats.find(chat=> (chat.user1Id === user.id && chat.user2Id === auth.id) || (chat.user1Id === auth.id && chat.user2Id === user.id))
