@@ -109,7 +109,7 @@ class SingleMedia extends React.Component {
               }
             />
             <div className='viewrating'>
-              <h2>User ratings</h2>
+              <h2>User ratings ({ratings.length})</h2>
               <Accordion>
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
