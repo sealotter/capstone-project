@@ -533,6 +533,9 @@ nav a {
   background: #1876f2;
   padding: 5px 5%;
   height: 60px;
+  /* position: fixed;
+  width: 90%;
+  z-index: 1; */
 }
 
 .mainNav a {
@@ -548,6 +551,11 @@ nav a {
 
 .nav-right {
   justify-content: flex-end;
+}
+
+.muiNav {
+  /* position: fixed;
+  z-index: 1; */
 }
 
 .logo {

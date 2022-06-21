@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
   // grow: {
   //   flexGrow: 1,
   // },
+
   menuButton: {
     marginRight: theme.spacing(2),
   },
@@ -82,7 +83,7 @@ function MuiNav(props) {
   return (
     <>
       {auth.id ? (
-        <div display="flex" flexdirection="row" className={classes.root}>
+        <div display="flex" flexdirection="row" className="muiNav">
           <div flexgrow={0}>
             <AppBar
               elevation={0}

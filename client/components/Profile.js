@@ -66,9 +66,11 @@ const Profile = (props) => {
               <div>
                 {' '}
                 {acceptedFriends.length === 1 ? (
-                  <Link to="/friendsList">{acceptedFriends.length} Friend</Link>
+                  <Link to={`/friendsList/${user.id}`}>
+                    {acceptedFriends.length} Friend
+                  </Link>
                 ) : (
-                  <Link to="/friendsList">
+                  <Link to={`/friendsList/${user.id}`}>
                     {acceptedFriends.length} Friends
                   </Link>
                 )}
@@ -114,19 +116,16 @@ const Profile = (props) => {
             <div>
               <br />
               {acceptedFriends.length === 1 ? (
-                <Link to="/friendsList">{acceptedFriends.length} Friend</Link>
+                <Link to={`/friendsList/${user?.id}`}>
+                  {acceptedFriends.length} Friend
+                </Link>
               ) : (
-                <Link to="/friendsList">{acceptedFriends.length} Friends</Link>
+                <Link to={`/friendsList/${user?.id}`}>
+                  {acceptedFriends.length} Friends
+                </Link>
               )}
             </div>
-            <ul>
-              {acceptedFriends.map((rel) => {
-                const friendId =
-                  rel.senderId === id * 1 ? rel.recipientId : rel.senderId;
-                const friend = users.find((user) => user.id === friendId);
-                return <li key={rel.id}>{friend.username}</li>;
-              })}
-            </ul>
+
             <Post id={id} />
           </div>
         </div>
