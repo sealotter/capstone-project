@@ -215,7 +215,7 @@ nav a {
 }
 
 .postBoxMain{
-  width:60%
+  width:70%
 }
 
 
@@ -598,6 +598,10 @@ nav a {
 
 .center {
   flex-basis:80%
+}
+
+.homeposts{
+  flex-basis:75%
 }
 
 .suggestedPoster {

@@ -24,7 +24,7 @@ const Home = (props) => {
 
   return (
     <div className = "home">
-      <div>
+      <div className='homeposts'>
         <div>
           <h2 className='welcome'>Welcome, {auth.username}</h2>
         </div>
