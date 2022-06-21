@@ -70,6 +70,9 @@ const useStyles = makeStyles((theme) => ({
       width: '20ch',
     },
   },
+  rightBar: {
+    justifyContent: 'flex-end',
+  },
 }));
 
 function MuiNav(props) {
@@ -78,7 +81,7 @@ function MuiNav(props) {
 
   return (
     <>
-      {auth.id?
+      {auth.id ? (
         <div display="flex" flexDirection="row" className={classes.root}>
           <div flexGrow={0}>
             <AppBar elevation={0} position="sticky">
@@ -114,9 +117,9 @@ function MuiNav(props) {
                   Watch List
                 </Link>
               </Button>
-    
+
               <Button className={classes.options}>Recommendations</Button>
-    
+
               <Button className={classes.options}>Post</Button>
               <Button>
                 <Link className={classes.options} to="/updateProfile">
@@ -125,26 +128,24 @@ function MuiNav(props) {
               </Button>
             </AppBar>
           </div>
+          {/* <div classname={classes.rightBar} justifyContent="flex-end">
+            <AppBar elevation={0} position="sticky">
+              <div>Right</div>
+              <div>appBar</div>
+              <Button className={classes.options}>Messages</Button>
+              <Divider />
+              <Button className={classes.options}>Watch List</Button>
+              <Button className={classes.options}>Watch List</Button>
+            </AppBar>
+          </div> */}
         </div>
-        :<div></div>
-      }
+      ) : (
+        <div></div>
+      )}
     </>
   );
 }
 
 //if we want a right menu
-{
-  /* <Box display="flex" flexDirection="row" flexGrow={1}></Box>
-        <Box flexGrow={0}>
-          <AppBar elevation={0} position="sticky">
-            <div>Right</div>
-            <div>appBar</div>
-            <Button className={classes.options}>Messages</Button>
-            <Divider />
-            <Button className={classes.options}>Watch List</Button>
-            <Button className={classes.options}>Watch List</Button>
-          </AppBar>
-        </Box> */
-}
 
 export default connect((state) => state)(MuiNav);
