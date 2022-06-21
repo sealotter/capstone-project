@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { createPost } from '../store';
 import { Avatar, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import Posts from './posts'
+import Posts from './Posts'
 
 class Post extends Component {
   constructor(props) {
@@ -32,35 +32,37 @@ class Post extends Component {
   };
 
   render() {
-    const { content, avatarUrl, userId } = this.state;
+    const { content } = this.state;
     const { onChange, onSubmit } = this;
     const {auth, id, friendsId} = this.props
-
     return (
       <>
-        <div className="postBox">
-          <form onSubmit={onSubmit}>
-            <div className="postBox_input">
-              <Link to={`/profile/${auth.id}`}>
-                <Avatar src={auth.avatarUrl} />
-              </Link>
+        {!id || (id && auth.id === id*1)?
+          <div className="postBox">
+            <form onSubmit={onSubmit}>
+              <div className="postBox_input">
+                <Link to={`/profile/${auth.id}`}>
+                  <Avatar src={auth.avatarUrl} />
+                </Link>
 
-              <input
-                onChange={onChange}
-                name="content"
-                value={content}
-                placeholder="what's on your mind?"
-              ></input>
-            </div>
-            <Button
-              onClick={onSubmit}
-              className="postBox_button"
-              disabled={!content}
-            >
-              +
-            </Button>
-          </form>
-        </div>
+                <input
+                  onChange={onChange}
+                  name="content"
+                  value={content}
+                  placeholder="what's on your mind?"
+                ></input>
+              </div>
+              <Button
+                onClick={onSubmit}
+                className="postBox_button"
+                disabled={!content}
+              >
+                +
+              </Button>
+            </form>
+          </div>:null
+        }
+        
         <Posts id={id} friendsId={friendsId}/>
       </>
     );

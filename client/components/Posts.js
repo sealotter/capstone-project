@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { connect } from 'react-redux';
 import { loadPosts, createPost, updatePostLikes } from '../store';
-import { Avatar, Button } from '@material-ui/core';
+import { Avatar, Button, TextField } from '@material-ui/core';
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import { Link } from 'react-router-dom';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
@@ -14,7 +14,8 @@ class Posts extends React.Component {
   constructor(){
     super()
     this.state={
-      showCommentBox:null
+      showCommentBox:null,
+      filter:''
     }
     this.handleShowCommentBox = this.handleShowCommentBox.bind(this)
   }
@@ -29,7 +30,7 @@ class Posts extends React.Component {
     let myPosts
     if(id) myPosts = posts.filter(post => post.userId === id*1)
     else myPosts = posts.filter(post => post.userId === auth.id)
-    const {showCommentBox} = this.state
+    const {showCommentBox, filter} = this.state
 
     if(friendsId) {
       friendsId = [...friendsId, auth.id]
@@ -45,9 +46,17 @@ class Posts extends React.Component {
       return string
     }
 
+    const filterPosts =(filter, posts)=>{
+      return posts.filter(post=> post.rating && dbMedia.find(media=> media.id === post.mediaId)?.title.toLowerCase().includes(filter.toLowerCase()))
+    }
+    
+    const searchPosts = filterPosts(filter, myPosts)
+
     return (
       <div>
-        {myPosts.map((post) => {
+        <TextField id="standard-basic" value={filter} label={`Find movie review`} onChange={(ev)=> this.setState({filter:ev.target.value})}/>
+        <Button onClick={()=>{setFilter('')}}>Reset</Button>
+        {(filter?searchPosts:myPosts).map((post) => {
           const comments = []
           const media = dbMedia.find(media=>media.id === post.mediaId)
           const user = users.find(user=> user.id === post.userId)

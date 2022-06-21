@@ -16,10 +16,10 @@ const Home = (props) => {
   // [anna, doug, angel]
 
   return (
-    <div>
-      <h3>Welcome, {auth.username}</h3>
-      <Post friendsId={friendsId}/>
-    </div>
+      <div>
+        <h3>Welcome, {auth.username}</h3>
+        <Post friendsId={friendsId}/>
+      </div>
   );
 };
 

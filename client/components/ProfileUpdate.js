@@ -10,6 +10,9 @@ class ProfileUpdate extends Component {
       username: this.props.auth.username ? this.props.auth.username : '',
       avatarUrl: this.props.auth.avatarUrl ? this.props.auth.avatarUrl : '',
       bio: this.props.auth.bio ? this.props.auth.bio : '',
+      wallpaperUrl: this.props.auth.wallpaperUrl
+        ? this.props.auth.wallpaperUrl
+        : '',
     };
     this.onChange = this.onChange.bind(this);
     this.onSave = this.onSave.bind(this);
@@ -27,7 +30,7 @@ class ProfileUpdate extends Component {
   }
 
   render() {
-    const { username, avatarUrl, bio } = this.state;
+    const { username, avatarUrl, bio, wallpaperUrl } = this.state;
     const {
       auth,
       users,
@@ -54,13 +57,20 @@ class ProfileUpdate extends Component {
             value={avatarUrl}
             onChange={onChange}
           />
+          <TextField
+            label="Wallpaper URL"
+            name="wallpaperUrl"
+            value={wallpaperUrl}
+            onChange={onChange}
+          />
           <TextField label="Bio" name="bio" value={bio} onChange={onChange} />
           <Button
             onClick={onSave}
             disabled={
               username === this.props.auth.username &&
               avatarUrl === (this.props.auth.avatarUrl || '') &&
-              bio === (this.props.auth.bio || '')
+              bio === (this.props.auth.bio || '') &&
+              wallpaperUrl === (this.props.auth.wallpaperUrl || '')
             }
           >
             Update
@@ -74,8 +84,8 @@ class ProfileUpdate extends Component {
 
 const mapDispatch = (dispatch) => {
   return {
-    updateProfile: (username, avatarUrl, bio) => {
-      dispatch(updateProfile(username, avatarUrl, bio));
+    updateProfile: (username, avatarUrl, bio, wallpaperUrl) => {
+      dispatch(updateProfile(username, avatarUrl, bio, wallpaperUrl));
     },
   };
 };

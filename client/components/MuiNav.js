@@ -70,6 +70,9 @@ const useStyles = makeStyles((theme) => ({
       width: '20ch',
     },
   },
+  rightBar: {
+    justifyContent: 'flex-end',
+  },
 }));
 
 function MuiNav(props) {
@@ -77,69 +80,72 @@ function MuiNav(props) {
   const classes = useStyles();
 
   return (
-    <div className={classes.grow}>
-      <div display="flex" flexdirection="row" className={classes.root}>
-        <AppBar elevation={0} position="sticky">
-          <Typography className={classes.title} variant="h6" noWrap>
-            Watch Party
-          </Typography>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
+    <>
+      {auth.id ? (
+        <div display="flex" flexDirection="row" className={classes.root}>
+          <div flexGrow={0}>
+            <AppBar elevation={0} position="sticky">
+              <Typography className={classes.title} variant="h6" noWrap>
+                Watch Party
+              </Typography>
+              <div className={classes.search}>
+                <div className={classes.searchIcon}>
+                  <SearchIcon />
+                </div>
+                <InputBase
+                  placeholder="Search…"
+                  classes={{
+                    root: classes.inputRoot,
+                    input: classes.inputInput,
+                  }}
+                  inputProps={{ 'aria-label': 'search' }}
+                />
+              </div>
+              <Button className={classes.options}>Messages</Button>
+              <Button>
+                <Link className={classes.options} to={`/profile/${auth?.id}`}>
+                  {auth ? <Avatar src={auth.avatarUrl} /> : null} Profile{' '}
+                </Link>
+              </Button>
+              <Button>
+                <Link className={classes.options} to="/friendrequests">
+                  Friend Requests
+                </Link>
+              </Button>
+              <Button>
+                <Link className={classes.options} to="/watchlist">
+                  Watch List
+                </Link>
+              </Button>
+
+              <Button className={classes.options}>Recommendations</Button>
+
+              <Button className={classes.options}>Post</Button>
+              <Button>
+                <Link className={classes.options} to="/updateProfile">
+                  Update Profile
+                </Link>
+              </Button>
+            </AppBar>
           </div>
-          <Button className={classes.options}>Messages</Button>
-          <Button>
-            <Link to={`/profile/${auth?.id}`}>
-              {auth ? <Avatar src={auth.avatarUrl} /> : null} Profile{' '}
-            </Link>
-          </Button>
-          <Button>
-            <Link className={classes.options} to="/friendrequests">
-              Friend Requests
-            </Link>
-          </Button>
-          <Button>
-            <Link className={classes.options} to="/watchlist">
-              Watch List
-            </Link>
-          </Button>
-
-          <Button className={classes.options}>Recommendations</Button>
-
-          <Button className={classes.options}>Post</Button>
-          <Button>
-            <Link className={classes.options} to="/updateProfile">
-              Update Profile
-            </Link>
-          </Button>
-        </AppBar>
-      </div>
-    </div>
+          {/* <div classname={classes.rightBar} justifyContent="flex-end">
+            <AppBar elevation={0} position="sticky">
+              <div>Right</div>
+              <div>appBar</div>
+              <Button className={classes.options}>Messages</Button>
+              <Divider />
+              <Button className={classes.options}>Watch List</Button>
+              <Button className={classes.options}>Watch List</Button>
+            </AppBar>
+          </div> */}
+        </div>
+      ) : (
+        <div></div>
+      )}
+    </>
   );
 }
 
 //if we want a right menu
-{
-  /* <Box display="flex" flexDirection="row" flexGrow={1}></Box>
-        <Box flexGrow={0}>
-          <AppBar elevation={0} position="sticky">
-            <div>Right</div>
-            <div>appBar</div>
-            <Button className={classes.options}>Messages</Button>
-            <Divider />
-            <Button className={classes.options}>Watch List</Button>
-            <Button className={classes.options}>Watch List</Button>
-          </AppBar>
-        </Box> */
-}
 
 export default connect((state) => state)(MuiNav);

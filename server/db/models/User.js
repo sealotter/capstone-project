@@ -25,6 +25,9 @@ const User = db.define('user', {
   bio: {
     type: Sequelize.TEXT,
   },
+  wallpaperUrl: {
+    type: Sequelize.TEXT,
+  },
 });
 
 module.exports = User;
