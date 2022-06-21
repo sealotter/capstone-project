@@ -5,7 +5,7 @@ import { Avatar, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import Post from './Post';
 import { HighestRated, OwnTopRated, Trending } from './Suggestions';
-import AccSuggest from './AccSuggest';
+import FavoriteMedia from './FavoriteMedia';
 
 const Profile = (props) => {
   const {
@@ -79,6 +79,9 @@ const Profile = (props) => {
             </div>
             <Post id={id} />
           </div>
+          <div>
+            <FavoriteMedia />
+          </div>
         </div>
       ) : (
         <div className="profilePage">
@@ -125,6 +128,9 @@ const Profile = (props) => {
               })}
             </ul>
             <Post id={id} />
+          </div>
+          <div>
+            <FavoriteMedia />
           </div>
         </div>
       )}
