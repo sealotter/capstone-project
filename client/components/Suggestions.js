@@ -41,19 +41,29 @@ const _HighestRated = (props) => {
 
 //highest rated media by the logged in user
 const _OwnTopRated = (props) => {
-  const { dbMedia, posts, auth } = props;
+  const { dbMedia, posts, auth, users, id } = props;
+  console.log(props);
   if (!dbMedia.length) return null;
-  const myRatings = posts.filter(
-    (post) => post.rating && post.userId === auth.id
-  );
+
+  let myRatings;
+  const user = users.find((_user) => _user.id === id *1);
+  if (user) {
+    myRatings = posts.filter((post)=> post.rating && post.userId === id*1)
+  } else {
+    myRatings = posts.filter(
+      (post) => post.rating && post.userId === auth.id
+    );
+  }
+  
   myRatings.sort((a, b) => b.rating - a.rating);
   const myRatedMedia = myRatings.map((rating) =>
     dbMedia.find((media) => media.id === rating.mediaId)
   );
   const threeHighest = myRatedMedia.slice(0, 3);
   return (
+    
     <div>
-      Your highest rated movies:
+      {auth.id && !id? 'Your Highest Rated Movies:' : `${user?.username }'s favorite movies:`}
       <ul>
         {threeHighest.map((media) => {
           return (

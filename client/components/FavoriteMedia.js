@@ -17,9 +17,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function FavoriteMedia() {
+export default function FavoriteMedia(props) {
   const classes = useStyles();
-
+  const {id} = props;
   return (
     <div className={classes.root}>
       <Accordion>
@@ -32,7 +32,7 @@ export default function FavoriteMedia() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            <OwnTopRated />
+            <OwnTopRated id = {id}/>
           </Typography>
         </AccordionDetails>
       </Accordion>

@@ -129,6 +129,7 @@ const Profile = (props) => {
             </ul>
             <Post id={id} />
           </div>
+          <FavoriteMedia id = {id} />
         </div>
       )}
     </>
