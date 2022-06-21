@@ -710,3 +710,58 @@ nav a {
 .postcomment{
   margin-left:10px
 }
+
+
+/*watchlist styles*/
+.GradeSharpIcon {
+  color: red
+}
+
+
+.watch-card {
+  background-color: rgb(241, 238, 238);
+  display: flex;
+  padding: 50px;
+  justify-content: center;
+ 
+
+  
+
+ 
+
+
+ 
+}
+
+.rating {
+  display: flex;
+}
+
+.watch-content {
+  margin-left: 20px;
+  
+ 
+}
+
+.watch-content h1 {
+  color: teal;
+  font-weight: lighter;
+  font-size: 25px;
+}
+
+.empty-content {
+  margin: auto 10px;
+  text-align: center;
+}
+.empty-content h1 {
+  color: teal;
+  font-size: 30px;
+  margin-top: 50px;
+}
+
+.watch-content .remove {
+  background-color: gray;
+  margin-top: 15px;
+}
+
+

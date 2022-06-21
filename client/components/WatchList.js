@@ -4,6 +4,9 @@ import {createList, removeWList} from '../store'
 import Media from './Media'
 import { Link } from 'react-router-dom'
 import {loadWatchList} from '../store'
+import GradeSharpIcon from '@material-ui/icons/GradeSharp';
+import { Button } from '@material-ui/core';
+
 
 
 
@@ -12,33 +15,27 @@ class WatchList extends React.Component {
     super()
 
   }
-  componentDidMount() {
-    
-  }
-
 
   render() {
     const { lists, dbMedia, match, destroy} = this.props
     const m = match.params.id*1
-    //const {lists} = this.state
    
-    
     return (
       <div>
         <ul>
-            {
-              lists.length === 0 ? (
-                <h3>Your watchlist is currently empty</h3>
+            { lists.length === 0 ? (
+              <div className='empty-content'>
+                <h1>Your watchlist is currently empty</h1>
+                <img src='../images/director.png' />
+              </div>
               ) : (
                 <div>
-                  <h3>Here are your saved movies:</h3>
+                  {/* <h3>Here are your saved movies:</h3> */}
                   {lists.map(list => {
                     const WList = dbMedia.find((media => media.id === list.mediaId))
-                   
-              
                     return(
-                    <li key = {list.id}>
-                      <span style={{display: 'flex'}}>
+        
+                    <div className='watch-card' style={{margin: '50px'}} key = {list.id}>
 
                       <img
                           src={
@@ -46,12 +43,19 @@ class WatchList extends React.Component {
                             ? `https://image.tmdb.org/t/p/w300/${WList.poster_path}`
                             : 'https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png'
                           } />
-          
-                      <button onClick={() => destroy(list)}>Remove</button>
-                    </span>
+                          
+                        <div className='watch-content'>   
+                          <span className ='rating'><GradeSharpIcon style = {{color : 'burlywood'}}/>{WList.vote_average}</span> 
+                            <h1>{WList.title}</h1>
+                            <p><span>{WList.overview}</span></p>
+                           
+                              
+                            <Button className='remove' onClick={() => destroy(list)}>Remove Movie </Button>
+                        </div> 
 
-                      </li>
-                    
+                    </div>
+                
+                
                     )
         
                     })}
