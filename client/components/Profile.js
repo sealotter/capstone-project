@@ -43,7 +43,8 @@ const Profile = (props) => {
         <div className="profilePage">
           <div className="center">
             <div className="wallpaper">
-              <img className='wallpapercontent'
+              <img
+                className="wallpapercontent"
                 src={
                   user.wallpaperUrl
                     ? user.wallpaperUrl
@@ -52,10 +53,16 @@ const Profile = (props) => {
               ></img>
             </div>
             <div className="profileInfo">
-              <div>{<Avatar src={auth.avatarUrl} />}</div>
+              <div>
+                {
+                  <Avatar
+                    sx={{ width: 100, height: 100 }}
+                    src={auth.avatarUrl}
+                  />
+                }
+              </div>
               <div>{auth.username}</div>
               <div>{auth.bio}</div>
-
               <div>
                 {' '}
                 {acceptedFriends.length === 1 ? (
@@ -66,13 +73,11 @@ const Profile = (props) => {
                   </Link>
                 )}
               </div>
-
-              <Link to="/friendrequests">Friend Requests</Link>
+              <div>
+                <Link to="/friendrequests">Friend Requests</Link>
+              </div>
             </div>
             <Post id={id} />
-          </div>
-          <div className="right">
-            <AccSuggest />
           </div>
         </div>
       ) : (
@@ -120,9 +125,6 @@ const Profile = (props) => {
               })}
             </ul>
             <Post id={id} />
-          </div>
-          <div className="right">
-            <AccSuggest />
           </div>
         </div>
       )}

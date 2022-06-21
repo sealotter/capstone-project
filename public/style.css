@@ -210,15 +210,11 @@ nav a {
 .postBox {
   padding-bottom: 10px;
   border: 0.5px solid grey;
-  margin: auto;
-  width: 50%;
+  width: 100%;
   /* border-radius: 30px; */
 }
 
-/* .postBox > form {
-  display: flex;
-  flex-direction: column;
-} */
+
 
 .postBox_input {
   padding: 20px;
@@ -252,8 +248,8 @@ nav a {
   flex-direction: column;
   border: 1px solid grey;
   border-radius: 30px;
-  width: 50%;
-  margin: auto;
+  width: 100%;
+
 }
 
 .post_body {
@@ -284,6 +280,17 @@ nav a {
   color: grey;
   margin-left: 2px;
   opacity: 75%;
+}
+
+.profileInfo > div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home {
+  display: flex;
+  
 }
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700');
