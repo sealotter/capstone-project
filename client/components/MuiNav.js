@@ -84,7 +84,11 @@ function MuiNav(props) {
       {auth.id ? (
         <div display="flex" flexdirection="row" className={classes.root}>
           <div flexgrow={0}>
-            <AppBar elevation={0} position="sticky" style={{background:'#1876f2', marginTop:'25px'}}>
+            <AppBar
+              elevation={0}
+              position="sticky"
+              style={{ background: '#1876f2', marginTop: '25px' }}
+            >
               <Typography className={classes.title} variant="h6" noWrap>
                 Watch Party
               </Typography>
@@ -101,26 +105,24 @@ function MuiNav(props) {
                   inputProps={{ 'aria-label': 'search' }}
                 />
               </div>
-              <Button className={classes.options}>Messages</Button>
+
               <Button>
                 <Link className={classes.options} to={`/profile/${auth?.id}`}>
                   {auth ? <Avatar src={auth.avatarUrl} /> : null} Profile{' '}
                 </Link>
               </Button>
-              <Button>
-                <Link className={classes.options} to="/friendrequests">
-                  Friend Requests
-                </Link>
-              </Button>
+
               <Button>
                 <Link className={classes.options} to="/watchlist">
                   Watch List
                 </Link>
               </Button>
+              <Button>
+                <Link className={classes.options} to="/friendslist">
+                  Friends List
+                </Link>
+              </Button>
 
-              <Button className={classes.options}>Recommendations</Button>
-
-              <Button className={classes.options}>Post</Button>
               <Button>
                 <Link className={classes.options} to="/updateProfile">
                   Update Profile
