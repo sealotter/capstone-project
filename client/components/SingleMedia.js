@@ -130,17 +130,16 @@ class SingleMedia extends React.Component {
                                 value={item.rating ? item.rating : 0}
                                 max={10}
                               />
-                              {item.content?<p>{item.content}</p>:null}
+                              {item.content?item.content:null}
                             </Typography>
                           </AccordionDetails>
                         );
                       })
-                    : 'No ratings yet!'}
+                    :<p>No ratings yet!</p>}
               </Accordion>
             </div>
           </div>
           <div className='singlemediacontent'>
-            {/* <p>Genres: {combineArr(media.genres)}</p> */}
             <div className='genres'>
               <div><span className='category'>Genres: </span></div>
               <ul className='genrecontent'>
