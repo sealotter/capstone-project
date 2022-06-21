@@ -78,7 +78,6 @@ class Routes extends Component {
                     />
                     <Route path="/chat" component={Chat} />
                     <Route path="/updateProfile" component={ProfileUpdate} />
-                    <Route path="/test" component={AccSuggest} />
 
                     <Redirect to="/home" />
                   </Switch>
