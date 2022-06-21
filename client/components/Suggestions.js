@@ -42,7 +42,6 @@ const _HighestRated = (props) => {
 //highest rated media by the logged in user
 const _OwnTopRated = (props) => {
   const { dbMedia, posts, auth, users, id } = props;
-  console.log(props);
   if (!dbMedia.length) return null;
 
   let myRatings;
