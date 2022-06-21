@@ -43,7 +43,7 @@ const Profile = (props) => {
         <div className="profilePage">
           <div className="center">
             <div className="wallpaper">
-              <img
+              <img className='wallpapercontent'
                 src={
                   user.wallpaperUrl
                     ? user.wallpaperUrl
