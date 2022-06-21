@@ -27,7 +27,7 @@ function Chat(props){
   if(!friends[0]) return <div>Add some friends to chat with!</div>
 
   return(
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, marginTop:'25px', paddingRight:'25px', paddingLeft:'25px' }}>
       <Grid container className="App" columns={12}>
         <Grid item xs={8}><Chatroom socket={socket} username={auth.username} otherUser={otherUser.id?otherUser:friends[0]} room={room?room:joinRoom(friends[0].username, friends[0])} /></Grid>
         <Grid item xs={4}>

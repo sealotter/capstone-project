@@ -210,8 +210,12 @@ nav a {
 .postBox {
   padding-bottom: 10px;
   border: 0.5px solid grey;
-  width: 100%;
-  /* border-radius: 30px; */
+  margin: auto;
+  border-radius: 30px;
+}
+
+.postBoxMain{
+  width:60%
 }
 
 
@@ -222,10 +226,12 @@ nav a {
 }
 
 .postBox_input > input {
+  padding:5px;
   flex: 1;
   margin-left: 20px;
   font-size: 20px;
   border: none;
+  width:60%
 }
 
 .postBox_button {
@@ -235,11 +241,24 @@ nav a {
   display: flex;
   flex-direction: column;
   margin-left: 80px !important;
-  width: 180px;
+  width: 75px;
 }
 
 .postOut {
   padding: 0.2rem;
+}
+
+.postnotcomment{
+  /* margin-bottom: 35px; */
+}
+
+.postoutline{
+  width:50%;
+  margin-left: auto;
+  margin-right: auto;
+  border:1px solid lightgray;
+  padding:15px;
+  border-radius: 25px;
 }
 
 .post {
@@ -249,6 +268,7 @@ nav a {
   border: 1px solid grey;
   border-radius: 30px;
   width: 100%;
+  margin: auto;
 
 }
 
@@ -506,9 +526,9 @@ nav a {
   opacity: 50%;
 }
 
-.MuiButton-root {
+/* .MuiButton-root {
   border-radius: 0 !important;
-}
+} */
 
 .mainNav {
   display: flex;
@@ -667,4 +687,22 @@ nav a {
 
 .profileInfo {
   padding: 15px;
+}
+
+.welcome{
+  text-align: center;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.commentsbox{
+  width:80%;
+  margin-left:18%;
+  margin-top: 15px;
+  border-left:2px solid lightgrey;
+  padding-left: 0;
+}
+
+.postcomment{
+  margin-left:10px
 }
