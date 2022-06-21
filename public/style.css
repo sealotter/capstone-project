@@ -211,14 +211,14 @@ nav a {
   padding-bottom: 10px;
   border: 0.5px solid grey;
   margin: auto;
-  width: 50%;
-  /* border-radius: 30px; */
+  border-radius: 30px;
 }
 
-/* .postBox > form {
-  display: flex;
-  flex-direction: column;
-} */
+.postBoxMain{
+  width:70%
+}
+
+
 
 .postBox_input {
   padding: 20px;
@@ -226,10 +226,12 @@ nav a {
 }
 
 .postBox_input > input {
+  padding:5px;
   flex: 1;
   margin-left: 20px;
   font-size: 20px;
   border: none;
+  width:60%
 }
 
 .postBox_button {
@@ -239,11 +241,24 @@ nav a {
   display: flex;
   flex-direction: column;
   margin-left: 80px !important;
-  width: 180px;
+  width: 75px;
 }
 
 .postOut {
   padding: 0.2rem;
+}
+
+.postnotcomment{
+  /* margin-bottom: 35px; */
+}
+
+.postoutline{
+  width:50%;
+  margin-left: auto;
+  margin-right: auto;
+  border:1px solid lightgray;
+  padding:15px;
+  border-radius: 25px;
 }
 
 .post {
@@ -252,8 +267,9 @@ nav a {
   flex-direction: column;
   border: 1px solid grey;
   border-radius: 30px;
-  width: 50%;
+  width: 100%;
   margin: auto;
+
 }
 
 .post_body {
@@ -284,6 +300,17 @@ nav a {
   color: grey;
   margin-left: 2px;
   opacity: 75%;
+}
+
+.profileInfo > div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home {
+  display: flex;
+  
 }
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700');
@@ -334,7 +361,6 @@ nav a {
 }
 .chat-window .chat-header {
   height: 45px;
-  border-radius: 6px;
   background: #263238;
   position: relative;
   cursor: pointer;
@@ -343,8 +369,10 @@ nav a {
   display: block;
   padding: 0 1em 0 2em;
   color: #fff;
+  font-size: 24px;
   font-weight: 700;
   line-height: 45px;
+  text-align: center;
 }
 
 .chat-window .chat-body {
@@ -498,9 +526,9 @@ nav a {
   opacity: 50%;
 }
 
-.MuiButton-root {
+/* .MuiButton-root {
   border-radius: 0 !important;
-}
+} */
 
 .mainNav {
   display: flex;
@@ -549,7 +577,6 @@ nav a {
 
 .profilePage {
   display: flex;
-  /* justify-content: space-between; */
 }
 
 .wallpaper {
@@ -558,11 +585,23 @@ nav a {
   overflow: hidden;
 }
 
+.wallpapercontent{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+  object-position: center;
+}
+
 .right {
   justify-content: flex-end;
 }
 
 .center {
+  flex-basis:75%
+}
+
+.homeposts{
+  flex-basis:75%
 }
 
 .suggestedPoster {
@@ -575,6 +614,99 @@ nav a {
   flex-direction: column;
 }
 
+.singlemediacontainer{
+  display:flex;
+  justify-content: space-around;
+}
+
+.singlemediaimage, .singlemediacontent .singlemediatitle{
+  padding:25px
+}
+
+.singlemediacontent{
+  flex-basis:calc(100%/3 *2);
+  padding: 50px
+}
+
+.singlemediaimage{
+  flex-basis: calc(100%/3);
+}
+
+.singlemediaposter{
+  width:100%
+}
+
+.genres{
+  display:flex;
+  align-items: center;
+}
+
+.genrecontent{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.genrecontent li{
+  margin-left: 4px;
+  margin-right: 4px;
+  padding:4px 8px 4px;
+  border:1px solid black;
+  border-radius: 25px;
+}
+
+.singlemediatitle{
+  text-align: center;
+  margin-top: 50px;
+  font-size: 50px;
+}
+
+.category{
+  font-weight: 700;
+}
+
+.singlemediacontent p{
+  border-bottom: 1px solid black;
+  padding: 10px 0 10px 0;
+}
+
+.watchBtn, .makerecommendation{
+  display:flex;
+  justify-content: center;
+}
+
+.watchBtn{
+  margin-top: 25px;
+}
+
+.selectContainer{
+  display:flex;
+  justify-content: space-around;
+}
+
+.makeratingcontainer{
+  display:flex;
+  justify-content: center;
+}
+
 .profileInfo {
   padding: 15px;
+}
+
+.welcome{
+  text-align: center;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.commentsbox{
+  width:80%;
+  margin-left:18%;
+  margin-top: 15px;
+  border-left:2px solid lightgrey;
+  padding-left: 0;
+}
+
+.postcomment{
+  margin-left:10px
 }

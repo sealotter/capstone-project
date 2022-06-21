@@ -38,7 +38,7 @@ class Post extends Component {
     return (
       <>
         {!id || (id && auth.id === id*1)?
-          <div className="postBox">
+          <div className="postBox postBoxMain">
             <form onSubmit={onSubmit}>
               <div className="postBox_input">
                 <Link to={`/profile/${auth.id}`}>

@@ -83,7 +83,8 @@ class Media extends React.Component{
   
     return (
       <div>
-        <div style={{display:'flex'}}>
+        <h1 style={{textAlign:'center', marginTop:'25px'}}>Search media</h1>
+        <div style={{display:'flex', justifyContent:'space-around', alignItems:'center'}}>
           <BasicSelects media={{movie:'Movies', tv:'TV Shows'}} onChangeValue={this.handleChangeValue}/>
           <SearchBox onChangeValue={this.handleNameSearchChange} genres={this.state.with_genres} peopleSearch={this.state.peopleSearch} searchBy={'title'}/>
           {/* <SearchBox onChangeValue={this.handlePeopleSearchChange} genres={this.state.with_genres} nameSearch={this.state.nameSearch} peopleSearch={this.state.peopleSearch} media={this.state.media} searchBy={'people'}/> */}

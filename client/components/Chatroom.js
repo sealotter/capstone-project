@@ -54,7 +54,7 @@ const Chatroom = ({socket, username, room, otherUser, chats, updateChat, auth})=
     <>
       <div className='chat-window'>
         <div className='chat-header'>
-          <p>Chatting with {otherUser.username}</p>
+          <p>{otherUser.username}</p>
         </div>
         <div className='chat-body'>
           <ScrollToBottom className='message-container'>

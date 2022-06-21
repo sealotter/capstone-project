@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { sendRec } from '../store';
 import { Button } from '@material-ui/core';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+import FormControl from '@material-ui/core/FormControl';
 
 const Recommendations = (props) => {
   const [friendState, setFriendState] = React.useState(null);
@@ -18,19 +22,23 @@ const Recommendations = (props) => {
     : null;
 
   return (
-    <div>
-      <form
+    <div className='recommendtofriend'>
+      <FormControl
         onSubmit={(ev) => {
           ev.preventDefault();
 
           sendRec(friendState, auth?.id, media?.id);
         }}
+        style={{width:'200px'}}
       >
-        <select
+        <InputLabel id="recommend a friend">Recommend to a friend!</InputLabel>
+        <Select
+          labelId="recommend a friend"
+          id="demo-simple-select"
           value={friendState ? friendState : ''}
           onChange={(ev) => setFriendState(ev.target.value)}
         >
-          <option value={''}>Select Friend</option>
+          <MenuItem value={''}>Select Friend</MenuItem>
           {friends?.map((friend) => {
             const friendId =
               friend.senderId === auth.id
@@ -40,14 +48,14 @@ const Recommendations = (props) => {
             const recommendation = recommendations.find(rec => rec.userId === auth.id && rec.friendId === friendId*1 && rec.mediaId === thisMedia?.id)
             if(recommendation) return null
             return (
-              <option value={friendId} key={friend.id}>
+              <MenuItem value={friendId} key={friend.id}>
                 {fName}
-              </option>
+              </MenuItem>
             );
           })}
-        </select>
+        </Select>
         <Button> Recommend</Button>
-      </form>
+      </FormControl>
     </div>
   );
 };

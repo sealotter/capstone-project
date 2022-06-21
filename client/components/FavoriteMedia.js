@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AccSuggest() {
+export default function FavoriteMedia() {
   const classes = useStyles();
 
   return (
@@ -25,28 +25,14 @@ export default function AccSuggest() {
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography className={classes.heading}>Trending</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            <Trending />
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
           aria-controls="panel2a-content"
           id="panel2a-header"
         >
-          <Typography className={classes.heading}>Top Rated</Typography>
+          <Typography className={classes.heading}>Favorites</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            <HighestRated />
+            <OwnTopRated />
           </Typography>
         </AccordionDetails>
       </Accordion>
