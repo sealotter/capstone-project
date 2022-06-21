@@ -50,20 +50,6 @@ export default function AccSuggest() {
           </Typography>
         </AccordionDetails>
       </Accordion>
-      <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2a-content"
-          id="panel2a-header"
-        >
-          <Typography className={classes.heading}>Favorites</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            <OwnTopRated />
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
     </div>
   );
 }
