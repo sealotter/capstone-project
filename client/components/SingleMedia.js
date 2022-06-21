@@ -14,6 +14,7 @@ class SingleMedia extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      lists: []
       
     };
     this.handleOnClick = this.handleOnClick.bind(this)
@@ -46,9 +47,8 @@ class SingleMedia extends React.Component {
 
   }
 
-
-  handleOnClick(media){
-    const { match, lists, auth, dbMedia, findSingleMedia} = this.props
+  handleOnClick(){
+    const { match, lists, auth} = this.props
     this.props.createList(lists, match.params.id*1, auth.id)
   
   }
@@ -61,14 +61,18 @@ class SingleMedia extends React.Component {
       createPost,
       posts,
       updatePostContent,
+      lists,
       findSingleMedia,
+
       
       match: {
         params: { id },
         path,
       },
     } = this.props;
-
+  
+    const inWatchList = lists.find(l => l.mediaId === media.dataValues?.id)
+   
     const ratings = posts.filter(post=>post?.rating !== null && post.mediaId === media.dataValues?.id)
 
     const type = path.slice(1, 6) === 'movie' ? path.slice(1, 6) : path.slice(1, 3);
@@ -123,11 +127,19 @@ class SingleMedia extends React.Component {
           )}
         </p>
         <p>Overview: {media.overview}</p>
-        <div className='watchBtn'>
-            <Button onClick={() => this.handleOnClick(media)}>Add to Watch List</Button>
-        </div>
 
-        <Box component="fieldset" mb={3} borderColor="transparent">
+        { !inWatchList ? (
+          <div className='watchBtn'>
+            <Button onClick={() => this.handleOnClick()}>Add to Watch List</Button>      
+          </div> 
+          ) : (
+            <div className='watchBtn'>
+            <Button disable = 'true'>Added</Button>       
+          </div>
+          )    
+        }
+
+       <Box component="fieldset" mb={3} borderColor="transparent">
           <Typography component="legend">
             <h2>Rate this movie!</h2>
           </Typography>
