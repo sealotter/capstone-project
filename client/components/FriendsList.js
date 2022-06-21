@@ -20,20 +20,34 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const FriendsList = ({ auth, users, relationships, updateRelationship }) => {
+const FriendsList = ({
+  auth,
+  users,
+  relationships,
+  updateRelationship,
+  match,
+}) => {
+  console.log('match', match.params.id);
   if (!relationships.length || !auth.id || !users) return null;
   const friends = relationships.filter(
     (item) =>
       item.status === 'accepted' &&
-      (item.recipientId === auth.id || item.senderId === auth.id)
+      (item.recipientId === Number(match.params.id) ||
+        item.senderId === Number(match.params.id))
   );
+  console.log('friends', friends);
   const pendingFriends = relationships.filter(
     (item) => item.status === 'pending'
   );
-  const pendingOut = pendingFriends.filter((item) => item.senderId === auth.id);
-  const pendingIn = pendingFriends.filter(
-    (item) => item.recipientId === auth.id
+  const pendingOut = pendingFriends.filter(
+    (item) => item.senderId === Number(match.params.id)
   );
+  const pendingIn = pendingFriends.filter(
+    (item) => item.recipientId === Number(match.params.id)
+  );
+
+  const user = users.find((user) => user.id === Number(match.params.id));
+  console.log('FL user', user);
   const classes = useStyles();
 
   return (
@@ -46,14 +60,14 @@ const FriendsList = ({ auth, users, relationships, updateRelationship }) => {
         >
           <Typography
             className={classes.heading}
-          >{`${auth.username}'s friends!`}</Typography>
+          >{`${user?.username}'s friends!`}</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
             <ul>
               {friends.map((item, idx) => {
                 const friendId =
-                  auth.id === item.recipientId
+                  match.params.id === item.recipientId
                     ? item.senderId
                     : item.recipientId;
                 const friend = users.find((user) => user.id === friendId);
@@ -78,7 +92,7 @@ const FriendsList = ({ auth, users, relationships, updateRelationship }) => {
           id="panel2a-header"
         >
           <Typography className={classes.heading}>
-            {`${auth.username}'s outgoing friend requests`}
+            {`${user?.username}'s outgoing friend requests`}
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
@@ -110,7 +124,7 @@ const FriendsList = ({ auth, users, relationships, updateRelationship }) => {
           id="panel2a-header"
         >
           <Typography className={classes.heading}>
-            {`${auth.username}'s incoming friend requests`}
+            {`${user?.username}'s incoming friend requests`}
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
