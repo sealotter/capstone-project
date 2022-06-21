@@ -185,21 +185,40 @@ class SingleMedia extends React.Component {
             </div>
             <div className='makeratingcontainer'>
               <div className='makerating'>
-                <div>
-                  <Typography component="legend">
-                    <h2>Rate this movie!</h2>
-                  </Typography>
-                  <Rating
-                    name="Rating"
-                    value={myRating?.rating ? myRating.rating : 0}
-                    max={10}
-                    onChange={(ev) => {
-                      createPost(null, auth.id, null, media.id, ev.target.value * 1);
-                      findSingleMedia({id, media:type})
-                    }}
-                  />
-                </div>
-                {myRating?<MultilineTextFields handleSubmit={updatePostContent} postId={myRating.id}/>:null}
+                {myRating?
+                  <>
+                    <div>
+                    <Typography component="legend">
+                      <h2>Thanks for the rating!</h2>
+                    </Typography>
+                    <Rating
+                      name="Rating"
+                      value={myRating?.rating ? myRating.rating : 0}
+                      max={10}
+                      onChange={(ev) => {
+                        createPost(null, auth.id, null, media.id, ev.target.value * 1);
+                        findSingleMedia({id, media:type})
+                      }}
+                    />
+                  </div>
+                  <MultilineTextFields handleSubmit={updatePostContent} postId={myRating.id}/>
+                  </>
+                  :
+                  <div>
+                    <Typography component="legend">
+                      <h2>Rate this movie!</h2>
+                    </Typography>
+                    <Rating
+                      name="Rating"
+                      value={myRating?.rating ? myRating.rating : 0}
+                      max={10}
+                      onChange={(ev) => {
+                        createPost(null, auth.id, null, media.id, ev.target.value * 1);
+                        findSingleMedia({id, media:type})
+                      }}
+                    />
+                  </div>
+                }
               </div>
             </div>
           </div>
