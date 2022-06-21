@@ -175,7 +175,7 @@ class SingleMedia extends React.Component {
                 </div> 
                 ) : (
                   <div className='watchBtn'>
-                  <Button disable = 'true'>Added</Button>       
+                  <Button disable = 'true'>Already on Watch List</Button>       
                 </div>
                 )    
               }
