@@ -82,8 +82,8 @@ function MuiNav(props) {
   return (
     <>
       {auth.id ? (
-        <div display="flex" flexDirection="row" className={classes.root}>
-          <div flexGrow={0}>
+        <div display="flex" flexdirection="row" className={classes.root}>
+          <div flexgrow={0}>
             <AppBar elevation={0} position="sticky">
               <Typography className={classes.title} variant="h6" noWrap>
                 Watch Party
