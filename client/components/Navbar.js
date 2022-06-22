@@ -9,7 +9,7 @@ import MovieIcon from '@material-ui/icons/Movie';
 import MessageIcon from '@material-ui/icons/Message';
 
 const Navbar = ({ handleClick, isLoggedIn, auth }) => (
-  <div className='mainBar'>
+  <div className="mainBar">
     <nav className="mainNav">
       {isLoggedIn ? (
         <>
@@ -17,30 +17,47 @@ const Navbar = ({ handleClick, isLoggedIn, auth }) => (
             {/* <Link to="/media"> */}
             <img src="/../images/movie logo.png" className="logo" />
             {/* </Link> */}
-            
 
             {/* The navbar will show these links after you log in */}
-            <Link to="/home">
-              <HomeIcon style={{fill: '#630606'}} />
+            <Link to="/home" style={{ marginRight: '35px' }}>
+              <HomeIcon
+                style={{
+                  fill: '#630606',
+                  fontSize: '35px',
+                }}
+              />
             </Link>
-            <Link to="/users">
-              <PeopleIcon style={{fill: '#630606'}}/>
+            <Link to="/users" style={{ marginRight: '35px' }}>
+              <PeopleIcon style={{ fill: '#630606', fontSize: '35px' }} />
             </Link>
-            <Link to="/media">
-              <MovieIcon style={{fill: '#630606'}} />
+            <Link to="/media" style={{ marginRight: '35px' }}>
+              <MovieIcon style={{ fill: '#630606', fontSize: '35px' }} />
             </Link>
-            <Link to="/chat">
-              <MessageIcon  style={{fill: '#630606'}}/>
+            <Link to="/chat" style={{ marginRight: '35px' }}>
+              <MessageIcon style={{ fill: '#630606', fontSize: '35px' }} />
             </Link>
             {/* <Link to='/friendslist'>Friends List</Link>
             <Link to ='/watchlist'>Watch List</Link> */}
           </div>
           <div className="nav-right">
             <Link to={`/profile/${auth?.id}`} className="online">
-              {auth ? <Avatar src={auth.avatarUrl} style={{fill: '#630606'}}/> : <Avatar />}{' '}
+              {auth ? (
+                <Avatar src={auth.avatarUrl} style={{ fill: '#630606' }} />
+              ) : (
+                <Avatar />
+              )}{' '}
               {auth.username}
             </Link>
-            <a href="#" onClick={handleClick}>
+            <a
+              href="#"
+              onClick={handleClick}
+              style={{
+                color: '#630606',
+                marginBottom: '15px',
+                fontWeight: 'bold',
+                fontSize: '18px',
+              }}
+            >
               Logout
             </a>
           </div>
@@ -53,7 +70,6 @@ const Navbar = ({ handleClick, isLoggedIn, auth }) => (
         </div>
       )}
     </nav>
-    
   </div>
 );
 

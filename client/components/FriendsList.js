@@ -9,10 +9,15 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import AccSuggest from './AccSuggest';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '100%',
+    // flex: '5',
+    width: '75%',
+    marginTop: '50px',
+    marginLeft: '15px',
+    // display: 'flex',
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
@@ -52,191 +57,125 @@ const FriendsList = ({
 
   return (
     <div className={classes.root}>
-      <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography
-            className={classes.heading}
-          >{`${user?.username}'s friends!`}</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            <ul>
-              {friends.map((item, idx) => {
-                const friendId =
-                  match.params.id === item.recipientId
-                    ? item.senderId
-                    : item.recipientId;
-                const friend = users.find((user) => user.id === friendId);
-                if (!friend) return null;
-                return (
-                  <li key={idx}>
-                    <Link to={`/profile/${friend.id}`}>
-                      <Avatar src={friend.avatarUrl} />
-                      {friend.username}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2a-content"
-          id="panel2a-header"
-        >
-          <Typography className={classes.heading}>
-            {`${user?.username}'s outgoing friend requests`}
-          </Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            <ul>
-              {pendingOut.map((item, idx) => {
-                const friend = users.find(
-                  (user) => user.id === item.recipientId
-                );
-                if (!friend) return null;
-                return (
-                  <li key={idx}>
-                    <Link to={`/profile/${friend.id}`}>
-                      <Avatar src={friend.avatarUrl} />
-                      {friend.username}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
+      <div>
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            <Typography
+              className={classes.heading}
+            >{`${user?.username}'s friends!`}</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>
+              <ul>
+                {friends.map((item, idx) => {
+                  const friendId =
+                    Number(match.params.id) === item.recipientId
+                      ? item.senderId
+                      : item.recipientId;
+                  const friend = users.find((user) => user.id === friendId);
+                  if (!friend) return null;
+                  return (
+                    <li key={idx}>
+                      <Link to={`/profile/${friend.id}`}>
+                        <Avatar src={friend.avatarUrl} />
+                        {friend.username}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel2a-content"
+            id="panel2a-header"
+          >
+            <Typography className={classes.heading}>
+              {`${user?.username}'s outgoing friend requests`}
+            </Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>
+              <ul>
+                {pendingOut.map((item, idx) => {
+                  const friend = users.find(
+                    (user) => user.id === item.recipientId
+                  );
+                  if (!friend) return null;
+                  return (
+                    <li key={idx}>
+                      <Link to={`/profile/${friend.id}`}>
+                        <Avatar src={friend.avatarUrl} />
+                        {friend.username}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
 
-      <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2a-content"
-          id="panel2a-header"
-        >
-          <Typography className={classes.heading}>
-            {`${user?.username}'s incoming friend requests`}
-          </Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            <ul>
-              {pendingIn.map((item, idx) => {
-                const friend = users.find((user) => user.id === item.senderId);
-                if (!friend) return null;
-                return (
-                  <li key={idx}>
-                    <Link to={`/profile/${friend.id}`}>
-                      <Avatar src={friend.avatarUrl} />
-                      {friend.username}
-                    </Link>
-                    <Button
-                      onClick={() =>
-                        updateRelationship(item.senderId, auth.id, 'accept')
-                      }
-                    >
-                      Accept
-                    </Button>
-                    <Button
-                      onClick={() =>
-                        updateRelationship(item.senderId, auth.id, 'decline')
-                      }
-                    >
-                      Decline
-                    </Button>
-                  </li>
-                );
-              })}
-            </ul>
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel2a-content"
+            id="panel2a-header"
+          >
+            <Typography className={classes.heading}>
+              {`${user?.username}'s incoming friend requests`}
+            </Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>
+              <ul>
+                {pendingIn.map((item, idx) => {
+                  const friend = users.find(
+                    (user) => user.id === item.senderId
+                  );
+                  if (!friend) return null;
+                  return (
+                    <li key={idx}>
+                      <Link to={`/profile/${friend.id}`}>
+                        <Avatar src={friend.avatarUrl} />
+                        {friend.username}
+                      </Link>
+                      <Button
+                        onClick={() =>
+                          updateRelationship(item.senderId, auth.id, 'accept')
+                        }
+                      >
+                        Accept
+                      </Button>
+                      <Button
+                        onClick={() =>
+                          updateRelationship(item.senderId, auth.id, 'decline')
+                        }
+                      >
+                        Decline
+                      </Button>
+                    </li>
+                  );
+                })}
+              </ul>
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
+      </div>
+
+      <div>
+        <AccSuggest />
+      </div>
     </div>
   );
 };
-
-// const FriendsList = ({ auth, users, relationships, updateRelationship }) => {
-//   if (!relationships.length || !auth.id || !users) return null;
-//   const friends = relationships.filter(
-//     (item) =>
-//       item.status === 'accepted' &&
-//       (item.recipientId === auth.id || item.senderId === auth.id)
-//   );
-//   const pendingFriends = relationships.filter(
-//     (item) => item.status === 'pending'
-//   );
-//   const pendingOut = pendingFriends.filter((item) => item.senderId === auth.id);
-//   const pendingIn = pendingFriends.filter(
-//     (item) => item.recipientId === auth.id
-//   );
-//   return (
-//     <div>
-//       {`${auth.username}'s friends!`}
-//       <ul>
-//         {friends.map((item, idx) => {
-//           const friendId =
-//             auth.id === item.recipientId ? item.senderId : item.recipientId;
-//           const friend = users.find((user) => user.id === friendId);
-//           if (!friend) return null;
-//           return (
-//             <li key={idx}>
-//               <Link to={`/profile/${friend.id}`}>{friend.username}</Link>
-//             </li>
-//           );
-//         })}
-//       </ul>
-
-// {`${auth.username}'s outgoing friend requests`}
-// <ul>
-//   {pendingOut.map((item, idx) => {
-//     const friend = users.find((user) => user.id === item.recipientId);
-//     if (!friend) return null;
-//     return (
-//       <li key={idx}>
-//         <Link to={`/profile/${friend.id}`}>{friend.username}</Link>
-//       </li>
-//     );
-//   })}
-// </ul>
-
-// {`${auth.username}'s incoming friend requests`}
-// <ul>
-//   {pendingIn.map((item, idx) => {
-//     const friend = users.find((user) => user.id === item.senderId);
-//     if (!friend) return null;
-//     return (
-//       <li key={idx}>
-//         <Link to={`/profile/${friend.id}`}>{friend.username}</Link>
-//         <Button
-//           onClick={() =>
-//             updateRelationship(item.senderId, auth.id, 'accept')
-//           }
-//         >
-//           Accept
-//         </Button>
-//         <Button
-//           onClick={() =>
-//             updateRelationship(item.senderId, auth.id, 'decline')
-//           }
-//         >
-//           Decline
-//         </Button>
-//       </li>
-//     );
-//   })}
-// </ul>
-//     </div>
-//   );
-// };
 
 const mapState = ({ auth, users, relationships }) => {
   return {
