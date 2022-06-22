@@ -74,7 +74,7 @@ class Posts extends React.Component {
         />
         <Button
           onClick={() => {
-            setFilter('');
+            this.setState({filter:''});
           }}
         >
           Reset

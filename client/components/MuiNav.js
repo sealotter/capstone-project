@@ -88,7 +88,7 @@ function MuiNav(props) {
             <AppBar
               elevation={0}
               position="sticky"
-              style={{ background: '#1876f2', marginTop: '25px' }}
+              style={{ background: '#1876f2' }}
             >
               <Typography className={classes.title} variant="h6" noWrap>
                 Watch Party

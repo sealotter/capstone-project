@@ -31,7 +31,7 @@ const Home = (props) => {
         <Post friendsId={friendsId} />
       </div>
       <div className="right">
-        <AccSuggest />
+        <AccSuggest id={id}/>
       </div>
     </div>
   );

@@ -6,10 +6,16 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { HighestRated, OwnTopRated, Trending } from './Suggestions';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
+    display: 'flex',
+    flexDirection:'column',
+    marginTop:'25px'
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
@@ -17,39 +23,37 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AccSuggest() {
+export default function AccSuggest(props) {
   const classes = useStyles();
+  const {id} = props
 
   return (
+
     <div className={classes.root}>
-      <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography className={classes.heading}>Trending</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
+      <div className='sidebarcontainer'>
+        <Card className={classes.root}>
+          <CardContent>
+            <h2>Favorites</h2>
+            <OwnTopRated id = {id}/>
+          </CardContent>
+        </Card>
+      </div>
+      <div className='sidebarcontainer'>
+        <Card className={classes.root}>
+          <CardContent>
+            <h2>Trending</h2>
             <Trending />
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2a-content"
-          id="panel2a-header"
-        >
-          <Typography className={classes.heading}>Top Rated</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
+          </CardContent>
+        </Card>
+      </div>
+      <div className='sidebarcontainer'>
+        <Card className={classes.root}>
+          <CardContent>
+            <h2>Top Rated</h2>
             <HighestRated />
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }

@@ -5,7 +5,7 @@ import { Avatar, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import Post from './Post';
 import { HighestRated, OwnTopRated, Trending } from './Suggestions';
-import FavoriteMedia from './FavoriteMedia';
+import AccSuggest from './AccSuggest';
 
 const Profile = (props) => {
   const {
@@ -42,7 +42,7 @@ const Profile = (props) => {
       {user?.id === auth.id ? (
         <div className="profilePage">
           <div className="center">
-            <div className="wallpaper">
+            <div className="wallpaper" >
               <img
                 className="wallpapercontent"
                 src={
@@ -82,13 +82,13 @@ const Profile = (props) => {
             <Post id={id} />
           </div>
           <div>
-            <FavoriteMedia />
+            <AccSuggest />
           </div>
         </div>
       ) : (
         <div className="profilePage">
           <div className="center">
-            <div>
+            <div className="wallpaper">
               <img
                 className="wallpapercontent"
                 src={
@@ -128,7 +128,9 @@ const Profile = (props) => {
 
             <Post id={id} />
           </div>
-          <FavoriteMedia id = {id} />
+          <div style={{flexBasis:'25%'}}>
+            <AccSuggest id = {id} />
+          </div>
         </div>
       )}
     </>
