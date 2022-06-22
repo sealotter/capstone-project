@@ -66,7 +66,7 @@ class Routes extends Component {
                     <Route path="/profile/:id" component={Profile} />
                     <Route path="/profile" exact component={Profile} />
                     <Route path="/friendrequests" component={FriendRequests} />
-                    <Route path="/friendsList" component={FriendsList} />
+                    <Route path="/friendsList/:id" component={FriendsList} />
                     <Route path="/media" exact component={Media} />
                     <Route path="/movie/:id" component={SingleMedia} />
                     <Route path="/tv/:id" component={SingleMedia} />
@@ -78,7 +78,6 @@ class Routes extends Component {
                     />
                     <Route path="/chat" component={Chat} />
                     <Route path="/updateProfile" component={ProfileUpdate} />
-                    <Route path="/test" component={AccSuggest} />
 
                     <Redirect to="/home" />
                   </Switch>

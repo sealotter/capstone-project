@@ -53,8 +53,7 @@ class WatchList extends React.Component {
                             <Button className='remove' onClick={() => destroy(list)}>Remove Movie </Button>
                         </div> 
 
-                    </div>
-                
+                    </div>   
                 
                     )
         
