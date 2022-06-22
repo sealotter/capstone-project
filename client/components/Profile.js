@@ -58,8 +58,9 @@ const Profile = (props) => {
                     src={auth.avatarUrl}
                   />
                 }
-              </div>
+             
               <div>{auth.username}</div>
+              </div>
             </div>
             <div className="profileInfo">
              

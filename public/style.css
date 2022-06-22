@@ -30,19 +30,22 @@ body {
 h1 {
   font-size: 3.5rem;
   margin: 0 0 2rem 0;
-  font-weight: 900;
+  font-weight: lighter;
 }
 
 h2 {
   font-size: 2.25rem;
-  font-weight: 900;
+  font-weight: lighter;
+
 }
 
 h3 {
   font-size: 1rem;
-  font-weight: 900;
+  font-weight: lighter;
   margin-top: 0;
 }
+
+/*landing page*/
 
 .hero .section-container {
   margin-right: 0;
@@ -208,6 +211,8 @@ nav a {
   color: white;
 }
 
+/*   post   */
+
 .postBox {
   padding-bottom: 10px;
   border: 0.5px solid grey;
@@ -313,7 +318,7 @@ nav a {
 }
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700');
-
+/*  chat */
 .joinChatContainer {
   display: flex;
   flex-direction: column;
@@ -491,6 +496,8 @@ nav a {
   opacity: 0 !important;
 }
 
+/* profile > update profile */
+
 .updateProfile {
   padding-top: 2rem;
 }
@@ -529,13 +536,20 @@ nav a {
   border-radius: 0 !important;
 } */
 
+/*  nav   */ 
+
 .mainNav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #1876f2;
+  /* background: #1876f2; */
   padding: 5px 5%;
   height: 60px;
+  background: linear-gradient(to bottom, rgba(#FFFFFF, 1) 10%, rgba(#BFBFBF, 0.20) 50%),
+  linear-gradient(to top, rgba(#000000, 0.12) 0%, rgba(#E7E7E7, 0.14) 50%), #F5F5F5;
+  box-shadow: 0 4px 11px rgba(0, 0, 0, 0.5),
+  0 -4px 4px rgba(0, 0, 0, 1), /*top back shadow needed*/
+  inset 0 -7px 150px rgba(0, 0, 0, 0.05); 
   /* position: fixed;
   width: 90%;
   z-index: 1; */
@@ -583,7 +597,7 @@ nav a {
 }
 
 
-/*  profile */
+/*  profile page */
 
 .profilePage {
   display: flex;
@@ -626,6 +640,9 @@ nav a {
   display: flex;
   flex-direction: column;
 }
+
+
+/* single media */ 
 
 .singlemediacontainer {
   display: flex;
@@ -704,6 +721,8 @@ nav a {
   justify-content: center;
 }
 
+/*home  2 */
+
 .profileInfo {
   padding: 15px;
 }
@@ -729,9 +748,7 @@ nav a {
 
 
 /*watchlist styles*/
-.GradeSharpIcon {
-  color: red
-}
+
 
 
 .watch-card {
@@ -789,3 +806,18 @@ nav a {
 .sidebarcontainer{
   margin-bottom: 25px;
 }
+
+/*media list main */
+.media-list {
+  /* background-color: red; */
+  /* padding: 1.5px; */
+  display: flex;
+  border-radius: 5px;
+  height:400px;
+  min-width:275px;
+  margin: 10px;
+  background: linear-gradient(to bottom, rgba(255,255,255, 0.75) 2%, rgba(255,255,255, 0.5) 50%),
+  linear-gradient(to top, rgba(#000000, 0.25) 0%, rgba(216,216,216, 0.55) 50%), #ceebff; /*linear-gradient(to bottom, rgba(255,255,255,0.94) 0%, rgba(255,255,255, 0.5) 50%), #91ABCE;*/
+  box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+}
+
