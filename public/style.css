@@ -253,9 +253,9 @@ nav a {
   padding: 0.2rem;
 }
 
-.postnotcomment {
+/* .postnotcomment {
   /* margin-bottom: 35px; */
-}
+/* }  */
 
 .postoutline {
   width: 50%;
@@ -400,22 +400,23 @@ nav a {
   height: auto;
   padding: 10px;
   display: flex;
+  font-size: 20px;
 }
 
 .chat-window .chat-body .message .message-content {
   width: auto;
   height: auto;
   min-height: 40px;
-  max-width: 120px;
+  max-width: 300px;
   background-color: #43a047;
-  border-radius: 5px;
+  border-radius: 15px;
   color: white;
   display: flex;
   align-items: center;
   margin-right: 5px;
   margin-left: 5px;
-  padding-right: 5px;
-  padding-left: 5px;
+  padding-right: 8px;
+  padding-left: 8px;
   overflow-wrap: break-word;
   word-break: break-word;
 }
@@ -492,6 +493,11 @@ nav a {
 .chat-window .chat-footer button:hover {
   color: #43a047;
 }
+
+.greenButton{
+  color: #43a047 !important
+}
+
 .hide {
   opacity: 0 !important;
 }
@@ -616,19 +622,15 @@ nav a {
   object-position: center;
 }
 
-.right {
-  justify-content: flex-end;
-}
-
 .center {
-  flex-basis: 75%;
+  flex-basis: 80%;
 }
 
 
 /* home page */
 
 .homeposts {
-  flex-basis: 75%;
+  flex-basis: 80%;
 }
 
 .suggestedPoster {
@@ -805,6 +807,7 @@ nav a {
 
 .sidebarcontainer{
   margin-bottom: 25px;
+
 }
 
 /*media list main */
@@ -819,5 +822,9 @@ nav a {
   background: linear-gradient(to bottom, rgba(255,255,255, 0.75) 2%, rgba(255,255,255, 0.5) 50%),
   linear-gradient(to top, rgba(#000000, 0.25) 0%, rgba(216,216,216, 0.55) 50%), #ceebff; /*linear-gradient(to bottom, rgba(255,255,255,0.94) 0%, rgba(255,255,255, 0.5) 50%), #91ABCE;*/
   box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+
+
+
+  width:20vw
 }
 
