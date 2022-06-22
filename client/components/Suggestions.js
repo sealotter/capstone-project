@@ -21,7 +21,7 @@ const _HighestRated = (props) => {
 
   return (
     <div>
-      The highest rated movies:
+      {/* The highest rated movies: */}
         {threeHighest.map((media) => {
           return (
             <Card key={media.id} className="suggestionList">
@@ -32,7 +32,7 @@ const _HighestRated = (props) => {
                     className="suggestedPoster"
                   ></img>
                 </Link>
-                {media.title}
+                {/* {media.title} */}
               </CardContent>
             </Card>
           );

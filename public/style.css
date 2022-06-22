@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  /* color: #630606 */
 }
 
 :root {
@@ -31,11 +32,13 @@ h1 {
   font-size: 3.5rem;
   margin: 0 0 2rem 0;
   font-weight: lighter;
+  color: #630606;
 }
 
 h2 {
   font-size: 2.25rem;
   font-weight: lighter;
+  color: #630606;
 
 }
 
@@ -43,6 +46,7 @@ h3 {
   font-size: 1rem;
   font-weight: lighter;
   margin-top: 0;
+  color: #630606;
 }
 
 /*landing page*/
@@ -542,7 +546,17 @@ nav a {
   border-radius: 0 !important;
 } */
 
-/*  nav   */ 
+/*  NAV   */ 
+
+.mainBar {
+  /* background-color: white;
+  background: linear-gradient(to bottom, rgba(#FFFFFF, 1) 10%, rgba(#BFBFBF, 0.20) 50%),
+  linear-gradient(to top, rgba(#000000, 0.12) 0%, rgba(#E7E7E7, 0.14) 50%), #F5F5F5;
+  box-shadow: 0 4px 11px rgba(0, 0, 0, 0.5),
+  0 -4px 4px rgba(0, 0, 0, 1), /*top back shadow needed*/
+  /* inset 0 -7px 150px rgba(0, 0, 0, 0.05);  */ 
+
+}
 
 .mainNav {
   display: flex;
@@ -551,11 +565,16 @@ nav a {
   /* background: #1876f2; */
   padding: 5px 5%;
   height: 60px;
-  background: linear-gradient(to bottom, rgba(#FFFFFF, 1) 10%, rgba(#BFBFBF, 0.20) 50%),
-  linear-gradient(to top, rgba(#000000, 0.12) 0%, rgba(#E7E7E7, 0.14) 50%), #F5F5F5;
-  box-shadow: 0 4px 11px rgba(0, 0, 0, 0.5),
-  0 -4px 4px rgba(0, 0, 0, 1), /*top back shadow needed*/
-  inset 0 -7px 150px rgba(0, 0, 0, 0.05); 
+  /* background-color: white; */
+  /* box-shadow: 0 4px 11px rgba(0, 0, 0, 0.5),
+  0 -4px 4px rgba(0, 0, 0, 1), /*top back shadow needed
+  inset 0 -7px 150px rgba(0, 0, 0, 0.05);  */
+  background-color: rgb(253 251 251);
+
+  /* background: #f7f7f7; */
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 2px 1px -1px rgb(0,0,0,0.2), 0px 1px 0px rgb(0,0,0,0.14), 0px 1px 3px 0px rgb(0,0,0,0.12); */
+
   /* position: fixed;
   width: 90%;
   z-index: 1; */
@@ -577,12 +596,13 @@ nav a {
 }
 
 .muiNav {
+  
   /* position: fixed;
   z-index: 1; */
 }
 
 .logo {
-  width: 100px;
+  width: 90px;
   margin-right: 45px;
 }
 

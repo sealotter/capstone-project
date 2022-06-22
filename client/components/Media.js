@@ -17,11 +17,13 @@ const useStyles = (theme) => ({
     justifyContent: 'space-around',
     overflow: 'hidden',
     // backgroundColor: theme.palette.background.paper,
-    backgroundColor: '#F5F5F5'
+    backgroundColor: '#F5F5F5',
+    
   },
   imageList: {
     height:'100%',
-    width: '100%'
+    width: '100%',
+    justifyContent: 'center'
   },
   icon: {
     color: 'rgba(255, 255, 255, 0.54)',
