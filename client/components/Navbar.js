@@ -9,31 +9,35 @@ import MovieIcon from '@material-ui/icons/Movie';
 import MessageIcon from '@material-ui/icons/Message';
 
 const Navbar = ({ handleClick, isLoggedIn, auth }) => (
-  <div>
+  <div className='mainBar'>
     <nav className="mainNav">
       {isLoggedIn ? (
         <>
           <div className="nav-left">
+            {/* <Link to="/media"> */}
             <img src="/../images/movie logo.png" className="logo" />
+            {/* </Link> */}
+            
+
             {/* The navbar will show these links after you log in */}
             <Link to="/home">
-              <HomeIcon />
+              <HomeIcon style={{fill: '#630606'}} />
             </Link>
             <Link to="/users">
-              <PeopleIcon />
+              <PeopleIcon style={{fill: '#630606'}}/>
             </Link>
             <Link to="/media">
-              <MovieIcon />
+              <MovieIcon style={{fill: '#630606'}} />
             </Link>
             <Link to="/chat">
-              <MessageIcon />
+              <MessageIcon  style={{fill: '#630606'}}/>
             </Link>
             {/* <Link to='/friendslist'>Friends List</Link>
             <Link to ='/watchlist'>Watch List</Link> */}
           </div>
           <div className="nav-right">
             <Link to={`/profile/${auth?.id}`} className="online">
-              {auth ? <Avatar src={auth.avatarUrl} /> : <Avatar />}{' '}
+              {auth ? <Avatar src={auth.avatarUrl} style={{fill: '#630606'}}/> : <Avatar />}{' '}
               {auth.username}
             </Link>
             <a href="#" onClick={handleClick}>
@@ -49,7 +53,7 @@ const Navbar = ({ handleClick, isLoggedIn, auth }) => (
         </div>
       )}
     </nav>
-    <hr />
+    
   </div>
 );
 

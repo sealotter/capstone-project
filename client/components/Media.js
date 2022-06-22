@@ -16,11 +16,14 @@ const useStyles = (theme) => ({
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     overflow: 'hidden',
-    backgroundColor: theme.palette.background.paper,
+    // backgroundColor: theme.palette.background.paper,
+    backgroundColor: '#F5F5F5',
+    
   },
   imageList: {
     height:'100%',
-    width: '100%'
+    width: '100%',
+    justifyContent: 'center'
   },
   icon: {
     color: 'rgba(255, 255, 255, 0.54)',
@@ -91,7 +94,7 @@ class Media extends React.Component{
           <MultipleSelect genres={this.state.genres} media={this.state.media} nameSearch={this.state.nameSearch} peopleSearch={this.state.peopleSearch} setNewGenres={this.setNewGenres} onChangeValue={this.handleGenreChange}/>
         </div>
         <div className={classes.root}>
-        <ImageList rowHeight={'auto'} gap={25} className={classes.imageList} >
+        <ImageList rowHeight={'auto'} gap={25} className={classes.imageList}>
           <ImageListItem key="Subheader" cols={5} style={{ height:'300' }}>
             <ListSubheader component="div">Total results:{media.total_results>10000?10000:media.total_results}
               <Pagination count={media.total_pages>500?500:media.total_pages} page={this.state.page} onChange={(ev, page) => {
@@ -101,9 +104,9 @@ class Media extends React.Component{
             </ListSubheader>
           </ImageListItem>
           {media.results?.map((item, idx) => (
-            <ImageListItem key={idx} style={{ flex:'0 1 10%', height:'400px', minWidth:'275px'}}>
+            <ImageListItem key={idx} className ='media-list' style={{ flex:'0 1 10%', padding: '2.5px'}}>
               <Link to={`/${this.state.media}/${item.id}`}>
-                <img src={item.poster_path?`https://image.tmdb.org/t/p/w300/${item.poster_path}`:'https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png'} alt={item.title} style={{ height:'100%', border:"1px solid black", maxWidth:'100%', maxHeight:'100%'}}/>
+                <img src={item.poster_path?`https://image.tmdb.org/t/p/w300/${item.poster_path}`:'https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png'} alt={item.title} style={{ height:'100%', borderRadius:'5px', maxWidth:'100%', maxHeight:'100%'}}/>
               </Link>
               <ImageListItemBar
                 title={item.title}
