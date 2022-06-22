@@ -579,6 +579,9 @@ nav a {
   right: -12px;
 }
 
+
+/*  profile */
+
 .profilePage {
   display: flex;
 }
@@ -603,6 +606,9 @@ nav a {
 .center {
   flex-basis: 75%;
 }
+
+
+/* home page */
 
 .homeposts {
   flex-basis: 75%;
@@ -731,13 +737,6 @@ nav a {
   padding: 50px;
   justify-content: center;
  
-
-  
-
- 
-
-
- 
 }
 
 .rating {
@@ -770,6 +769,9 @@ nav a {
   background-color: gray;
   margin-top: 15px;
 }
+
+
+/* profile*/
 
 
 
