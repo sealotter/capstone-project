@@ -12,14 +12,12 @@ import { connect } from 'react-redux';
 import { Avatar } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
- 
   // grow: {
   //   flexGrow: 1,
   // },
 
   menuButton: {
     marginRight: theme.spacing(2),
-    
   },
   title: {
     display: 'none',
@@ -29,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     margin: '20px',
     fontSize: '2rem',
-    color: '#630606'
+    color: '#630606',
   },
   options: {
     marginTop: '25px',
@@ -85,17 +83,22 @@ function MuiNav(props) {
 
   return (
     // <div className='fixed'>
-    <div className='contents'>
+    <div className="contents">
       {auth.id ? (
         <div display="flex" flexdirection="row" className="muiNav">
           <div flexgrow={0}>
             <AppBar
               elevation={0}
               position="sticky"
-              style={{ background: 'rgb(253 251 251)',
-                boxShadow: '0 5px 15px rgba(0, 0, 0, 0.1)', marginTop: '50px', marginLeft: '20px'}}>
+              style={{
+                background: 'rgb(253 251 251)',
+                boxShadow: '0 5px 15px rgba(0, 0, 0, 0.1)',
+                marginTop: '50px',
+                marginLeft: '20px',
+              }}
+            >
               <Typography className={classes.title} variant="h6" noWrap>
-                Watch Party
+                Daja View
               </Typography>
               <div className={classes.search}>
                 <div className={classes.searchIcon}>
@@ -113,7 +116,10 @@ function MuiNav(props) {
 
               <Button>
                 <Link className={classes.options} to={`/profile/${auth?.id}`}>
-                  {auth ? <Avatar src={auth.avatarUrl} style={{fill: '#630606'}}/> : null} Profile{' '}
+                  {auth ? (
+                    <Avatar src={auth.avatarUrl} style={{ fill: '#630606' }} />
+                  ) : null}{' '}
+                  Profile{' '}
                 </Link>
               </Button>
 
@@ -123,7 +129,10 @@ function MuiNav(props) {
                 </Link>
               </Button>
               <Button>
-                <Link className={classes.options} to="/friendslist">
+                <Link
+                  className={classes.options}
+                  to={`/friendsList/${auth.id}`}
+                >
                   Friends List
                 </Link>
               </Button>
