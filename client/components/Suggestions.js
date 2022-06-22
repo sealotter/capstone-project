@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 
 import auth from '../store/auth';
 
@@ -20,21 +22,21 @@ const _HighestRated = (props) => {
   return (
     <div>
       The highest rated movies:
-      <ul>
         {threeHighest.map((media) => {
           return (
-            <li key={media.id} className="suggestionList">
-              <Link to={`/${media.medium}/${media.apiId}`}>
-                <img
-                  src={`https://image.tmdb.org/t/p/w300/${media.poster_path}`}
-                  className="suggestedPoster"
-                ></img>
-              </Link>
-              {media.title}
-            </li>
+            <Card key={media.id} className="suggestionList">
+              <CardContent>
+                <Link to={`/${media.medium}/${media.apiId}`}>
+                  <img
+                    src={`https://image.tmdb.org/t/p/w300/${media.poster_path}`}
+                    className="suggestedPoster"
+                  ></img>
+                </Link>
+                {media.title}
+              </CardContent>
+            </Card>
           );
         })}
-      </ul>
     </div>
   );
 };
