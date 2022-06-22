@@ -16,6 +16,7 @@ body {
   font-size: 100%;
   font-size: 16px;
   line-height: 1.5;
+  background: #F5F5F5
 }
 
 .landingpage {
@@ -212,6 +213,7 @@ nav a {
   border: 0.5px solid grey;
   margin: auto;
   border-radius: 30px;
+  background-color: white;
 }
 
 .postBoxMain {
@@ -265,6 +267,7 @@ nav a {
   flex-direction: column;
   border: 1px solid grey;
   border-radius: 30px;
+  background:white;
   width: 100%;
   margin: auto;
 }
@@ -783,3 +786,6 @@ nav a {
   align-content: center;
 }
 
+.sidebarcontainer{
+  margin-bottom: 25px;
+}
