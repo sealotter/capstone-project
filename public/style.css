@@ -395,22 +395,23 @@ nav a {
   height: auto;
   padding: 10px;
   display: flex;
+  font-size: 20px;
 }
 
 .chat-window .chat-body .message .message-content {
   width: auto;
   height: auto;
   min-height: 40px;
-  max-width: 120px;
+  max-width: 300px;
   background-color: #43a047;
-  border-radius: 5px;
+  border-radius: 15px;
   color: white;
   display: flex;
   align-items: center;
   margin-right: 5px;
   margin-left: 5px;
-  padding-right: 5px;
-  padding-left: 5px;
+  padding-right: 8px;
+  padding-left: 8px;
   overflow-wrap: break-word;
   word-break: break-word;
 }
@@ -487,6 +488,11 @@ nav a {
 .chat-window .chat-footer button:hover {
   color: #43a047;
 }
+
+.greenButton{
+  color: #43a047 !important
+}
+
 .hide {
   opacity: 0 !important;
 }
@@ -599,16 +605,12 @@ nav a {
   object-position: center;
 }
 
-.right {
-  justify-content: flex-end;
-}
-
 .center {
-  flex-basis: 75%;
+  flex-basis: 80%;
 }
 
 .homeposts {
-  flex-basis: 75%;
+  flex-basis: 80%;
 }
 
 .suggestedPoster {
@@ -786,4 +788,5 @@ nav a {
 
 .sidebarcontainer{
   margin-bottom: 25px;
+  width:20vw
 }

@@ -80,7 +80,7 @@ const Chatroom = ({socket, username, room, otherUser, chats, updateChat, auth})=
         </div>
         <div className='chat-footer'>
           <input type='text' placeholder='Enter a message...' value={currentMessage} onChange={(ev)=>setCurrentMessage(ev.target.value)} onKeyPress={(ev)=>{ev.key ==='Enter' && sendMessage()}}></input>
-          <button onClick={sendMessage}>&#9658;</button>
+          <button onClick={sendMessage} className={currentMessage !== ''?'greenButton':null}>&#9658;</button>
         </div>
       </div>
     </>
