@@ -248,13 +248,45 @@ nav a {
 }
 
 .postBox_button {
-  background-color: cornflowerblue !important;
-  color: white !important;
-  border-radius: 30px !important;
+  background-color: #630606;
+  color: white;
+  border-radius: 30px;
   display: flex;
   flex-direction: column;
-  margin-left: 80px !important;
-  width: 75px;
+  margin-left: 240px;
+  width: 100px;
+  align-items: center;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.postBox_button:hover {
+  box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.2);
+}
+
+.postBox_button:active {
+  opacity: 0.8;
+}
+
+.close_button {
+  background-color: #630606;
+  color: white;
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 30px;
+  width: 90px;
+  font-weight: bold;
+  margin-left: 245px;
+  margin-top: 8px;
+  cursor: pointer;
+  border: none;
+}
+.close_button:hover {
+  box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.2);
+}
+
+.close_button:active {
+  opacity: 0.8;
 }
 
 .postOut {
@@ -300,16 +332,16 @@ nav a {
   margin-top: 2px;
 }
 
-.post_header{
-  width:100%
+.post_header {
+  width: 100%;
 }
 
 .post_headerDesc {
   margin-bottom: 10px;
   font-size: 15px;
   margin-left: 10px;
-  margin-top:10px;
-  padding:10px
+  margin-top: 10px;
+  padding: 10px;
 }
 
 .post_headerText > h3 {
@@ -319,8 +351,8 @@ nav a {
   align-items: center;
 }
 
-.post_headerText > h3 div{
-  margin-left:10px
+.post_headerText > h3 div {
+  margin-left: 10px;
 }
 
 .postDetail {
@@ -592,7 +624,7 @@ nav a {
   /* background: #f7f7f7; */
 
   /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); */
-  box-shadow: 0 0 15px 2px rgb(0,0,0,0.1);
+  box-shadow: 0 0 15px 2px rgb(0, 0, 0, 0.1);
 
   /* box-shadow: 0 2px 1px -1px rgb(0,0,0,0.2), 0px 1px 0px rgb(0,0,0,0.14), 0px 1px 3px 0px rgb(0,0,0,0.12); */
 
@@ -680,8 +712,7 @@ nav a {
   width: 100%;
   border: 2px solid white;
   border-radius: 5px;
-  box-shadow: 0 3px 10px rgb(0 0 0 / 50%)
-  ;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 50%);
 }
 
 .suggestionList {
@@ -781,7 +812,6 @@ nav a {
 }
 
 .post {
-
 }
 
 .commentsbox {
@@ -869,7 +899,7 @@ nav a {
       rgba(#000000, 0.25) 0%,
       rgba(216, 216, 216, 0.55) 50%
     ),
-    #ceebff; 
+    #ceebff;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
 
   width: 20vw;
@@ -885,16 +915,16 @@ nav a {
   background-color: white;
 }
 
-.MuiSnackbarContent-root{
+.MuiSnackbarContent-root {
   min-width: 150px !important;
   background-color: white !important;
-  border:1px solid #630606 !important;
+  border: 1px solid #630606 !important;
   color: #630606 !important;
-  font-weight: 500 !important
+  font-weight: 500 !important;
 }
 
-.postImg{
-  height:300px;
+.postImg {
+  height: 300px;
   background: linear-gradient(
       to bottom,
       rgba(255, 255, 255, 0.75) 2%,
@@ -905,15 +935,25 @@ nav a {
       rgba(#000000, 0.25) 0%,
       rgba(216, 216, 216, 0.55) 50%
     ),
-    #ceebff; 
+    #ceebff;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
 }
 
-.movierating{
-  display:flex;
+.movierating {
+  display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 
+.fr_card {
+  margin: 18px;
+  font-size: 18px;
+  width: 65%;
+}
 
+.fl_acc {
+  margin: 18px;
+  font-size: 24px;
+  width: 65%;
+}
