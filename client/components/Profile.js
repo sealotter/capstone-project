@@ -85,7 +85,7 @@ const Profile = (props) => {
             <Post id={id} />
           </div>
           <div>
-            <AccSuggest />
+            <AccSuggest id={id} auth={auth}/>
           </div>
         </div>
       ) : (

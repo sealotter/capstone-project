@@ -19,11 +19,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AccSuggest(props) {
   const classes = useStyles();
-  const {id} = props
+  const {id, auth} = props
 
   return (
-
     <div className={classes.root}>
+      {id && auth?.id === id*1?
       <div className='sidebarcontainer'>
         <Card className={classes.root}>
           <CardContent>
@@ -31,7 +31,7 @@ export default function AccSuggest(props) {
             <FriendRecs/>
           </CardContent>
         </Card>
-      </div>
+      </div>: null}
       <div className='sidebarcontainer'>
         <Card className={classes.root}>
           <CardContent>
