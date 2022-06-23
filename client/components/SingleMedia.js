@@ -200,7 +200,7 @@ class SingleMedia extends React.Component {
                       }}
                     />
                   </div>
-                  <MultilineTextFields handleSubmit={updatePostContent} postId={myRating.id}/>
+                  <MultilineTextFields handleSubmitValue={updatePostContent} postId={myRating.id}/>
                   </>
                   :
                   <div>

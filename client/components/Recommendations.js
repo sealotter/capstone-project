@@ -6,6 +6,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
+import PositionedSnackbar from './Snackbar'
 
 const Recommendations = (props) => {
   const [friendState, setFriendState] = React.useState(null);
@@ -21,14 +22,16 @@ const Recommendations = (props) => {
       })
     : null;
 
+    const onSubmit=(ev) => {
+      ev.preventDefault();
+      if(friendState) sendRec(friendState, auth?.id, media?.id);
+    }
+
   return (
+
     <div className='recommendtofriend'>
       <FormControl
-        onSubmit={(ev) => {
-          ev.preventDefault();
-
-          sendRec(friendState, auth?.id, media?.id);
-        }}
+        onSubmit={onSubmit}
         style={{width:'200px'}}
       >
         <InputLabel id="recommend a friend">Recommend to a friend!</InputLabel>
@@ -54,7 +57,7 @@ const Recommendations = (props) => {
             );
           })}
         </Select>
-        <Button> Recommend</Button>
+        <PositionedSnackbar handleParentClick={onSubmit} parentState={friendState} type={'recommendation'}/>
       </FormControl>
     </div>
   );

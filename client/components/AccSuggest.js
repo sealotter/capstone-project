@@ -8,8 +8,8 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
     display: 'flex',
-    flexDirection: 'column',
-    marginTop: '25px',
+    flexDirection:'column',
+    marginTop:'25px'
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
@@ -19,19 +19,20 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AccSuggest(props) {
   const classes = useStyles();
-  const { id } = props;
+  const {id} = props
 
   return (
+
     <div className={classes.root}>
-      <div className="sidebarcontainer">
+      <div className='sidebarcontainer'>
         <Card className={classes.root}>
           <CardContent>
             <h2>Favorites</h2>
-            <OwnTopRated id={id} />
+            <OwnTopRated id = {id}/>
           </CardContent>
         </Card>
       </div>
-      <div className="sidebarcontainer">
+      <div className='sidebarcontainer'>
         <Card className={classes.root}>
           <CardContent>
             <h2>Trending</h2>
@@ -39,7 +40,7 @@ export default function AccSuggest(props) {
           </CardContent>
         </Card>
       </div>
-      <div className="sidebarcontainer">
+      <div className='sidebarcontainer'>
         <Card className={classes.root}>
           <CardContent>
             <h2>Top Rated</h2>
