@@ -77,7 +77,7 @@ const Profile = (props) => {
                   )}
                 </div>
                 <div>
-                  <Link to="/friendrequests">Friend Requests</Link>
+                  <Link to={`/friendrequests/${user.id}`}>Friend Requests</Link>
                 </div>
               </div>
             </div>
@@ -85,7 +85,7 @@ const Profile = (props) => {
             <Post id={id} />
           </div>
           <div>
-            <AccSuggest id={id} auth={auth}/>
+            <AccSuggest id={id} auth={auth} />
           </div>
         </div>
       ) : (
