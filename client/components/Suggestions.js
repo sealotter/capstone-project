@@ -139,7 +139,6 @@ const _FriendRecs = (props) => {
     <div>
       <ul>
         {viewableRecs.map((rec, idx) => {
-          console.log(rec)
           return (
             <li key={idx} className="suggestionList">
               Recommended by {rec.friend.username}:

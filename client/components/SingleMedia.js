@@ -44,7 +44,7 @@ class SingleMedia extends React.Component {
         path,
       }, lists, media
     } = this.props;
-    console.log(id, media.id, prevProps.media.id)
+
     const type =
       path.slice(1, 6) === 'movie' ? path.slice(1, 6) : path.slice(1, 3);
     if (this.props.media.results) findSingleMedia({ id, media: type });
