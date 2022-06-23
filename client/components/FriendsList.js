@@ -17,7 +17,10 @@ const useStyles = makeStyles((theme) => ({
     width: '75%',
     marginTop: '50px',
     marginLeft: '15px',
-    // display: 'flex',
+    display: 'flex',
+    margin: '0 auto',
+    justifyContent: 'center',
+    width: '90%'
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
@@ -56,8 +59,8 @@ const FriendsList = ({
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <div>
+    <div className={classes.root} style={{margin: '0 auto', marginTop: '50px'}}>
+      <div style={{width: '50%'}}>
         <Accordion>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
@@ -170,7 +173,7 @@ const FriendsList = ({
         </Accordion>
       </div>
 
-      <div>
+      <div style={{position: 'fixed', right: '90px', width: '15%', overflow: 'scroll', height: '90%', marginTop: '-50px'}}>
         <AccSuggest />
       </div>
     </div>
