@@ -81,7 +81,7 @@ const FriendsList = ({
                   return (
                     <li key={idx}>
                       <Link to={`/profile/${friend.id}`}>
-                        <Avatar src={friend.avatarUrl} />
+                        <Avatar src={friend.avatarUrl} style={{backgroundColor:'linear-gradient(to right, #BF953F, #f7f1b1)'}}/>
                         {friend.username}
                       </Link>
                     </li>

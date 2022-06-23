@@ -34,7 +34,7 @@ const _HighestRated = (props) => {
                   ></img>
                 </Link>
                 <br/>
-                {media.title}
+                {/* {media.title} */}
               </CardContent>
             </Card>
           );
@@ -77,7 +77,7 @@ const _OwnTopRated = (props) => {
                   className="suggestedPoster"
                 ></img>
               </Link>
-              {media.title}
+              {/* {media.title} */}
             </li>
           );
         })}
@@ -109,7 +109,7 @@ const _Trending = (props) => {
                   className="suggestedPoster"
                 ></img>
               </Link>
-              {media.title}
+              {/* {media.title} */}
             </li>
           );
         })}

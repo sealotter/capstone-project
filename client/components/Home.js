@@ -30,7 +30,7 @@ const Home = (props) => {
         </div>
         <Post friendsId={friendsId} />
       </div>
-      <div className="right">
+      <div className="right" style={{position: 'fixed', right: '90px', width: '15%', overflow: 'scroll', height: '90%'}}>
         <AccSuggest id={id}/>
       </div>
     </div>

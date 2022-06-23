@@ -83,7 +83,7 @@ function MuiNav(props) {
 
   return (
     // <div className='fixed'>
-    <div className="contents">
+    <div className="contents" style={{position: 'fixed'}}>
       {auth.id ? (
         <div display="flex" flexdirection="row" className="muiNav">
           <div flexgrow={0}>
@@ -94,15 +94,17 @@ function MuiNav(props) {
                 background: 'rgb(253 251 251)',
                 boxShadow: '0 5px 15px rgba(0, 0, 0, 0.1)',
                 marginTop: '50px',
-                marginLeft: '20px',
+                marginLeft: '90px',
+                paddingBottom: '10px',
+                borderRadius: '5px'
               }}
             >
-              <Typography className={classes.title} variant="h6" noWrap>
-                Daja View
+              <Typography className={classes.title} variant="h6" noWrap style={{ fontWeight: '300', fontFamily: 'BlinkMacSystemFont'}}>
+                <span style={{letterSpacing: '3px'}}>DAJA</span> View
               </Typography>
-              <div className={classes.search}>
+              <div className={classes.search} style={{alignSelf:'center'}}>
                 <div className={classes.searchIcon}>
-                  <SearchIcon />
+                  <SearchIcon style={{color: '#630606'}}/>
                 </div>
                 <InputBase
                   placeholder="Search…"
@@ -110,14 +112,15 @@ function MuiNav(props) {
                     root: classes.inputRoot,
                     input: classes.inputInput,
                   }}
-                  inputProps={{ 'aria-label': 'search' }}
+                  inputProps={{ 'aria-label': 'search' }} style= {{border: '1px solid #cbc3c3', borderRadius: '5px'}}
                 />
               </div>
+              <div className='sideNav-info' style={{display: 'flex', flexDirection: 'column'}}>
 
               <Button>
                 <Link className={classes.options} to={`/profile/${auth?.id}`}>
                   {auth ? (
-                    <Avatar src={auth.avatarUrl} style={{ fill: '#630606' }} />
+                    <Avatar src={auth.avatarUrl} style={{ backgroundColor:'linear-gradient(to right, #BF953F, #f7f1b1)', margin: '0 auto 5px' }} />
                   ) : null}{' '}
                   Profile{' '}
                 </Link>
@@ -142,6 +145,7 @@ function MuiNav(props) {
                   Update Profile
                 </Link>
               </Button>
+              </div>
             </AppBar>
           </div>
           {/* <div classname={classes.rightBar} justifyContent="flex-end">

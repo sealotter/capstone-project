@@ -4,10 +4,11 @@ import {Card, CardActions, CardContent, Button, Typography, Avatar, Grid, Contai
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { addFriend } from '../store/relationships';
+import AccSuggest from './AccSuggest';
 
 const useStyles = makeStyles({
   root: {
-    minWidth: 275,
+    // minWidth: 275,
     borderRadius:25
   },
   title: {
@@ -21,15 +22,15 @@ const useStyles = makeStyles({
     alignItems:'center',
   }, 
   root2: {
-    '& > *': {
-      width: '25ch',
-    },
+    // '& > *': {
+    //   width: '25ch',
+    // },
   },
 });
 
 function Users(props) {
   const classes = useStyles();
-  const { users, auth, relationships, addFriend } = props
+  const { users, auth, relationships, addFriend, id } = props
   
   const [filter, setFilter] = useState('')
   
@@ -42,11 +43,13 @@ function Users(props) {
   if(!users.length) return 'loading'
 
   return (
-    <Container style={{paddingTop:'50px'}}>
+  
+    <Container style={{paddingTop:'50px', width:'50%', margin: '0 auto'}}>
+      <h1 style={{textAlign: 'center'}}>Explore Users</h1>
       <TextField id="standard-basic" value={filter} label={`Search for people`} onChange={(ev)=> setFilter(ev.target.value)}/>
-      <Button className={classes.button} onClick={()=>{setFilter('')}}>Reset</Button>
+      <Button className={classes.button} onClick={()=>{setFilter('')}}>clear</Button>
       <br/>
-      <h1>Users:</h1>
+      
       <Grid container spacing={4} style={{paddingTop:'50px'}}>
         {searchUsers.map(user=>{
 
@@ -75,7 +78,13 @@ function Users(props) {
           )
         })}   
       </Grid>
+      
     </Container>
+    
+
+  
+    
+    
   );
 }
 

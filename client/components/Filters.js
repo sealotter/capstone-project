@@ -135,7 +135,7 @@ export function BasicSelects(props) {
   return (
     <div>
       <FormControl className={classes.formControl}>
-        <InputLabel>Media</InputLabel>
+        <InputLabel></InputLabel>
         <Select
           native
           value={state.media}

@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
   avatar: {
-    margin: theme.spacing(1),
+    margin: theme.spacing(1),    
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
@@ -67,7 +67,7 @@ export default function AuthForm(props) {
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
+          <Avatar className={classes.avatar} style={{backgroundColor:'linear-gradient(to right, #BF953F, #f7f1b1)'}}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
