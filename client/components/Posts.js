@@ -66,6 +66,7 @@ class Posts extends React.Component {
 
     return (
       <div display="flex" align-items="center">
+        <div className='filter-divider' style={{width:'50%', margin: '20px auto 50px', display:'flex', flexDirection:'column'}}>
         <TextField
           id="standard-basic"
           value={filter}
@@ -77,8 +78,9 @@ class Posts extends React.Component {
             this.setState({filter:''});
           }}
         >
-          Reset
+          Clear
         </Button>
+        </div>
         {(filter ? searchPosts : myPosts).map((post) => {
           const comments = [];
           const media = dbMedia.find((media) => media.id === post.mediaId);
@@ -140,7 +142,7 @@ class Posts extends React.Component {
                         <FavoriteIcon
                           fontSize="small"
                           onClick={() => {
-                            updatePostLikes(post.id, auth.username);
+                            updatePostLikes(post.id, auth.username)
                           }}
                         />
                       </Button>

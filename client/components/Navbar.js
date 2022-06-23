@@ -10,7 +10,7 @@ import MessageIcon from '@material-ui/icons/Message';
 
 const Navbar = ({ handleClick, isLoggedIn, auth }) => (
   <div className="mainBar">
-    <nav className="mainNav">
+    <nav className="mainNav" style={{paddingBottom: '7px'}}>
       {isLoggedIn ? (
         <>
           <div className="nav-left">
@@ -23,18 +23,18 @@ const Navbar = ({ handleClick, isLoggedIn, auth }) => (
               <HomeIcon
                 style={{
                   fill: '#630606',
-                  fontSize: '35px',
+                  fontSize: '27px',
                 }}
               />
             </Link>
             <Link to="/users" style={{ marginRight: '35px' }}>
-              <PeopleIcon style={{ fill: '#630606', fontSize: '35px' }} />
+              <PeopleIcon style={{ fill: '#630606', fontSize: '27px' }} />
             </Link>
             <Link to="/media" style={{ marginRight: '35px' }}>
-              <MovieIcon style={{ fill: '#630606', fontSize: '35px' }} />
+              <MovieIcon style={{ fill: '#630606', fontSize: '27px' }} />
             </Link>
             <Link to="/chat" style={{ marginRight: '35px' }}>
-              <MessageIcon style={{ fill: '#630606', fontSize: '35px' }} />
+              <MessageIcon style={{ fill: '#630606', fontSize: '27px' }} />
             </Link>
             {/* <Link to='/friendslist'>Friends List</Link>
             <Link to ='/watchlist'>Watch List</Link> */}

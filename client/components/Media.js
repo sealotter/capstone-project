@@ -18,6 +18,13 @@ const useStyles = (theme) => ({
     overflow: 'hidden',
     // backgroundColor: theme.palette.background.paper,
     backgroundColor: '#F5F5F5',
+    '& ul > li:not(:first-child):not(:last-child) > button:not(.Mui-selected)': {
+      margin : '0 auto'
+    }
+    // '& .Mui-selected' : {
+    //   margin: '0 auto'
+
+    // }
     
   },
   imageList: {
@@ -28,6 +35,8 @@ const useStyles = (theme) => ({
   icon: {
     color: 'rgba(255, 255, 255, 0.54)',
   }, 
+  
+ 
 });
 
 class Media extends React.Component{
@@ -87,20 +96,20 @@ class Media extends React.Component{
     return (
       <div>
         <h1 style={{textAlign:'center', marginTop:'25px'}}>Search media</h1>
-        <div style={{display:'flex', justifyContent:'space-around', alignItems:'center'}}>
-          <BasicSelects media={{movie:'Movies', tv:'TV Shows'}} onChangeValue={this.handleChangeValue}/>
+        <div style={{display:'flex', justifyContent:'space-around', alignItems:'center', backgroundColor: 'rgb(253 251 251)', width: '80%', margin: '0 auto'}}>
+          <BasicSelects media={{movie:'Movies', tv:'TV Shows'}} onChangeValue={this.handleChangeValue} style={{display:'none'}}/>
           <SearchBox onChangeValue={this.handleNameSearchChange} genres={this.state.with_genres} peopleSearch={this.state.peopleSearch} searchBy={'title'}/>
           {/* <SearchBox onChangeValue={this.handlePeopleSearchChange} genres={this.state.with_genres} nameSearch={this.state.nameSearch} peopleSearch={this.state.peopleSearch} media={this.state.media} searchBy={'people'}/> */}
           <MultipleSelect genres={this.state.genres} media={this.state.media} nameSearch={this.state.nameSearch} peopleSearch={this.state.peopleSearch} setNewGenres={this.setNewGenres} onChangeValue={this.handleGenreChange}/>
         </div>
-        <div className={classes.root}>
+        <div className={classes.root} style={{flexDirection:'column', width:'65%', alignItems:'center', margin:'0 auto'}}>
         <ImageList rowHeight={'auto'} gap={25} className={classes.imageList}>
           <ImageListItem key="Subheader" cols={5} style={{ height:'300' }}>
             <ListSubheader component="div">Total results:{media.total_results>10000?10000:media.total_results}
-              <Pagination count={media.total_pages>500?500:media.total_pages} page={this.state.page} onChange={(ev, page) => {
+              {/* <Pagination count={media.total_pages>500?500:media.total_pages} page={this.state.page} onChange={(ev, page) => {
                 this.setState({ page:page})
                 loadMedia({...this.state, page})}}
-              />
+              /> */}
             </ListSubheader>
           </ImageListItem>
           {media.results?.map((item, idx) => (
@@ -121,7 +130,12 @@ class Media extends React.Component{
               />
             </ImageListItem>
           ))}
+          
         </ImageList>
+        <Pagination count={media.total_pages>500?500:media.total_pages} page={this.state.page} onChange={(ev, page) => {
+                this.setState({ page:page})
+                loadMedia({...this.state, page})}}
+            style={{display:'flex', height:'200px', margin: '0 auto', alignSelf: 'center'}} size='large'   />
       </div>
       </div>
     );
