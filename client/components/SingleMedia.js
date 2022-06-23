@@ -102,7 +102,7 @@ class SingleMedia extends React.Component {
 
     return (
       <div>
-        <div style={{position:'absolute', background: 'whitesmoke', marginTop: '17px'}}>
+        <div style={{position:'absolute', background: 'whitesmoke', marginTop: '17px', width:'100%'}}>
        
         <h2 className='singlemediatitle' style={{position:'relative'}}>{media.title}</h2>
         <div className='singlemediacontainer'>
