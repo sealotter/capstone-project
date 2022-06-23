@@ -25,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
   heading: {
     fontSize: theme.typography.pxToRem(15),
     fontWeight: theme.typography.fontWeightRegular,
+    fontSize: '18px',
   },
 }));
 
@@ -61,7 +62,7 @@ const FriendsList = ({
   return (
     <div className={classes.root} style={{margin: '0 auto', marginTop: '50px'}}>
       <div style={{width: '50%'}}>
-        <Accordion>
+        <Accordion className="fl_acc">
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
@@ -84,7 +85,13 @@ const FriendsList = ({
                   return (
                     <li key={idx}>
                       <Link to={`/profile/${friend.id}`}>
-                        <Avatar src={friend.avatarUrl} style={{backgroundColor:'linear-gradient(to right, #BF953F, #f7f1b1)'}}/>
+                        <Avatar
+                          src={friend.avatarUrl}
+                          style={{
+                            backgroundColor:
+                              'linear-gradient(to right, #BF953F, #f7f1b1)',
+                          }}
+                        />
                         {friend.username}
                       </Link>
                     </li>
@@ -94,7 +101,7 @@ const FriendsList = ({
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion>
+        <Accordion className="fl_acc">
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel2a-content"
@@ -126,7 +133,7 @@ const FriendsList = ({
           </AccordionDetails>
         </Accordion>
 
-        <Accordion>
+        <Accordion className="fl_acc">
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel2a-content"

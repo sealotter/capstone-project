@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { createPost } from '../store';
 import { Avatar, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import Posts from './Posts'
+import Posts from './Posts';
 
 class Post extends Component {
   constructor(props) {
@@ -22,22 +22,19 @@ class Post extends Component {
   };
 
   onSubmit = (ev) => {
-    const {auth} = this.props
+    const { auth } = this.props;
     ev.preventDefault();
-    this.props.createPost(
-      this.state.content,
-      auth.id
-    );
+    this.props.createPost(this.state.content, auth.id);
     this.setState({ content: '' });
   };
 
   render() {
     const { content } = this.state;
     const { onChange, onSubmit } = this;
-    const {auth, id, friendsId} = this.props
+    const { auth, id, friendsId } = this.props;
     return (
       <>
-        {!id || (id && auth.id === id*1)?
+        {!id || (id && auth.id === id * 1) ? (
           <div className="postBox postBoxMain">
             <form onSubmit={onSubmit}>
               <div className="postBox_input">
@@ -52,18 +49,18 @@ class Post extends Component {
                   placeholder="what's on your mind?"
                 ></input>
               </div>
-              <Button
+              <button
                 onClick={onSubmit}
                 className="postBox_button"
                 disabled={!content}
               >
                 +
-              </Button>
+              </button>
             </form>
-          </div>:null
-        }
-        
-        <Posts id={id} friendsId={friendsId}/>
+          </div>
+        ) : null}
+
+        <Posts id={id} friendsId={friendsId} />
       </>
     );
   }
