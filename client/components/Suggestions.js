@@ -32,7 +32,8 @@ const _HighestRated = (props) => {
                     className="suggestedPoster"
                   ></img>
                 </Link>
-                {/* {media.title} */}
+                <br/>
+                {media.title}
               </CardContent>
             </Card>
           );
@@ -64,7 +65,7 @@ const _OwnTopRated = (props) => {
   return (
     
     <div>
-      {auth.id && !id? 'Your Highest Rated Movies:' : `${user?.username }'s favorite movies:`}
+      {/* {auth.id && !id? 'Your Highest Rated Movies:' : `${user?.username }'s favorite movies:`} */}
       <ul>
         {threeHighest.map((media) => {
           return (
@@ -97,7 +98,6 @@ const _Trending = (props) => {
   const trending = ratedMediaArr.slice(0, 3);
   return (
     <div>
-      Trending movies:
       <ul>
         {trending.map((media) => {
           return (

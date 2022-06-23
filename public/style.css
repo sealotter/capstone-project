@@ -293,16 +293,27 @@ nav a {
   margin-top: 2px;
 }
 
+.post_header{
+  width:100%
+}
+
 .post_headerDesc {
   margin-bottom: 10px;
   font-size: 15px;
   margin-left: 10px;
+  margin-top:10px;
+  padding:10px
 }
 
 .post_headerText > h3 {
   display: flex;
   font-size: 15px;
   margin-left: 10px;
+  align-items: center;
+}
+
+.post_headerText > h3 div{
+  margin-left:10px
 }
 
 .postDetail {
@@ -851,4 +862,27 @@ nav a {
   border:1px solid #630606 !important;
   color: #630606 !important;
   font-weight: 500 !important
+}
+
+.postImg{
+  height:300px;
+  background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.75) 2%,
+      rgba(255, 255, 255, 0.5) 50%
+    ),
+    linear-gradient(
+      to top,
+      rgba(#000000, 0.25) 0%,
+      rgba(216, 216, 216, 0.55) 50%
+    ),
+    #ceebff; 
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+}
+
+.movierating{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
