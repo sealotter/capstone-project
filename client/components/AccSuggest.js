@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { HighestRated, OwnTopRated, Trending } from './Suggestions';
+import { HighestRated, OwnTopRated, Trending, FriendRecs } from './Suggestions';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 
@@ -24,6 +24,14 @@ export default function AccSuggest(props) {
   return (
 
     <div className={classes.root}>
+      <div className='sidebarcontainer'>
+        <Card className={classes.root}>
+          <CardContent>
+            <h2>Recommendations</h2>
+            <FriendRecs/>
+          </CardContent>
+        </Card>
+      </div>
       <div className='sidebarcontainer'>
         <Card className={classes.root}>
           <CardContent>
