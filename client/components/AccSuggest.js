@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { HighestRated, OwnTopRated, Trending, FriendRecs } from './Suggestions';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import { Accordion } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -54,7 +55,13 @@ export default function AccSuggest(props) {
             <h2>Top Rated</h2>
             <HighestRated />
           </CardContent>
-        </Card>
+          </Card>
+        {/* <Card className={classes.root}>
+          <CardContent>
+            <h2>Top Rated</h2>
+            <HighestRated />
+          </CardContent>
+        </Card> */}
       </div>
     </div>
   );

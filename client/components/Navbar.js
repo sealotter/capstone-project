@@ -42,7 +42,7 @@ const Navbar = ({ handleClick, isLoggedIn, auth }) => (
           <div className="nav-right">
             <Link to={`/profile/${auth?.id}`} className="online">
               {auth ? (
-                <Avatar src={auth.avatarUrl} style={{ fill: '#630606' }} />
+                <Avatar src={auth.avatarUrl} style={{backgroundColor:'linear-gradient(to right, #BF953F, #f7f1b1)'}} />
               ) : (
                 <Avatar />
               )}{' '}

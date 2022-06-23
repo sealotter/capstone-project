@@ -21,10 +21,6 @@ const useStyles = (theme) => ({
     '& ul > li:not(:first-child):not(:last-child) > button:not(.Mui-selected)': {
       margin : '0 auto'
     }
-    // '& .Mui-selected' : {
-    //   margin: '0 auto'
-
-    // }
     
   },
   imageList: {

@@ -120,7 +120,7 @@ function MuiNav(props) {
               <Button>
                 <Link className={classes.options} to={`/profile/${auth?.id}`}>
                   {auth ? (
-                    <Avatar src={auth.avatarUrl} style={{ fill: '#630606', margin: '0 auto 5px' }} />
+                    <Avatar src={auth.avatarUrl} style={{ backgroundColor:'linear-gradient(to right, #BF953F, #f7f1b1)', margin: '0 auto 5px' }} />
                   ) : null}{' '}
                   Profile{' '}
                 </Link>

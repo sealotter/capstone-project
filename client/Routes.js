@@ -58,7 +58,7 @@ class Routes extends Component {
               <Navbar />
               <div id="mainDiv" style={{ display: 'flex' }}>
                 <MuiNav />
-                <div style={{ flexGrow: 1, marginLeft:'30px' }}>
+                <div style={{ flexGrow: 1 }}>
                   <Switch>
                     <Route path="/home" component={Home} />
                     <Route path="/users" component={Users} />

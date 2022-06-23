@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Recommendations from './Recommendations';
 import MultilineTextFields from './Textfield'
 import { Button } from '@material-ui/core';
-
+import MuiNav from './MuiNav';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
@@ -101,8 +101,10 @@ class SingleMedia extends React.Component {
     };
 
     return (
-      <>
-        <h2 className='singlemediatitle'>{media.title}</h2>
+      <div>
+        <div style={{position:'absolute', background: 'whitesmoke', marginTop: '17px'}}>
+       
+        <h2 className='singlemediatitle' style={{position:'relative'}}>{media.title}</h2>
         <div className='singlemediacontainer'>
           <div className='singlemediaimage'>
             <img className='singlemediaposter'
@@ -178,7 +180,7 @@ class SingleMedia extends React.Component {
                 </div> 
                 ) : (
                   <div className='watchBtn'>
-                  <Button disable = 'true'>Already in Watch List</Button>       
+                  <Button disable = 'true'>Added</Button>       
                 </div>
                 )    
               }
@@ -226,7 +228,8 @@ class SingleMedia extends React.Component {
             </div>
           </div>
         </div>
-      </>
+        </div>
+      </div>
     );
   }
 }

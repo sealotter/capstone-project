@@ -99,7 +99,7 @@ class Posts extends React.Component {
                       <div className="post_headerText">
                         <h3>
                           <Link to={`/profile/${user.id}`}>
-                            <Avatar src={user.avatarUrl} />
+                            <Avatar src={user.avatarUrl} style={{backgroundColor:'linear-gradient(to right, #BF953F, #f7f1b1)'}} />
                           </Link>
                           <div>
                             {user.username}{' '}

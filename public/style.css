@@ -281,8 +281,8 @@ nav a {
   display: flex;
   padding-bottom: 10px;
   flex-direction: column;
-  border: 1px solid #bcbcbc;
-  border-radius: 20px;
+  border: 1px solid #ebebeb;
+  border-radius: 15px;
   background: white;
   width: 100%;
   margin: auto;
@@ -539,6 +539,7 @@ nav a {
 
 #mainDiv {
   display: flex;
+  margin: 0;
 }
 
 #routes {
@@ -668,12 +669,19 @@ nav a {
 /* home page */
 
 .homeposts {
-  flex-basis: 80%;
+  flex-basis: 65%;
+  margin: 0 auto;
 }
 
 .suggestedPoster {
-  height: 200px;
-  width: 150px;
+  /* height: 200px;
+  width: 150px; */
+  height: 100%;
+  width: 100%;
+  border: 2px solid white;
+  border-radius: 5px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 50%)
+  ;
 }
 
 .suggestionList {
@@ -721,7 +729,7 @@ nav a {
   margin-left: 4px;
   margin-right: 4px;
   padding: 4px 8px 4px;
-  border: 1px solid black;
+  border: 1px solid #aeaeae;
   border-radius: 25px;
 }
 
@@ -736,7 +744,7 @@ nav a {
 }
 
 .singlemediacontent p {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #d4d4d4;
   padding: 10px 0 10px 0;
 }
 
@@ -780,7 +788,7 @@ nav a {
   width: 80%;
   margin-left: 18%;
   margin-top: 15px;
-  border-left: 2px solid lightgrey;
+  border-left: 1px solid lightgrey;
   padding-left: 0;
 }
 
@@ -841,6 +849,7 @@ nav a {
 
 .sidebarcontainer {
   margin-bottom: 25px;
+  text-align: center;
 }
 
 /*media list main */
@@ -906,3 +915,5 @@ nav a {
   align-items: center;
   flex-direction: column;
 }
+
+

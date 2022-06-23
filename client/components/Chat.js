@@ -58,7 +58,7 @@ function Chat(props){
                       <Button style={{minWidth:'100%', textTransform:'none'}} onClick={()=>{setRoom(auth.id>user.id?`${auth.id}&${user.id}`:`${user.id}&${auth.id}`), setOtherUser(user), joinRoom(auth.username, user)}}>
                         <ListItem alignItems="flex-start">
                           <ListItemAvatar>
-                            <Avatar alt="Remy Sharp" src={`${user.avatarUrl}`} />
+                            <Avatar alt="Remy Sharp" src={`${user.avatarUrl}`} style={{backgroundColor:'linear-gradient(to right, #BF953F, #f7f1b1)'}} />
                           </ListItemAvatar>
                           <ListItemText
                             primary={user.username.toUpperCase()}
