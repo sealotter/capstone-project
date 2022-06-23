@@ -135,6 +135,8 @@ const _FriendRecs = (props) => {
   if(show) viewableRecs = recInfo
   else viewableRecs = firstThreeRecs
   
+  if(!viewableRecs.length) return 'You currently have no recommendations'
+
   return (
     <div>
       <ul>
