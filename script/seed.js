@@ -85,17 +85,17 @@ async function seed() {
     Relationship.create({ recipientId: jiayu.id, senderId: anna.id }),
   ]);
 
-  const recommendations = await Promise.all([
-    Recommendations.create({
-      recipientId: doug.id,
-      senderId: jiayu.id,
-    }),
-    Recommendations.create({
-      recipientId: cody.id,
-      senderId: jiayu.id,
-    }),
-  ]);
-  console.log(`seeded ${recommendations.length} recommendations`);
+  // const recommendations = await Promise.all([
+  //   Recommendations.create({
+  //     recipientId: doug.id,
+  //     senderId: jiayu.id,
+  //   }),
+  //   Recommendations.create({
+  //     recipientId: cody.id,
+  //     senderId: jiayu.id,
+  //   }),
+  // ]);
+  // console.log(`seeded ${recommendations.length} recommendations`);
   console.log(`seeded ${users.length} users`);
   console.log(`seeded ${relationships.length} relationships`);
   console.log(`seeded successfully`);

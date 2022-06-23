@@ -154,4 +154,5 @@ const mapDispatch = (dispatch) => {
     },
   };
 };
+
 export default connect((state) => state, mapDispatch)(Profile);
