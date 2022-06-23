@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import { Button } from '@material-ui/core';
 
 import auth from '../store/auth';
 
@@ -32,7 +33,8 @@ const _HighestRated = (props) => {
                     className="suggestedPoster"
                   ></img>
                 </Link>
-                {/* {media.title} */}
+                <br/>
+                {media.title}
               </CardContent>
             </Card>
           );
@@ -64,7 +66,7 @@ const _OwnTopRated = (props) => {
   return (
     
     <div>
-      {auth.id && !id? 'Your Highest Rated Movies:' : `${user?.username }'s favorite movies:`}
+      {/* {auth.id && !id? 'Your Highest Rated Movies:' : `${user?.username }'s favorite movies:`} */}
       <ul>
         {threeHighest.map((media) => {
           return (
@@ -97,11 +99,10 @@ const _Trending = (props) => {
   const trending = ratedMediaArr.slice(0, 3);
   return (
     <div>
-      Trending movies:
       <ul>
         {trending.map((media) => {
           return (
-            <li key={media.id} className="suggestionList">
+            <li key={media?.id} className="suggestionList">
               <Link to={`/${media.medium}/${media.apiId}`}>
                 <img
                   src={`https://image.tmdb.org/t/p/w300/${media.poster_path}`}
@@ -117,6 +118,49 @@ const _Trending = (props) => {
   );
 };
 
+//friend recommendations
+const _FriendRecs = (props) => {
+  const [show, setShow] = useState(false)
+  const { dbMedia, recommendations, auth, users } = props;
+  const myRecs = recommendations.filter(rec=>rec.friendId === auth.id)
+  const recInfo = myRecs.map(rec=>{
+    return{
+      friend:users.find(user=> user.id === rec.userId),
+      media: dbMedia.find(media=>media.id ===rec.mediaId)
+    }
+  })
+  const firstThreeRecs = recInfo.length>3?recInfo.slice(0,3):recInfo
+
+  let viewableRecs
+  if(show) viewableRecs = recInfo
+  else viewableRecs = firstThreeRecs
+  
+  if(!viewableRecs.length) return 'You currently have no recommendations'
+
+  return (
+    <div>
+      <ul>
+        {viewableRecs.map((rec, idx) => {
+          return (
+            <li key={idx} className="suggestionList">
+              Recommended by {rec.friend.username}:
+              <Link to={`/${rec.media.medium}/${rec.media.apiId}`}>
+                <img
+                  src={`https://image.tmdb.org/t/p/w300/${rec.media.poster_path}`}
+                  className="suggestedPoster"
+                ></img>
+              </Link>
+              {rec.media.title}
+            </li>
+          );
+        })}
+      </ul>
+      <Button onClick={()=>setShow(!show)}>{show?'Show all recommendations':'Show three recommendations'}</Button>
+    </div>
+  );
+};
+
 export const HighestRated = connect((state) => state)(_HighestRated);
 export const OwnTopRated = connect((state) => state)(_OwnTopRated);
 export const Trending = connect((state) => state)(_Trending);
+export const FriendRecs = connect((state) => state)(_FriendRecs);

@@ -33,21 +33,22 @@ class SingleMedia extends React.Component {
     const type =
       path.slice(1, 6) === 'movie' ? path.slice(1, 6) : path.slice(1, 3);
     if (this.props.media.results) findSingleMedia({ id, media: type });
+    if(this.props.media.id !== id*1) findSingleMedia({ id, media: type })
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     const {
       findSingleMedia,
       match: {
         params: { id },
         path,
-      }, lists
+      }, lists, media
     } = this.props;
+
     const type =
       path.slice(1, 6) === 'movie' ? path.slice(1, 6) : path.slice(1, 3);
     if (this.props.media.results) findSingleMedia({ id, media: type });
-
-
+    if(this.props.media.id !== id*1) findSingleMedia({ id, media: type })
   }
 
   handleOnClick(){
@@ -80,6 +81,9 @@ class SingleMedia extends React.Component {
 
     const type = path.slice(1, 6) === 'movie' ? path.slice(1, 6) : path.slice(1, 3);
     if (!media.id) return null;
+
+    if(media.id !== id*1) return 'loading...'
+
     const myRating = ratings.find(
       (rating) =>
         rating?.mediaId === media.dataValues.id && rating?.userId === auth.id
@@ -200,7 +204,7 @@ class SingleMedia extends React.Component {
                       }}
                     />
                   </div>
-                  <MultilineTextFields handleSubmit={updatePostContent} postId={myRating.id}/>
+                  <MultilineTextFields handleSubmitValue={updatePostContent} postId={myRating.id}/>
                   </>
                   :
                   <div>

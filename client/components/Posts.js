@@ -94,34 +94,46 @@ class Posts extends React.Component {
               <div className="postoutline">
                 <div className="post">
                   <div className="post_body">
-                    <Link to={`/profile/${user.id}`}>
-                      <Avatar src={user.avatarUrl} />
-                    </Link>
 
                     <div className="post_header">
                       <div className="post_headerText">
                         <h3>
-                          {user.username}{' '}
-                          <span className="postDetail">
-                            •{Date(post.createdAt).slice(4, 10)}{' '}
-                          </span>
+                          <Link to={`/profile/${user.id}`}>
+                            <Avatar src={user.avatarUrl} />
+                          </Link>
+                          <div>
+                            {user.username}{' '}
+                            <span className="postDetail">
+                              •{Date(post.createdAt).slice(4, 10)}{' '}
+                            </span>
+                          </div>
                         </h3>
                       </div>
-                      {post.rating ? (
-                        <>
-                          <div className="postDetail">
-                            Review for {media?.title}
-                          </div>
-                          <Rating
-                            name="Rated"
-                            readOnly
-                            value={post.rating}
-                            max={10}
-                          />
-                        </>
-                      ) : null}
                       <div className="post_headerDesc">
                         <p>{post.content}</p>
+                      </div>
+                      <div className='movierating'>
+                        {post.rating ? (
+                          <>
+                            <div className="postDetail">
+                              Review for {media?.title}
+                            </div>
+                            <Rating
+                              name="Rated"
+                              readOnly
+                              value={post.rating}
+                              max={10}
+                            />
+                            <br/>
+                            <img className='postImg'
+                              src={
+                                media?.poster_path
+                                  ? `https://image.tmdb.org/t/p/w300/${media?.poster_path}`
+                                  : 'https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png'
+                              }
+                            />
+                          </>
+                        ) : null}
                       </div>
                     </div>
                   </div>

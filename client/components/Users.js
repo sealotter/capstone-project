@@ -8,6 +8,7 @@ import { addFriend } from '../store/relationships';
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
+    borderRadius:25
   },
   title: {
     fontSize: 14,
@@ -53,7 +54,7 @@ function Users(props) {
 
           if(user.id === auth.id) return null
           return(
-            <Grid item xs={6} md={4} lg={3} key={user.id}>
+            <Grid item xs={12} md={6} lg={4} key={user.id}>
               <Card className={classes.root} variant="outlined" key={user.id} style={{width:'300px', height:'300px'}}>
                 <CardContent>
                   <Typography variant="h5" component="h2">

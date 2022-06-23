@@ -85,7 +85,7 @@ const Profile = (props) => {
             <Post id={id} />
           </div>
           <div>
-            <AccSuggest />
+            <AccSuggest id={id} auth={auth}/>
           </div>
         </div>
       ) : (
@@ -154,4 +154,5 @@ const mapDispatch = (dispatch) => {
     },
   };
 };
+
 export default connect((state) => state, mapDispatch)(Profile);
