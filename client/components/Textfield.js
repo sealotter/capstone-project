@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {TextField, Button} from '@material-ui/core/';
+import PositionedSnackbar from './Snackbar'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -12,13 +13,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function MultilineTextFields(props) {
-  const {handleSubmit, postId} = props
+  const {handleSubmitValue, postId} = props
   const classes = useStyles();
   const [value, setValue] = React.useState('');
 
   const handleChange = (event) => {
     setValue(event.target.value);
   };
+
+  const handleSubmit=()=>{
+    handleSubmitValue(postId, value)
+    setValue('')
+  }
 
   return (
     <form className={classes.root} noValidate autoComplete="off">
@@ -33,10 +39,7 @@ export default function MultilineTextFields(props) {
           onChange={handleChange}
         />
       </div>
-      <Button onClick={()=>{
-        handleSubmit(postId, value)
-        setValue('')  
-      }}>Submit</Button>
+      <PositionedSnackbar handleParentClick={handleSubmit} parentState={value} type={'review'}/>
     </form>
   );
 }

@@ -101,7 +101,7 @@ const _Trending = (props) => {
       <ul>
         {trending.map((media) => {
           return (
-            <li key={media.id} className="suggestionList">
+            <li key={media?.id} className="suggestionList">
               <Link to={`/${media.medium}/${media.apiId}`}>
                 <img
                   src={`https://image.tmdb.org/t/p/w300/${media.poster_path}`}
