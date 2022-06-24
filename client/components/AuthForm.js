@@ -67,9 +67,7 @@ export default function AuthForm(props) {
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
-          <Avatar className={classes.avatar} style={{backgroundColor:'linear-gradient(to right, #BF953F, #f7f1b1)'}}>
-            <LockOutlinedIcon />
-          </Avatar>
+          <img src="/../images/Logo1Red.png" style={{height:'350px'}}/>
           <Typography component="h1" variant="h5">
             {displayName}
           </Typography>
