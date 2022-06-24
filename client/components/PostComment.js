@@ -61,8 +61,8 @@ class PostComment extends React.Component {
           >
             +
           </button>
-          <button
-            className="close_button"
+          <button style={{marginTop:'2px'}}
+            className="postBox_button"
             onClick={() => {
               this.setState({ showComment: false });
               handleComment();

@@ -11,7 +11,7 @@ import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
+import { Link } from 'react-router-dom';
 
 class SingleMedia extends React.Component {
   constructor(props) {
@@ -101,11 +101,11 @@ class SingleMedia extends React.Component {
     };
 
     return (
-      <div>
-        <div style={{position:'absolute', background: 'whitesmoke', marginTop: '17px', width:'100%'}}>
+      // <div>
+        <div>
        
-        <h2 className='singlemediatitle' style={{position:'relative'}}>{media.title}</h2>
-        <div className='singlemediacontainer'>
+       <h2 className='singlemediatitle'>{media.title}</h2>
+        <div className='singlemediacontainer' style={{width:'70%', margin:'0 auto', marginLeft:'460px'}}>
           <div className='singlemediaimage'>
             <img className='singlemediaposter'
               src={
@@ -173,10 +173,12 @@ class SingleMedia extends React.Component {
                 'N/A'
               )}
             </p>
-            <div className='selectContainer'>
+            {/* <div> */}
+              <div className='selectContainer'>
               { !inWatchList ? (
                 <div className='watchBtn'>
-                  <Button onClick={() => this.handleOnClick()}>Add to Watch List</Button>      
+                  <button className='postBox_button' onClick={() => this.handleOnClick()}>Add to Watch List</button>
+                  {/* <Button onClick={() => this.handleOnClick()}>Add to Watch List</Button>       */}
                 </div> 
                 ) : (
                   <div className='watchBtn'>
@@ -184,12 +186,14 @@ class SingleMedia extends React.Component {
                 </div>
                 )    
               }
+             
               <div className='makerecommendation'>
                 <Recommendations media={media} />
               </div>
             </div>
+            {/* </div> */}
             <div className='makeratingcontainer'>
-              <div className='makerating'>
+              <div className='makerating' style={{marginTop: '100px', marginRight:'550px'}}>
                 {myRating?
                   <>
                     <div>
@@ -229,7 +233,7 @@ class SingleMedia extends React.Component {
           </div>
         </div>
         </div>
-      </div>
+      // </div>
     );
   }
 }

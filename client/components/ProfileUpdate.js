@@ -43,8 +43,8 @@ class ProfileUpdate extends Component {
 
     const result = (
       <div className="updateProfile">
-        <h3>Update Your Info Here!</h3>
-        <form onSubmit={onSave}>
+        <h3 style={{textAlign:'center'}}>Update Your Info Here!</h3>
+        <form onSubmit={onSave} style={{margin:'0 auto'}}>
           <TextField
             label="Username"
             onChange={onChange}

@@ -44,7 +44,7 @@ function Users(props) {
 
   return (
   
-    <Container style={{paddingTop:'50px', width:'50%', margin: '0 auto'}}>
+    <Container style={{paddingTop:'50px', width:'100%', margin: '0 auto', marginLeft:'450px'}}>
       <h1 style={{textAlign: 'center'}}>Explore Users</h1>
       <TextField id="standard-basic" value={filter} label={`Search for people`} onChange={(ev)=> setFilter(ev.target.value)}/>
       <Button className={classes.button} onClick={()=>{setFilter('')}}>clear</Button>

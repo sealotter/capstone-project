@@ -222,7 +222,7 @@ nav a {
 /*   post   */
 
 .postBox {
-  padding-bottom: 10px;
+  padding-bottom: 20px;
   border: 0.5px solid #bcbcbc;
   margin: auto;
   border-radius: 20px;
@@ -248,7 +248,22 @@ nav a {
 }
 
 .postBox_button {
-  background-color: #630606;
+  background-image: linear-gradient(to right, #F09819 0%, #EDDE5D  51%, #F09819  100%); 
+  margin: 10px;
+  padding: 9px 35px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;            
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  margin: 0 auto;
+  display: block;
+ 
+
+  /* background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C) */
+  /* background-color: #630606;
   color: white;
   border-radius: 30px;
   display: flex;
@@ -257,11 +272,16 @@ nav a {
   width: 100px;
   align-items: center;
   font-size: 24px;
-  cursor: pointer;
+  cursor: pointer; */
+  /* background: linear-gradient(to bottom, rgba(252,234,187,1) 0%, rgba(252,205,77,1) 40%, rgba(248,181,0,1) 51%, rgba(251,223,147,1) 100%); */
 }
 
+
 .postBox_button:hover {
-  box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.2);
+  /* box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.2); */
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
 }
 
 .postBox_button:active {
@@ -811,8 +831,7 @@ nav a {
   margin-bottom: 25px;
 }
 
-.post {
-}
+
 
 .commentsbox {
   width: 80%;
@@ -956,4 +975,25 @@ nav a {
   margin: 18px;
   font-size: 24px;
   width: 100%
+}
+
+
+.btn-grad {
+  background-image: linear-gradient(to right, #F09819 0%, #EDDE5D  51%, #F09819  100%);
+  margin: 10px;
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;            
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: block;
+}
+
+.btn-grad:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
 }
