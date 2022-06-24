@@ -111,7 +111,7 @@ export default function MultipleSelect(props) {
           ))}
         </Select>
       </FormControl>
-      <Button className={classes.button} onClick={()=>{setGenre([]), props.setNewGenres()}}>Reset</Button>
+      <Button className={classes.button} onClick={()=>{setGenre([]), props.setNewGenres()}}>clear</Button>
     </div>
   );
 }
@@ -135,7 +135,7 @@ export function BasicSelects(props) {
   return (
     <div>
       <FormControl className={classes.formControl}>
-        <InputLabel></InputLabel>
+        <InputLabel>Media</InputLabel>
         <Select
           native
           value={state.media}
@@ -180,7 +180,7 @@ export function SearchBox(props) {
           searchBy === 'title'?setName(ev.target.value):setPeople(ev.target.value)
           onChangeValue(ev.target.value)
         }}/>
-      <Button className={classes.button} onClick={()=>{searchBy==='title'?setName(''):setPeople(''), onChangeValue('')}}>Reset</Button>
+      <Button className={classes.button} onClick={()=>{searchBy==='title'?setName(''):setPeople(''), onChangeValue('')}}>clear</Button>
     </form>
   );
 }

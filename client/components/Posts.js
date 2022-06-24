@@ -10,12 +10,16 @@ import PostComment from './PostComment';
 import Rating from '@material-ui/lab/Rating';
 import Post from './Post';
 
+
+
 class Posts extends React.Component {
   constructor() {
     super();
     this.state = {
       showCommentBox: null,
       filter: '',
+      
+
     };
     this.handleShowCommentBox = this.handleShowCommentBox.bind(this);
   }
@@ -24,6 +28,7 @@ class Posts extends React.Component {
     this.setState({ showCommentBox: null });
   }
 
+ 
   render() {
     const { posts, users, updatePostLikes, auth, dbMedia, id } = this.props;
     let { friendsId } = this.props;
@@ -57,13 +62,12 @@ class Posts extends React.Component {
           post.rating &&
           dbMedia
             .find((media) => media.id === post.mediaId)
-            ?.title.toLowerCase()
-            .includes(filter.toLowerCase())
+            ?.title?.toLowerCase() 
+            .includes(filter?.toLowerCase())
       );
     };
 
     const searchPosts = filterPosts(filter, myPosts);
-
     return (
       <div display="flex" align-items="center">
         <div className='filter-divider' style={{width:'50%', margin: '20px auto 50px', display:'flex', flexDirection:'column'}}>
@@ -211,11 +215,13 @@ class Posts extends React.Component {
                           <div className="post_footer">
                             {comment.likes.includes(auth.username) ? (
                               <Button>
+
                                 {comment.likes.length}
                                 <FavoriteIcon
                                   fontSize="small"
                                   onClick={() => {
                                     updatePostLikes(comment.id, auth.username);
+                                   
                                   }}
                                 />
                               </Button>

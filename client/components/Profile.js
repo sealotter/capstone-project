@@ -40,7 +40,7 @@ const Profile = (props) => {
   return (
     <>
       {user?.id === auth.id ? (
-        <div className="profilePage">
+        <div className="profilePage" style={{marginLeft:'450px'}}>
           <div className="center">
             <div className="topProfile">
               <div className="wallpaper">
@@ -89,7 +89,7 @@ const Profile = (props) => {
           </div>
         </div>
       ) : (
-        <div className="profilePage">
+        <div className="profilePage" style={{marginLeft:'450px'}}>
           <div className="center">
             <div className="topProfile">
               <div className="wallpaper">
@@ -139,7 +139,7 @@ const Profile = (props) => {
             </div>
             <Post id={id} />
           </div>
-          <div style={{ flexBasis: '25%' }}>
+          <div className ='right' style={{position: 'fixed', right: '90px', width: '15%', overflow: 'scroll', height: '90%'}}>
             <AccSuggest id={id} />
           </div>
         </div>

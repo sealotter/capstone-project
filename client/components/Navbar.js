@@ -40,7 +40,7 @@ const Navbar = ({ handleClick, isLoggedIn, auth }) => (
             <Link to ='/watchlist'>Watch List</Link> */}
           </div>
           <div className="nav-right">
-            <Link to={`/profile/${auth?.id}`} className="online">
+            <Link to={`/profile/${auth?.id}`} className="online" style={{color: '#630606',}}>
               {auth ? (
                 <Avatar src={auth.avatarUrl} style={{backgroundColor:'linear-gradient(to right, #BF953F, #f7f1b1)'}} />
               ) : (

@@ -36,7 +36,7 @@ function Chat(props){
 
   return(
     <Box sx={{ flexGrow: 1, marginTop:'25px', paddingRight:'25px', paddingLeft:'25px' }}>
-      <Grid container className="App" columns={12}>
+      <Grid container className="App" columns={12} style={{width:'50%', margin:'0 auto'}}>
         <Grid item xs={8}><Chatroom socket={socket} username={auth.username} otherUser={otherUser.id?otherUser:friends[0]} room={room?room:joinRoom(friends[0].username, friends[0])} /></Grid>
         <Grid item xs={4}>
           <Card style={{height:'63vh', border:'1px solid black', borderLeft:'none'}}>
@@ -55,7 +55,7 @@ function Chat(props){
                   }
                   return(
                     <div key={user.id}>
-                      <Button style={{minWidth:'100%', textTransform:'none'}} onClick={()=>{setRoom(auth.id>user.id?`${auth.id}&${user.id}`:`${user.id}&${auth.id}`), setOtherUser(user), joinRoom(auth.username, user)}}>
+                      <Button className = '.btn-grad' style={{minWidth:'100%', textTransform:'none'}} onClick={()=>{setRoom(auth.id>user.id?`${auth.id}&${user.id}`:`${user.id}&${auth.id}`), setOtherUser(user), joinRoom(auth.username, user)}}>
                         <ListItem alignItems="flex-start">
                           <ListItemAvatar>
                             <Avatar alt="Remy Sharp" src={`${user.avatarUrl}`} style={{backgroundColor:'linear-gradient(to right, #BF953F, #f7f1b1)'}} />

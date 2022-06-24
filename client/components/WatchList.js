@@ -29,7 +29,7 @@ class WatchList extends React.Component {
                 <img src='../images/director.png' />
               </div>
               ) : (
-                <div>
+                <div style={{width:'50%', marginTop: '50px', margin:'0 auto'}}>
                   {/* <h3>Here are your saved movies:</h3> */}
                   {lists.map(list => {
                     const WList = dbMedia.find((media => media.id === list.mediaId))
@@ -50,7 +50,7 @@ class WatchList extends React.Component {
                             <p><span>{WList.overview}</span></p>
                            
                               
-                            <Button className='remove' onClick={() => destroy(list)}>Remove Movie </Button>
+                            <Button className='postBox_button' onClick={() => destroy(list)}>Remove Movie </Button>
                         </div> 
 
                     </div>   
