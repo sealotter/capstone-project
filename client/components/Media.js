@@ -90,7 +90,7 @@ class Media extends React.Component{
     if(!media.results) loadMedia({...this.state})
   
     return (
-      <div>
+      <div style={{marginLeft:'200px'}}>
         <h1 style={{textAlign:'center', marginTop:'25px'}}>Search media</h1>
         <div style={{display:'flex', justifyContent:'space-around', alignItems:'center', backgroundColor: 'rgb(253 251 251)', width: '50%', margin: '0 auto'}}>
           <BasicSelects media={{movie:'Movies', tv:'TV Shows'}} onChangeValue={this.handleChangeValue} style={{display:'none'}}/>

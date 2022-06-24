@@ -99,9 +99,10 @@ function MuiNav(props) {
                 borderRadius: '5px'
               }}
             >
-              <Typography className={classes.title} variant="h6" noWrap style={{ fontWeight: '300', fontFamily: 'BlinkMacSystemFont'}}>
+              {/* <Typography className={classes.title} variant="h6" noWrap style={{ fontWeight: '300', fontFamily: 'BlinkMacSystemFont'}}>
                 <span style={{letterSpacing: '3px'}}>DAJA</span> View
-              </Typography>
+              </Typography> */}
+              <img src="/../images/Logo1Red.png" className="logo" style={{margin:'0 auto', height:'250px', width:'250px'}}/>
               <div className={classes.search} style={{alignSelf:'center'}}>
                 <div className={classes.searchIcon}>
                   <SearchIcon style={{color: '#630606'}}/>

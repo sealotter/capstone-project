@@ -15,9 +15,8 @@ const Navbar = ({ handleClick, isLoggedIn, auth }) => (
         <>
           <div className="nav-left">
             {/* <Link to="/media"> */}
-            <img src="/../images/movie logo.png" className="logo" />
+            <img src="/../images/Logo1Red.png" className="logo" />
             {/* </Link> */}
-
             {/* The navbar will show these links after you log in */}
             <Link to="/home" style={{ marginRight: '35px' }}>
               <HomeIcon
